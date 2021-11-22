@@ -34,10 +34,7 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        val rootview= inflater.inflate(R.layout.fragment_home, container, false)
-    
-        return rootview
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     companion object {

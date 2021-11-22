@@ -15,13 +15,14 @@ class Signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup)
-        supportActionBar!!.hide()
+
         findViewById<Button>(R.id.Signup).setOnClickListener{
             performSignup()
         }
 
         findViewById<TextView>(R.id.loginPage).setOnClickListener{
             val intent= Intent(this,Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
     }
@@ -44,9 +45,8 @@ class Signup : AppCompatActivity() {
                 Log.d("SignUp","${it.result?.user?.uid}")
                 savetoFirebaseatabase(username,email,password)
                 val intent= Intent(this,HomePage::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
-                finish()
             }
 
             .addOnFailureListener{
@@ -63,12 +63,6 @@ class Signup : AppCompatActivity() {
                 Log.d("SignUp","Finally we saved the user to Firebase Database")
             }
         }
-    @Override
-    override fun onBackPressed() {
-        val intent = Intent(this@Signup, Welcome::class.java)
-        startActivity(intent)
-        finish()
-    }
 }
 
 class User(val Name:String,val Email:String,val Password:String){
