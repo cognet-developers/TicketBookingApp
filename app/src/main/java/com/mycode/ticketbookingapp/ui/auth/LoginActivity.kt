@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp
+package com.mycode.ticketbookingapp.ui.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,20 +10,21 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.mycode.ticketbookingapp.*
+import com.mycode.ticketbookingapp.ui.home.HomePage
 
 
-
-class Login : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login)
+        setContentView(R.layout.activity_login)
         supportActionBar!!.hide()
         findViewById<Button>(R.id.Login).setOnClickListener{
             performLogin()
         }
 
         findViewById<TextView>(R.id.SignupPage).setOnClickListener{
-            val intent= Intent(this,Signup::class.java)
+            val intent= Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
     }
@@ -43,7 +44,7 @@ class Login : AppCompatActivity() {
                 if(!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(this,"Logged Successfully",Toast.LENGTH_LONG).show()
                 Log.d("Login","${it.result?.user?.uid}")
-                val intent= Intent(this,HomePage::class.java)
+                val intent= Intent(this, HomePage::class.java)
 //                intent.flags= Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
@@ -58,7 +59,7 @@ class Login : AppCompatActivity() {
 
     @Override
     override fun onBackPressed() {
-        val intent = Intent(this@Login, Welcome::class.java)
+        val intent = Intent(this@LoginActivity, WelcomeActivity::class.java)
         startActivity(intent)
         finish()
     }

@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp
+package com.mycode.ticketbookingapp.ui.home
 
 
 import android.content.Intent
@@ -8,15 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.app.NavUtils
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.mycode.ticketbookingapp.UsersModel
+import com.mycode.ticketbookingapp.ui.auth.WelcomeActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.profile.*
-import kotlinx.android.synthetic.main.profile.view.*
+import com.mycode.ticketbookingapp.R
+import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,7 +31,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [userprofile.newInstance] factory method to
  * create an instance of this fragment.
  */
-class userprofile : Fragment() {
+class ProfileFragment: Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -52,7 +54,7 @@ class userprofile : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.profile, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_profile, container, false)
         val uid=FirebaseAuth.getInstance().uid
 
 
@@ -62,7 +64,7 @@ class userprofile : Fragment() {
             ref1.addListenerForSingleValueEvent(object : ValueEventListener {
                 @RequiresApi(Build.VERSION_CODES.P)
                 override fun onDataChange(p0: DataSnapshot) {
-                    val user=p0.getValue(Users::class.java)
+                    val user=p0.getValue(UsersModel::class.java)
                         if (user != null) {
                             if (user.profilepic!="") {
                                 displayname.setText(user.username)
@@ -82,7 +84,7 @@ class userprofile : Fragment() {
             ref2.addChildEventListener(object : ChildEventListener {
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                     snapshot.children.forEach {
-                        val user = snapshot.getValue(Users::class.java)
+                        val user = snapshot.getValue(UsersModel::class.java)
                         if (user != null && user.uid == FirebaseAuth.getInstance().uid) {
                             if (user.profilepic != "") {
                                 displayname.setText(user.username)
@@ -129,7 +131,7 @@ class userprofile : Fragment() {
             rootView.logout.setOnClickListener {
                 activity?.let {
                     Firebase.auth.signOut()
-                    val intent = Intent(it, Welcome::class.java)
+                    val intent = Intent(it, WelcomeActivity::class.java)
 //                    intent.flags= Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     it.startActivity(intent)
                     it.finish()
@@ -150,7 +152,7 @@ class userprofile : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            userprofile().apply {
+            ProfileFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

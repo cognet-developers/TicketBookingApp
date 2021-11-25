@@ -10,18 +10,21 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.mycode.ticketbookingapp.ui.home.HomePage
+import com.mycode.ticketbookingapp.ui.auth.LoginActivity
+import com.mycode.ticketbookingapp.ui.auth.WelcomeActivity
 
-class Signup : AppCompatActivity() {
+class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.signup)
+        setContentView(R.layout.activity_signup)
         supportActionBar!!.hide()
         findViewById<Button>(R.id.Signup).setOnClickListener{
             performSignup()
         }
 
         findViewById<TextView>(R.id.loginPage).setOnClickListener{
-            val intent= Intent(this,Login::class.java)
+            val intent= Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
@@ -43,7 +46,7 @@ class Signup : AppCompatActivity() {
                 Toast.makeText(this,"Welcome "+username+"!",Toast.LENGTH_LONG).show()
                 Log.d("SignUp","${it.result?.user?.uid}")
                 savetoFirebaseatabase(username,email,password)
-                val intent= Intent(this,HomePage::class.java)
+                val intent= Intent(this, HomePage::class.java)
 //                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
@@ -57,7 +60,7 @@ class Signup : AppCompatActivity() {
     private fun savetoFirebaseatabase(username:String,email:String,password:String) {
         val uid=FirebaseAuth.getInstance().uid?: ""
        val ref=FirebaseDatabase.getInstance().getReference("/User/$uid")
-        val user=Users(uid,email,username,null,password)
+        val user=UsersModel(uid,email,username,null,password)
         ref.setValue(user)
             .addOnSuccessListener{
                 Log.d("SignUp","Finally we saved the user to Firebase Database")
@@ -65,7 +68,7 @@ class Signup : AppCompatActivity() {
         }
     @Override
     override fun onBackPressed() {
-        val intent = Intent(this@Signup, Welcome::class.java)
+        val intent = Intent(this@SignupActivity, WelcomeActivity::class.java)
         startActivity(intent)
         finish()
     }

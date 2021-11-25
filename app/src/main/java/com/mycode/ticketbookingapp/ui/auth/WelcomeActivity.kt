@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp
+package com.mycode.ticketbookingapp.ui.auth
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -19,9 +19,12 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.UsersModel
 import com.mycode.ticketbookingapp.databinding.ActivityWelcomeBinding
+import com.mycode.ticketbookingapp.ui.home.HomePage
 
-class Welcome : AppCompatActivity() {
+class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -47,7 +50,7 @@ class Welcome : AppCompatActivity() {
            signIn()
        }
        findViewById<TextView>(R.id.tvsignin).setOnClickListener(View.OnClickListener {
-          val intent = Intent(this, Login::class.java)
+          val intent = Intent(this, LoginActivity::class.java)
            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
            startActivity(intent)
        })
@@ -88,9 +91,9 @@ class Welcome : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("TAG", "signInWithCredential:success")
                         val user = auth.currentUser
-                        val users = Users(user!!.uid.toString(),user!!.email.toString(),user!!.displayName.toString(),user!!.photoUrl.toString(),null)
+                        val users = UsersModel(user!!.uid.toString(),user!!.email.toString(),user!!.displayName.toString(),user!!.photoUrl.toString(),null)
                         database.getReference().child("User").child(user!!.uid).setValue(users)
-                        val intent= Intent(this,HomePage::class.java)
+                        val intent= Intent(this, HomePage::class.java)
 //                        intent.flags= Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                         finish()

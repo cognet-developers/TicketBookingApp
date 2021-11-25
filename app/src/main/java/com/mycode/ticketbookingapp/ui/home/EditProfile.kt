@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp
+package com.mycode.ticketbookingapp.ui.home
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.UsersModel
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.editprofile.*
@@ -31,7 +33,7 @@ class EditProfile : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.editprofile)
+        setContentView(R.layout.activity_editprofile)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
         findViewById<ProgressBar>(R.id.loading_spinner).visibility = View.GONE
         findViewById<EditText>(R.id.userdp).setShowSoftInputOnFocus(false)
@@ -58,7 +60,7 @@ class EditProfile : AppCompatActivity() {
             ref1.addListenerForSingleValueEvent(object : ValueEventListener {
                 @RequiresApi(Build.VERSION_CODES.P)
                 override fun onDataChange(p0: DataSnapshot) {
-                    val user = p0.getValue(Users::class.java)
+                    val user = p0.getValue(UsersModel::class.java)
                     if (user != null) {
                         if (user.profilepic != "") {
                             findViewById<EditText>(R.id.name).setText(user.username)
@@ -103,7 +105,9 @@ class EditProfile : AppCompatActivity() {
 
             selectedPhotoUri = data.data
 
-            Picasso.with(this@EditProfile).load(selectedPhotoUri).into(findViewById<CircleImageView>(R.id.userdp1)).toString()
+            Picasso.with(this@EditProfile).load(selectedPhotoUri).into(findViewById<CircleImageView>(
+                R.id.userdp1
+            )).toString()
             findViewById<EditText>(R.id.userdp).alpha = 0f //to no inflate image view
 
             uploadImageToFirebaseStorage()
@@ -135,7 +139,7 @@ private fun savechanges1(profilepicture:String){
     ref1.addListenerForSingleValueEvent(object : ValueEventListener {
         @RequiresApi(Build.VERSION_CODES.P)
         override fun onDataChange(p0: DataSnapshot) {
-            val user = p0.getValue(Users::class.java)
+            val user = p0.getValue(UsersModel::class.java)
             if (user != null) {
                 val fieldname = user.uid
                 val ref2 = database.getReference()
@@ -163,7 +167,7 @@ private fun savechanges1(profilepicture:String){
         ref1.addListenerForSingleValueEvent(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.P)
             override fun onDataChange(p0: DataSnapshot) {
-                    val user = p0.getValue(Users::class.java)
+                    val user = p0.getValue(UsersModel::class.java)
                     if (user != null) {
                         val fieldname = user.uid
                         val ref2 = database.getReference()

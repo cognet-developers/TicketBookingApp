@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp
+package com.mycode.ticketbookingapp.ui.home
 
 
 import android.annotation.SuppressLint
@@ -13,13 +13,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.ui.auth.WelcomeActivity
 
 
 class HomePage : AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.homepage)
+        setContentView(R.layout.activity_homepage)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
         verifyUserLoginDetails()
         navigate()
@@ -28,7 +30,7 @@ class HomePage : AppCompatActivity() {
     private fun verifyUserLoginDetails() {
         val uid = FirebaseAuth.getInstance().uid
         if (uid == null) {    //Else intent to register page
-            var intent = Intent(this, Welcome::class.java)
+            var intent = Intent(this, WelcomeActivity::class.java)
 //            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             finish()
@@ -38,7 +40,12 @@ class HomePage : AppCompatActivity() {
     private fun navigate(){
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val navController=findNavController(R.id.fragmentContainerView)
-        val appBarConfiguration= AppBarConfiguration(setOf(R.id.home,R.id.dashBoard,R.id.foodandBeverages,R.id.userprofile))
+        val appBarConfiguration= AppBarConfiguration(setOf(
+            R.id.home,
+            R.id.theatres,
+            R.id.stream_movies,
+            R.id.fragment_stream_movies
+        ))
 
         setupActionBarWithNavController(navController,appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
