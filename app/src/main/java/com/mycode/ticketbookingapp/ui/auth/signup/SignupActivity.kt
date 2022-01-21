@@ -4,27 +4,45 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.mycode.ticketbookingapp.ui.home.HomePage
-import com.mycode.ticketbookingapp.ui.auth.LoginActivity
-import com.mycode.ticketbookingapp.ui.auth.WelcomeActivity
+import com.mycode.ticketbookingapp.database.UsersModel
+import com.mycode.ticketbookingapp.ui.auth.signin.SignInActivity
+import com.mycode.ticketbookingapp.ui.welcome.WelcomeActivity
 
 class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
         supportActionBar!!.hide()
-        findViewById<Button>(R.id.Signup).setOnClickListener{
-            performSignup()
-        }
-
+//        val binding1: ActivitySignupBinding = DataBindingUtil.setContentView(this,R.layout.activity_signup)
+//        val viewModel1= ViewModelProviders.of(this).get(AuthViewModel::class.java)
+//        binding1.viewmodel1=viewModel1
+//        viewModel1.authListener=this
+//
+//
+//    }
+//
+//    override fun onStarted() {
+//        toast("Login Started")
+//    }
+//
+//    override fun onSuccess() {
+//        toast("Data stored")
+//    }
+//
+//    override fun onFailure(message:String) {
+//        toast(message)
+//    }
+//        findViewById<Button>(R.id.Signup).setOnClickListener{
+//            performSignup()
+//        }
+//
         findViewById<TextView>(R.id.loginPage).setOnClickListener{
-            val intent= Intent(this, LoginActivity::class.java)
+            val intent= Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
     }
@@ -47,7 +65,7 @@ class SignupActivity : AppCompatActivity() {
                 Log.d("SignUp","${it.result?.user?.uid}")
                 savetoFirebaseatabase(username,email,password)
                 val intent= Intent(this, HomePage::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
             }
@@ -60,7 +78,7 @@ class SignupActivity : AppCompatActivity() {
     private fun savetoFirebaseatabase(username:String,email:String,password:String) {
         val uid=FirebaseAuth.getInstance().uid?: ""
        val ref=FirebaseDatabase.getInstance().getReference("/User/$uid")
-        val user=UsersModel(uid,email,username,null,password)
+        val user= UsersModel(uid,email,username,null,password)
         ref.setValue(user)
             .addOnSuccessListener{
                 Log.d("SignUp","Finally we saved the user to Firebase Database")
@@ -72,7 +90,8 @@ class SignupActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-}
+    }
+
 
 class User(val Name:String,val Email:String,val Password:String){
     constructor():this("","","")

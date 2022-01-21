@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp
+package com.mycode.ticketbookingapp.ui.home.profilefragment
 
 
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.mycode.ticketbookingapp.ui.home.SettingsActivity
+import com.mycode.ticketbookingapp.R
 
 
 class feedback : AppCompatActivity() {

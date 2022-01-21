@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp.ui.home
+package com.mycode.ticketbookingapp.ui.home.profilefragment
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

@@ -35,11 +35,11 @@
 
         </activity>
 
-        <activity android:name=".ui.auth.LoginActivity">
+        <activity android:name=".ui.auth.signin.SignInActivity">
 
         </activity>
 
-        <activity android:name="com.mycode.ticketbookingapp.ui.home.HomePage">
+        <activity android:name="com.mycode.ticketbookingapp.HomePage">
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN" />
@@ -50,17 +50,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.mycode.ticketbookingapp.ui.home.EditProfile">
+        <activity android:name="com.mycode.ticketbookingapp.ui.home.profilefragment.EditProfile">
         </activity>
 
-        <activity android:name=".feedback">
+        <activity android:name=".ui.home.profilefragment.feedback">
              <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycode.ticketbookingapp.ui.home.SettingsActivity" />
+                android:value="com.mycode.ticketbookingapp.ui.home.profilefragment.SettingsActivity" />
 
 
         </activity>
-        <activity android:name="com.mycode.ticketbookingapp.ui.home.SettingsActivity">
+        <activity android:name="com.mycode.ticketbookingapp.ui.home.profilefragment.SettingsActivity">
 
 
         </activity>
