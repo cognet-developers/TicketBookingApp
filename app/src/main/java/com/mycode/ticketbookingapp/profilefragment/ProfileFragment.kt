@@ -1,20 +1,12 @@
-package com.mycode.ticketbookingapp.ui.home.profilefragment
+package com.mycode.ticketbookingapp.profilefragment
 
 
-import android.content.Intent
-import android.os.Build
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
-import com.mycode.ticketbookingapp.ui.welcome.WelcomeActivity
-import com.squareup.picasso.Picasso
 import com.mycode.ticketbookingapp.R
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*

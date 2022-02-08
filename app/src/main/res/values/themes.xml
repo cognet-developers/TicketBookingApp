@@ -15,12 +15,27 @@
         <!-- Customize your theme here. -->
     </style>
 
-<!--    <style name="Theme.TicketBookingApp.NoActionBar">-->
-<!--        <item name="windowActionBar">false</item>-->
-<!--        <item name="windowNoTitle">true</item>-->
-<!--    </style>-->
+    <style name="Theme.TicketBookingApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
-<!--    <style name="Theme.TicketBookingApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+    <style name="Theme.TicketBookingApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-<!--    <style name="Theme.TicketBookingApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
+    <style name="Theme.TicketBookingApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Launch" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch</item>
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimaryDark">@color/yellow</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    </style>
+    <!--    <style name="Theme.TicketBookingApp.NoActionBar">-->
+    <!--        <item name="windowActionBar">false</item>-->
+    <!--        <item name="windowNoTitle">true</item>-->
+    <!--    </style>-->
+
+    <!--    <style name="Theme.TicketBookingApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+    <!--    <style name="Theme.TicketBookingApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 </resources>

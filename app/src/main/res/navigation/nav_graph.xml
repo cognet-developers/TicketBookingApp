@@ -3,76 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home">
+    app:startDestination="@id/welcomePage">
+
+<fragment
+    android:id="@+id/welcomePage"
+    android:name="com.mycode.ticketbookingapp.welcome.WelcomeFragment"
+    android:label="Welcome"
+    tools:layout="@layout/fragment_welcome" >
+    <action
+        android:id="@+id/action_welcomePage_to_signinPage"
+        app:destination="@id/signinPage"
+        app:popUpTo="@id/welcomePage" />
+    <action
+        android:id="@+id/action_welcomePage_to_signupPage"
+        app:destination="@id/signupPage"
+        app:popUpTo="@id/welcomePage" />
 
 
+
+</fragment>
     <fragment
-        android:id="@+id/home"
-        android:name="com.mycode.ticketbookingapp.ui.home.homefragment.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home" >
+        android:id="@+id/signinPage"
+        android:name="com.mycode.ticketbookingapp.signin.SignInFragment"
+        android:label="SignIn"
+        tools:layout="@layout/fragment_sign_in" >
         <action
-            android:id="@+id/action_home_to_theatres"
-            app:destination="@id/theatres" />
+            android:id="@+id/action_signinPage_to_signupPage"
+            app:destination="@id/signupPage"
+            app:popUpTo="@id/welcomePage" />
+
     </fragment>
     <fragment
-        android:id="@+id/theatres"
-        android:name="com.mycode.ticketbookingapp.ui.home.theatresfragment.TheatresFragment"
-        android:label="Theatres"
-        tools:layout="@layout/fragment_theatres" >
+        android:id="@+id/signupPage"
+        android:name="com.mycode.ticketbookingapp.signup.SignUpFragment"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_sign_up" >
         <action
-            android:id="@+id/action_theatres_to_stream_movies"
-            app:destination="@id/stream_movies" />
+            android:id="@+id/action_signupPage_to_signinPage"
+            app:destination="@id/signinPage"
+            app:popUpTo="@id/welcomePage" />
+
+
     </fragment>
+
+
+
     <fragment
-        android:id="@+id/stream_movies"
-        android:name="com.mycode.ticketbookingapp.ui.home.streamfragment.StreamFragment"
-        android:label="Stream_Movies"
-        tools:layout="@layout/fragment_stream_movies" >
-        <action
-            android:id="@+id/action_stream_movies_to_userprofile"
-            app:destination="@id/fragment_stream_movies" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_stream_movies"
-        android:name="com.mycode.ticketbookingapp.ui.home.profilefragment.ProfileFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_fragment_stream_movies_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_fragment_stream_movies_to_editProfile"
-            app:destination="@id/editProfile" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.mycode.ticketbookingapp.ui.home.profilefragment.SettingsActivity.SettingsFragment"
-        android:label="SettingsFragment" >
-        <action
-            android:id="@+id/action_settingsFragment_to_feedback"
-            app:destination="@id/feedback" />
-    </fragment>
-    <activity
         android:id="@+id/editProfile"
-        android:name="com.mycode.ticketbookingapp.ui.home.profilefragment.EditProfile"
-        android:label="EditProfile" />
-    <activity
+        android:name="com.mycode.ticketbookingapp.profilefragment.EditProfileFragment"
+        android:label="EditProfile"
+        tools:layout="@layout/fragment_editprofile">
+    </fragment>
+    <fragment
         android:id="@+id/feedback"
-        android:name="com.mycode.ticketbookingapp.ui.home.profilefragment.feedback"
-        android:label="fragment_feedback"
-        tools:layout="@layout/fragment_feedback" />
-    <activity
-        android:id="@+id/welcomeActivity"
-        android:name="com.mycode.ticketbookingapp.ui.welcome.WelcomeActivity"
-        android:label="activity_welcome"
-        tools:layout="@layout/activity_welcome" />
-    <activity
-        android:id="@+id/signInActivity"
-        android:name="com.mycode.ticketbookingapp.ui.auth.signin.SignInActivity"
-        android:label="SignInActivity" />
-    <activity
-        android:id="@+id/signupActivity"
-        android:name="com.mycode.ticketbookingapp.SignupActivity"
-        android:label="SignupActivity" />
+        android:name="com.mycode.ticketbookingapp.profilefragment.ProfileFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_feedback">
+    </fragment>
+
+
 </navigation>

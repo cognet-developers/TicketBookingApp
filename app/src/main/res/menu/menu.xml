@@ -15,7 +15,7 @@
         android:icon="@drawable/ic_baseline_movie_24"
         android:title="Stream movies"/>
     <item
-        android:id="@+id/fragment_stream_movies"
+        android:id="@+id/profile"
         android:icon="@drawable/ic_account"
         android:title="UserProfile"/>
 

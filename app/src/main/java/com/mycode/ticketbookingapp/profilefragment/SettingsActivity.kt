@@ -1,10 +1,10 @@
-package com.mycode.ticketbookingapp.ui.home.profilefragment
+package com.mycode.ticketbookingapp.profilefragment
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.*
+import androidx.preference.PreferenceFragmentCompat
 import com.mycode.ticketbookingapp.R
 
 class SettingsActivity : AppCompatActivity() {
