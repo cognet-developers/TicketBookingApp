@@ -7,15 +7,15 @@
         android:icon="@drawable/ic_home"
         android:title="Home"/>
     <item
-        android:id="@+id/dashBoard"
+        android:id="@+id/theatres"
         android:icon="@drawable/ic_baseline_local_movies_24"
         android:title="Theatres"/>
     <item
-        android:id="@+id/foodandBeverages"
+        android:id="@+id/stream_movies"
         android:icon="@drawable/ic_baseline_movie_24"
         android:title="Stream movies"/>
     <item
-        android:id="@+id/userprofile"
+        android:id="@+id/profile"
         android:icon="@drawable/ic_account"
         android:title="UserProfile"/>
 
