@@ -2,25 +2,39 @@ package com.mycode.ticketbookingapp.profilefragment
 
 
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.Application
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.mycode.ticketbookingapp.MainActivity
 import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.databinding.FragmentProfileBinding
+import com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfileFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
 class ProfileFragment: Fragment() {
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_profile, container, false)
+       val binding:FragmentProfileBinding=
+           DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false)
 //        val uid=FirebaseAuth.getInstance().uid
 //
 //
@@ -82,28 +96,43 @@ class ProfileFragment: Fragment() {
 //                }
 //            })
 //
-//        rootView.edit.setOnClickListener {
-//            activity?.let {
-//                val intent = Intent(it, EditProfile::class.java)
-//                it.startActivity(intent)
-//            }
-//        }
+
 //         rootView.settings1.setOnClickListener{
 //             activity?.let{
 //                 val intent = Intent(it, SettingsActivity::class.java)
 //                 it.startActivity(intent)
 //             }
 //         }
-//            rootView.logout.setOnClickListener {
-//                activity?.let {
-//                    Firebase.auth.signOut()
-//                    val intent = Intent(it, WelcomeActivity::class.java)
-////                    intent.flags= Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                    it.startActivity(intent)
-//                    it.finish()
-//                }
+
+
+        val application:Application = requireNotNull(this.activity).application
+        val activity:Activity= this.requireActivity()
+        val viewModelFactory= ProfileViewModelFactory(application,activity)
+        val profileViewModel = ViewModelProvider(this,viewModelFactory).get(ProfileViewModel::class.java)
+
+        binding.profileViewModel=profileViewModel
+        binding.lifecycleOwner=this
+
+//        profileViewModel.navigateToEditProfile.observe(viewLifecycleOwner, Observer {
+//            if(it==true) {
+//                findNavController().navigate(R.layout.fragment_editprofile)
+//
+//                profileViewModel.navigateToEditProfileDone()
 //            }
-            return rootView
+//        })
+
+        profileViewModel.loggedUser.observe(viewLifecycleOwner, Observer{
+            if(it == true){
+                val intent= Intent(application, MainActivity::class.java)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+
+            }
+
+
+        })
+        return binding.root
         }
 
 

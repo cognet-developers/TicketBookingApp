@@ -3,15 +3,13 @@ package com.mycode.ticketbookingapp.profilefragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.profilefragment.settingsfragment.SettingsActivity
 
 
-class feedback : AppCompatActivity() {
+class Feedback : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_feedback)
