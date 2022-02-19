@@ -12,9 +12,11 @@ import com.mycode.ticketbookingapp.database.AuthRepository
 
 class ProfileViewModel(application:Application,activity: Activity): ViewModel() {
     private var alert:AlertDialog.Builder
-    private val _navigateToEditProfile=MutableLiveData<Boolean>()
+
+    private var _navigateToEditProfile=MutableLiveData<Boolean>()
     val navigateToEditProfile:LiveData<Boolean>
     get()=_navigateToEditProfile
+
     private var authRepository: AuthRepository
     val loggedUser: LiveData<Boolean?>
         get()=authRepository.getUserLoggedMutableLiveData()

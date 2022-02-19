@@ -102,7 +102,7 @@
         android:background="@drawable/buttons"
         android:fontFamily="sans-serif-thin"
         android:text="SignIn"
-        android:onClick="@{()->signInViewModel.register(ticketbookingapp.email,ticketbookingapp.password)}"
+        android:onClick="@{()->signInViewModel.register(ticketbookingapp.username,ticketbookingapp.email,ticketbookingapp.password)}"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:textStyle="bold"
