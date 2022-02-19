@@ -12,18 +12,18 @@ import com.mycode.ticketbookingapp.database.AuthRepository
 import com.mycode.ticketbookingapp.model.TicketBookingApp
 
 class SignInViewModel(application: Application):ViewModel(){
-    private val _navigateToSignIn= MutableLiveData<Boolean>()
-    val navigateToSignIn:LiveData<Boolean>
-        get()=_navigateToSignIn
+    private val _navigateToSignUp= MutableLiveData<Boolean>()
+    val navigateToSignUp:LiveData<Boolean>
+        get()=_navigateToSignUp
 
 
 
-    fun navigateToSignIn(){
-        _navigateToSignIn.value=true
+    fun navigateToSignUp(){
+        _navigateToSignUp.value=true
     }
 
-    fun navigateToSignInDone(){
-        _navigateToSignIn.value=false
+    fun navigateToSignUpDone(){
+        _navigateToSignUp.value=false
     }
     private var authRepository: AuthRepository
     val firebaseUser:LiveData<FirebaseUser?>
@@ -39,11 +39,9 @@ class SignInViewModel(application: Application):ViewModel(){
     }
 
 
-    fun register(username:String,email:String,password:String){
-        authRepository.register(username,email, password)
-
+    fun login(email:String,password:String){
+        authRepository.login(email, password)
     }
-
 
 
 

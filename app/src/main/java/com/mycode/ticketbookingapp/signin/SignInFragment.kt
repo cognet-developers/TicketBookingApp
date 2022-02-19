@@ -39,7 +39,6 @@ class SignInFragment : Fragment() {
                 intent.flags =
                     Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
-                Log.d("SignInViewModel","${signInViewModel.firebaseData.value}")
             }
         })
 
@@ -54,10 +53,10 @@ class SignInFragment : Fragment() {
 
 
 
-        signInViewModel.navigateToSignIn.observe(viewLifecycleOwner, Observer {
+        signInViewModel.navigateToSignUp.observe(viewLifecycleOwner, Observer {
             if(it){
                 this.findNavController().navigate(SignInFragmentDirections.actionSigninPageToSignupPage())
-                signInViewModel.navigateToSignInDone()
+                signInViewModel.navigateToSignUpDone()
             }
         })
 

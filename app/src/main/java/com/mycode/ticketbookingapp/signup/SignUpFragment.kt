@@ -43,10 +43,10 @@ class SignUpFragment : Fragment() {
             }
         })
 
-        signUpViewModel.navigateToSignUp.observe(viewLifecycleOwner, Observer {
+        signUpViewModel.navigateToSignIn.observe(viewLifecycleOwner, Observer {
             if(it){
                 this.findNavController().navigate(SignUpFragmentDirections.actionSignupPageToSigninPage())
-                signUpViewModel.navigateToSignUpDone()
+                signUpViewModel.navigateToSignInDone()
             }
         })
         return binding.root
