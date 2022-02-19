@@ -89,6 +89,7 @@
             android:drawableRight="@drawable/ic_baseline_navigate_next_24"
             android:text="Account Settings"
             android:textColor="@color/black"
+            android:onClick="@{()->profileViewModel.navigateTosettings()}"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
