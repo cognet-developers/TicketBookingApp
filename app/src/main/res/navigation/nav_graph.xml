@@ -58,7 +58,7 @@
         android:id="@+id/feedback"
         android:name="com.mycode.ticketbookingapp.profilefragment.ProfileFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/fragment_feedback">
+        tools:layout="@layout/activity_feedback">
     </fragment>
 
 
