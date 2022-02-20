@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration= AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController,appBarConfiguration)
-//        setupWithNavController(navController)
-//        NavigationUI.navigateUp(navController)
 
     }
 

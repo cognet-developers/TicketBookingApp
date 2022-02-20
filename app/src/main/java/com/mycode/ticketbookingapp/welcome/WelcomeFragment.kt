@@ -39,7 +39,7 @@ class WelcomeFragment : Fragment() {
 
     welcomeViewModel.navigateTo.observe(viewLifecycleOwner, Observer {
              if(it) {
-                 this.findNavController().navigate(WelcomeFragmentDirections.actionWelcomePageToSignupPage())
+                 this.findNavController().navigate(WelcomeFragmentDirections.actionWelcomePageToSigninPage())
                  welcomeViewModel.alreadyHaveAccountDone()
              }
 

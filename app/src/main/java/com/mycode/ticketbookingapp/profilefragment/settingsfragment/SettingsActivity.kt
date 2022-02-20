@@ -6,12 +6,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 import com.mycode.ticketbookingapp.R
-import com.mycode.ticketbookingapp.profilefragment.ProfileViewModel
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings_activity)
+        setContentView(R.layout.activity_settings)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
         if (savedInstanceState == null) {
             supportFragmentManager

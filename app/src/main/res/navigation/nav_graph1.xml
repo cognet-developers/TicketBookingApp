@@ -39,7 +39,26 @@
         android:name="com.mycode.ticketbookingapp.profilefragment.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
+
+        <action
+            android:id="@+id/action_profile_to_editProfile"
+            app:destination="@id/editProfile"
+            app:popUpTo="@id/profile" />
+
+
     </fragment>
+
+    <activity
+        android:id="@+id/editProfile"
+        android:name="com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfile"
+        android:label="EditProfile"
+        tools:layout="@layout/activity_editprofile">
+
+
+    </activity>
+
+
+
 
 
 

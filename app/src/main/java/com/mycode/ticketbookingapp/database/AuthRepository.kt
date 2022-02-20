@@ -64,6 +64,7 @@ class AuthRepository(application: Application){
                 firebaseUserAuthRepository.postValue(auth.currentUser)
                 val ticketBookingApp=TicketBookingApp(username,email,password)
                 setUserData(ticketBookingApp)
+
                 Log.d("FuckYou", ticketBookingApp.username)
                 Log.d("SignUp", "${it.result?.user?.uid}")
             }
@@ -115,13 +116,15 @@ class AuthRepository(application: Application){
     }
 
     fun getUserData(){
-        val userData:Query=reference.orderByChild("uid").equalTo(auth.currentUser?.uid)
+
+        val userData:Query=firebaseDatabase.getReference("/ticketBookingAppDB/${auth.currentUser?.uid}")
         userData.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                    val ticketBookingApp=snapshot.getValue(TicketBookingApp::class.java)
-                    if(ticketBookingApp!=null){
+                    val ticketBookingApp = snapshot.getValue(TicketBookingApp::class.java)
+                    if (ticketBookingApp != null) {
                         getUserDataRepository.postValue(ticketBookingApp)
                     }
+
 
             }
             override fun onCancelled(error: DatabaseError) {
@@ -149,7 +152,7 @@ class AuthRepository(application: Application){
 //                        if (user != null) {
 //                            if (user.profilepic!="") {
 //                                displayname.setText(user.username)
-//                                Picasso.with(context).load(user.profilepic).into(userdp2)
+//
 //                            } else {
 //                                displayname.setText(user.username)
 //                            }

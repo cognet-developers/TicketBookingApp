@@ -1,23 +1,58 @@
-//package com.mycode.ticketbookingapp.profilefragment
-//
-//import android.os.Build
-//import android.os.Bundle
-//import android.widget.*
-//import androidx.annotation.RequiresApi
-//import androidx.appcompat.app.AppCompatActivity
-//import com.google.firebase.database.FirebaseDatabase
-//import com.mycode.ticketbookingapp.R
-//
-//import java.util.*
-//
-//
-//class EditProfile : AppCompatActivity() {
+package com.mycode.ticketbookingapp.profilefragment.editprofile
+
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.Application
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.mycode.ticketbookingapp.MainActivity
+import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.databinding.ActivityEditprofileBinding
+
+
+class EditProfile : AppCompatActivity() {
+
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+
+            val binding = DataBindingUtil.setContentView<ActivityEditprofileBinding>(
+                this,
+                R.layout.activity_editprofile
+            )
+
+            supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
+            supportActionBar?.title = "EditProfile"
+//            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+            val application: Application = requireNotNull(this).application
+            val viewModelFactory = EditProfileViewFactory(application)
+            val editProfileViewModel =
+                ViewModelProvider(this, viewModelFactory).get(EditProfileViewModel::class.java)
+
+            binding.editProfileViewModel = editProfileViewModel
+            binding.lifecycleOwner = this
+        }
+
+
+
+
+}
 //    private lateinit var database: FirebaseDatabase
 //
 //    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_editprofile)
+//
 ////        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
 ////        findViewById<ProgressBar>(R.id.loading_spinner).visibility = View.GONE
 ////        findViewById<EditText>(R.id.userdp).setShowSoftInputOnFocus(false)
@@ -202,3 +237,4 @@
 //
 //
 //
+

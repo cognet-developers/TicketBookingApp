@@ -6,9 +6,12 @@ import android.app.Application
 import android.content.DialogInterface
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseUser
 import com.mycode.ticketbookingapp.database.AuthRepository
+import com.mycode.ticketbookingapp.model.TicketBookingApp
 
 class ProfileViewModel(application:Application,activity: Activity): ViewModel() {
     private var alert:AlertDialog.Builder
@@ -25,10 +28,24 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
     val navigateTosettings:LiveData<Boolean?>
         get()=_navigateToSettings
 
+    val value=MediatorLiveData<TicketBookingApp>()
+
+    val getData:LiveData<TicketBookingApp?>
+    get()=authRepository.getUserDataMutableLiveData()
+
+
+
     init {
         authRepository = AuthRepository(application)
         alert = AlertDialog.Builder(activity)
         _navigateToSettings.value=false
+
+
+        authRepository.getUserData()
+        value.addSource(getData,value::setValue)
+
+
+
     }
 
     fun logOutAlertDialogBox(){
@@ -43,7 +60,6 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
         }
     fun navigateToEditProfile(){
         _navigateToEditProfile.value=true
-        Log.i(String(),"Hi")
     }
 
     fun navigateToEditProfileDone(){
@@ -57,5 +73,8 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
     fun navigateTosettingsdone(){
         _navigateToSettings.value=false
     }
+
+
+
 
 }

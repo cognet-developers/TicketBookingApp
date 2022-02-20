@@ -18,11 +18,8 @@ import androidx.navigation.fragment.findNavController
 import com.mycode.ticketbookingapp.MainActivity
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentProfileBinding
-import com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfileFragment
+import com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfile
 import com.mycode.ticketbookingapp.profilefragment.settingsfragment.SettingsActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
 class ProfileFragment: Fragment() {
@@ -47,10 +44,12 @@ class ProfileFragment: Fragment() {
         binding.profileViewModel=profileViewModel
         binding.lifecycleOwner=this
 
+
         profileViewModel.navigateToEditProfile.observe(viewLifecycleOwner, Observer {
             if(it==true) {
-                findNavController().navigate(R.layout.fragment_editprofile)
-
+//                val intent= Intent(application, EditProfile::class.java)
+//                startActivity(intent)
+    this.findNavController().navigate(ProfileFragmentDirections.actionProfileToEditProfile())
                 profileViewModel.navigateToEditProfileDone()
             }
         })
