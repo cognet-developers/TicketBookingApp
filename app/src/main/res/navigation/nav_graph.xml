@@ -54,12 +54,6 @@
         android:label="EditProfile"
         tools:layout="@layout/fragment_editprofile">
     </fragment>
-    <fragment
-        android:id="@+id/feedback"
-        android:name="com.mycode.ticketbookingapp.profilefragment.ProfileFragment"
-        android:label="SettingsFragment"
-        tools:layout="@layout/activity_feedback">
-    </fragment>
 
 
 </navigation>

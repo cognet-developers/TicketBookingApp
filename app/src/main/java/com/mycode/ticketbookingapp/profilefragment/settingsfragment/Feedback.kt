@@ -17,8 +17,4 @@ class Feedback : AppCompatActivity() {
         binding.root
     }
 
-    fun sendfeedback(){
-        Toast.makeText(applicationContext,"Your feedback has been sent successfully",Toast.LENGTH_SHORT).show()
-    }
-
 }
