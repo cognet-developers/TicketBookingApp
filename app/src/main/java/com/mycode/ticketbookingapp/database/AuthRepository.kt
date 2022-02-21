@@ -93,11 +93,7 @@ class AuthRepository(application: Application){
 
     }
 
-//    fun Data(username:String,email:String,location:String){
-//        val ticketBookingApp=TicketBookingApp(username,email,location)
-//        setUserData(ticketBookingApp)
-//    }
-//
+
 
     fun setUserData(ticketBookingApp: TicketBookingApp){
         reference.addListenerForSingleValueEvent(object :ValueEventListener{
