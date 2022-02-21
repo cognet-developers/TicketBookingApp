@@ -1,51 +1,95 @@
-//package com.mycode.ticketbookingapp.profilefragment
-//
-//import android.os.Build
-//import android.os.Bundle
-//import android.widget.*
-//import androidx.annotation.RequiresApi
-//import androidx.appcompat.app.AppCompatActivity
-//import com.google.firebase.database.FirebaseDatabase
-//import com.mycode.ticketbookingapp.R
-//
-//import java.util.*
-//
-//
-//class EditProfile : AppCompatActivity() {
-//    private lateinit var database: FirebaseDatabase
-//
-//    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_editprofile)
-////        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
+package com.mycode.ticketbookingapp.profilefragment.editprofile
+
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.Application
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.mycode.ticketbookingapp.MainActivity
+import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.databinding.ActivityEditprofileBinding
+import com.mycode.ticketbookingapp.model.TicketBookingApp
+import kotlinx.android.synthetic.main.activity_editprofile.*
+import kotlinx.android.synthetic.main.fragment_profile.*
+
+
+class EditProfile : AppCompatActivity() {
+
+    private var ticketBookingApp: TicketBookingApp = TicketBookingApp()
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+
+            val binding = DataBindingUtil.setContentView<ActivityEditprofileBinding>(
+                this,
+                R.layout.activity_editprofile
+            )
+
+            supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
+            supportActionBar?.title = "EditProfile"
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+            val application: Application = requireNotNull(this).application
+            val viewModelFactory = EditProfileViewFactory(application)
+            val editProfileViewModel =
+                ViewModelProvider(this, viewModelFactory).get(EditProfileViewModel::class.java)
+            binding.ticketBookingApp=ticketBookingApp
+            binding.editProfileViewModel = editProfileViewModel
+            binding.lifecycleOwner = this
+
+            editProfileViewModel.setData.observe(this, Observer {
+                if(it!=null){
+                    loading_spinner.visibility=View.GONE
+                    Toast.makeText(this,"Your profile is updated successfully",Toast.LENGTH_LONG).show()
+                    editProfileViewModel.function()
+                }
+            })
+
+            editProfileViewModel.spinner.observe(this, Observer {
+                if(it==true){
+                    loading_spinner.visibility=View.VISIBLE
+               }
+            })
+
+        }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean{
+        when(item.itemId){
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onContextItemSelected(item)
+    }
+
+
+}
+
+
 ////        findViewById<ProgressBar>(R.id.loading_spinner).visibility = View.GONE
 ////        findViewById<EditText>(R.id.userdp).setShowSoftInputOnFocus(false)
 ////
-////      findViewById<TextView>(R.id.birthday).setOnClickListener {
-////            val today = Calendar.getInstance()
-////            val year = today.get(Calendar.YEAR)
-////            val month =today.get(Calendar.MONTH)
-////            val day = today.get(Calendar.DAY_OF_MONTH)
+
+
 ////
-////            val datePickerDialog=DatePickerDialog(this@EditProfile, { view, year, monthOfYear, dayOfMonth ->
-////                findViewById<TextView>(R.id.birthday).setText("$dayOfMonth/$monthOfYear/$year")
-////            }, year, month, day)
-////                datePickerDialog.datePicker.maxDate=Date().time
-////                datePickerDialog.show()
-////            }
-////
-////        database = FirebaseDatabase.getInstance()
-////
-////        supportActionBar?.title = "Edit Profile"
-////
-////           val uid=FirebaseAuth.getInstance().uid
-////            val ref1 = FirebaseDatabase.getInstance().getReference("/User/$uid")
-////            ref1.addListenerForSingleValueEvent(object : ValueEventListener {
-////                @RequiresApi(Build.VERSION_CODES.P)
-////                override fun onDataChange(p0: DataSnapshot) {
-////                    val user = p0.getValue(UsersModel::class.java)
-////                    if (user != null) {
+
+
+
+
 ////                        if (user.profilepic != "") {
 ////                            findViewById<EditText>(R.id.name).setText(user.username)
 ////                            findViewById<EditText>(R.id.email).setText(user.email)
@@ -202,3 +246,4 @@
 //
 //
 //
+

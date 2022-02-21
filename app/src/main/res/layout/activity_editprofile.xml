@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="editProfileViewModel"
+            type="com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfileViewModel" />
+    <variable
+        name="ticketBookingApp"
+        type="com.mycode.ticketbookingapp.model.TicketBookingApp" />
+
+
+    </data>
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:background="?attr/colorOnPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -11,11 +21,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/editframe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/userdp"
                 android:layout_width="100dp"
+                android:textColor="?attr/colorOnSecondary"
                 android:layout_height="100dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/ic_account"
@@ -44,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="Name"
+                android:text="@string/name"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -60,9 +71,11 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+                android:text="@={editProfileViewModel.getData.username}"
                 android:background="@drawable/signupbox"
                 android:inputType="text"
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userdp1" />
@@ -75,9 +88,11 @@
                 android:layout_marginTop="48dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+                android:text="@={editProfileViewModel.getData.email}"
                 android:background="@drawable/signupbox"
                 android:inputType="textEmailAddress"
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.575"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="2dp"
-                android:text="Location"
+                android:text="@string/location"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,9 +119,11 @@
                 android:layout_marginTop="48dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+                android:text="@={editProfileViewModel.getData.location}"
                 android:background="@drawable/signupbox"
                 android:inputType="text"
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email" />
@@ -116,9 +133,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Personal Info"
+                android:text="@string/personal_info"
                 android:textColor="@color/yellow"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.034"
@@ -131,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="2dp"
-                android:text="Mobile No"
+                android:text="@string/mobile_no"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -145,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="2dp"
-                android:text="Email"
+                android:text="@string/email"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -161,9 +178,11 @@
                 android:layout_marginTop="96dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:text="@={editProfileViewModel.getData.mobileNumber}"
+                android:textColor="@color/black"
                 android:background="@drawable/signupbox"
                 android:inputType="phone"
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="2dp"
-                android:text="Birthday"
+                android:text="@string/birthday"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -191,23 +210,25 @@
                 android:layout_marginTop="48dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+                android:text="@={editProfileViewModel.getData.birthday}"
                 android:background="@drawable/signupbox"
                 android:cursorVisible="false"
-                android:hint=" DD/MM/YY "
-                android:onClick="Click"
+                android:hint="@string/dd_mm_yy"
+
                 android:padding="5dp"
-                android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mobileno" />
+                app:layout_constraintTop_toBottomOf="@id/mobileno"
+                tools:ignore="TextViewEdits" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="2dp"
-                android:text="Gender"
+                android:text="@string/gender"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -225,7 +246,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/signupbox"
                 android:inputType="text"
-                android:paddingLeft="5dp"
+                android:text="@={editProfileViewModel.getData.gender}"
+                android:paddingStart="5dp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="parent"
@@ -236,21 +259,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
-                android:text="Save changes"
+                android:onClick="@{() -> editProfileViewModel.updateData(editProfileViewModel.getData.username,editProfileViewModel.getData.email,editProfileViewModel.getData.password,editProfileViewModel.getData.location,editProfileViewModel.getData.mobileNumber,editProfileViewModel.getData.birthday,editProfileViewModel.getData.gender)}"
+                android:text="@string/save_changes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gender"/>
 
-            <!--        <ProgressBar-->
-            <!--            android:id="@+id/loading_spinner"-->
-            <!--            style="@style/Widget.AppCompat.ProgressBar"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintHorizontal_bias="0.498"-->
-            <!--            app:layout_constraintStart_toStartOf="parent"-->
-            <!--            app:layout_constraintTop_toTopOf="parent" />-->
+                    <ProgressBar
+                        android:id="@+id/loading_spinner"
+                        android:visibility="invisible"
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

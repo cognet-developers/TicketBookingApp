@@ -5,16 +5,22 @@ import android.app.AlertDialog
 import android.app.Application
 import android.content.DialogInterface
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseUser
 import com.mycode.ticketbookingapp.database.AuthRepository
+import com.mycode.ticketbookingapp.model.TicketBookingApp
 
 class ProfileViewModel(application:Application,activity: Activity): ViewModel() {
     private var alert:AlertDialog.Builder
-    private val _navigateToEditProfile=MutableLiveData<Boolean>()
+
+    private var _navigateToEditProfile=MutableLiveData<Boolean>()
     val navigateToEditProfile:LiveData<Boolean>
     get()=_navigateToEditProfile
+
     private var authRepository: AuthRepository
     val loggedUser: LiveData<Boolean?>
         get()=authRepository.getUserLoggedMutableLiveData()
@@ -23,10 +29,27 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
     val navigateTosettings:LiveData<Boolean?>
         get()=_navigateToSettings
 
+    val value=MediatorLiveData<TicketBookingApp>()
+
+    val getData:LiveData<TicketBookingApp?>
+    get()=authRepository.getUserDataMutableLiveData()
+
+
+
     init {
         authRepository = AuthRepository(application)
         alert = AlertDialog.Builder(activity)
         _navigateToSettings.value=false
+        authRepository.getUserData()
+        value.addSource(getData,value::setValue)
+
+
+
+
+    }
+
+    fun function(){
+        authRepository.getUserData()
     }
 
     fun logOutAlertDialogBox(){
@@ -41,7 +64,6 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
         }
     fun navigateToEditProfile(){
         _navigateToEditProfile.value=true
-        Log.i(String(),"Hi")
     }
 
     fun navigateToEditProfileDone(){
@@ -49,11 +71,15 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
     }
 
     fun navigateTosettings(){
+
         _navigateToSettings.value=true
     }
 
     fun navigateTosettingsdone(){
         _navigateToSettings.value=false
     }
+
+
+
 
 }

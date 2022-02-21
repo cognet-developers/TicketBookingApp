@@ -42,8 +42,6 @@
             android:id="@+id/action_signupPage_to_signinPage"
             app:destination="@id/signinPage"
             app:popUpTo="@id/welcomePage" />
-
-
     </fragment>
 
 

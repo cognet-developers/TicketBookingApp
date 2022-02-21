@@ -6,20 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.mycode.ticketbookingapp.database.AuthRepository
+import com.mycode.ticketbookingapp.model.TicketBookingApp
 
 class SignUpViewModel(application: Application): ViewModel() {
     private var authRepository: AuthRepository
-    private val _navigateToSignUp= MutableLiveData<Boolean>()
-    val navigateToSignUp:LiveData<Boolean>
-        get()=_navigateToSignUp
+    private val _navigateToSignIn= MutableLiveData<Boolean>()
+    val navigateToSignIn:LiveData<Boolean>
+        get()=_navigateToSignIn
 
-
-    fun navigateToSignUp(){
-        _navigateToSignUp.value=true
+    fun navigateToSignIn(){
+        _navigateToSignIn.value=true
     }
 
-    fun navigateToSignUpDone(){
-        _navigateToSignUp.value=false
+    fun navigateToSignInDone(){
+        _navigateToSignIn.value=false
     }
 
     val firebaseUser: LiveData<FirebaseUser?>
@@ -30,11 +30,10 @@ class SignUpViewModel(application: Application): ViewModel() {
         authRepository= AuthRepository(application)
     }
 
+    fun register(username:String,email:String,password:String){
+        authRepository.register(username,email, password)
 
-    fun login(email:String,password:String){
-        authRepository.login(email, password)
+
     }
-
-
 }
 
