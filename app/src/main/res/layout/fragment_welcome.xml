@@ -5,9 +5,9 @@
             name="welcomeViewModel"
             type="com.mycode.ticketbookingapp.welcome.WelcomeViewModel" />
     </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/colorOnPrimary"
@@ -29,9 +29,9 @@
                 android:gravity="center|left"
                 android:includeFontPadding="true"
                 android:padding="25dp"
-                android:text="Welcome"
+                android:text="@string/welcome"
                 android:textColor="?attr/colorOnSecondary"
-                android:textSize="50dp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -40,7 +40,7 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed-medium"
-                android:text="Signup using"
+                android:text="@string/signup_using"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -57,7 +57,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/ic_google"
                     android:padding="20dp"
-                    android:text="Google"
+                    android:text="@string/google"
                     android:textColor="@color/black"
                     app:backgroundTint="@color/white" />
 
@@ -69,7 +69,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/ic_facebook"
                     android:padding="20dp"
-                    android:text="Facebook"
+                    android:text="@string/facebook"
                     app:backgroundTint="@color/fb_color" />
             </LinearLayout>
 
@@ -80,9 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:foregroundGravity="bottom"
-                android:text="Already Have an account?"
+                android:text="@string/already_have_an_account"
                 android:textColor="?attr/colorOnSecondary"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 </layout>

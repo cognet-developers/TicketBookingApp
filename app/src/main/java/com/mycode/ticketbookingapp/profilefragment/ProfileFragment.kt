@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentProfileBinding
 import com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfile
 import com.mycode.ticketbookingapp.profilefragment.settingsfragment.SettingsActivity
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 class ProfileFragment: Fragment() {
@@ -47,10 +49,15 @@ class ProfileFragment: Fragment() {
 
         profileViewModel.navigateToEditProfile.observe(viewLifecycleOwner, Observer {
             if(it==true) {
-//                val intent= Intent(application, EditProfile::class.java)
-//                startActivity(intent)
-    this.findNavController().navigate(ProfileFragmentDirections.actionProfileToEditProfile())
+                this.findNavController().navigate(ProfileFragmentDirections.actionProfileToEditProfile())
                 profileViewModel.navigateToEditProfileDone()
+            }
+        })
+
+        profileViewModel.getData.observe(viewLifecycleOwner, Observer {
+            if(it!=null){
+               loading_spinner1.visibility=View.GONE
+                profileViewModel.function()
             }
         })
 

@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.app.Application
 import android.content.DialogInterface
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -39,13 +40,16 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
         authRepository = AuthRepository(application)
         alert = AlertDialog.Builder(activity)
         _navigateToSettings.value=false
-
-
         authRepository.getUserData()
         value.addSource(getData,value::setValue)
 
 
 
+
+    }
+
+    fun function(){
+        authRepository.getUserData()
     }
 
     fun logOutAlertDialogBox(){
@@ -67,6 +71,7 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
     }
 
     fun navigateTosettings(){
+
         _navigateToSettings.value=true
     }
 

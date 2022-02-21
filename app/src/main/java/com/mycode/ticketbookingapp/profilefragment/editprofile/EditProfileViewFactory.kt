@@ -3,6 +3,7 @@ package com.mycode.ticketbookingapp.profilefragment.editprofile
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.mycode.ticketbookingapp.model.TicketBookingApp
 
 
 class EditProfileViewFactory(private val application: Application) : ViewModelProvider.Factory {

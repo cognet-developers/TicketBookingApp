@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Stream_Movies" />
+            android:text="@string/stream_movies" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

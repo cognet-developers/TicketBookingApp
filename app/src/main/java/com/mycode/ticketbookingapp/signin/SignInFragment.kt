@@ -19,7 +19,7 @@ import com.mycode.ticketbookingapp.databinding.FragmentSignInBinding
 import com.mycode.ticketbookingapp.model.TicketBookingApp
 
 class SignInFragment : Fragment() {
-    private var ticketBookingApp:TicketBookingApp= TicketBookingApp("","","")
+    private var ticketBookingApp:TicketBookingApp= TicketBookingApp()
     private var authenticated:Boolean = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding: FragmentSignInBinding =
@@ -35,23 +35,13 @@ class SignInFragment : Fragment() {
 
         signInViewModel.firebaseUser.observe(viewLifecycleOwner, Observer{
             if(it!=null){
+                Toast.makeText(application,"Welcome back!",Toast.LENGTH_LONG).show()
                 val intent= Intent(application, HomePage::class.java)
                 intent.flags =
                     Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
         })
-
-//        signInViewModel.firebaseData.observe(viewLifecycleOwner, Observer{
-//                     if(it!=null) {
-//                         Log.d("SignInViewModel", "${signInViewModel.firebaseData.value}")
-//                     }
-//
-//
-//        })
-
-
-
 
         signInViewModel.navigateToSignUp.observe(viewLifecycleOwner, Observer {
             if(it){

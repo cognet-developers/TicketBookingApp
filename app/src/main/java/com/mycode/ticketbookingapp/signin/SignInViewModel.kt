@@ -29,20 +29,11 @@ class SignInViewModel(application: Application):ViewModel(){
     val firebaseUser:LiveData<FirebaseUser?>
         get()=authRepository.getFirebaseUserMutableLiveData()
 
-//    val firebaseData: LiveData<String?>
-//    get()=authRepository.setUserDataMutableLiveData()
-
     init{
         authRepository= AuthRepository(application)
-
-
     }
-
 
     fun login(email:String,password:String){
         authRepository.login(email, password)
     }
-
-
-
 }

@@ -42,21 +42,6 @@
             android:id="@+id/action_signupPage_to_signinPage"
             app:destination="@id/signinPage"
             app:popUpTo="@id/welcomePage" />
-
-
     </fragment>
-
-
-
-    <fragment
-        android:id="@+id/feedback"
-        android:name="com.mycode.ticketbookingapp.profilefragment.settingsfragment.FeedbackFragment"
-        android:label="SettingsFragment"
-        tools:layout="@layout/fragment_feedback">
-    </fragment>
-
-
-
-
 
 </navigation>
