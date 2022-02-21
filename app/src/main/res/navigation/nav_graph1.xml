@@ -45,6 +45,11 @@
             app:destination="@id/editProfile"
             app:popUpTo="@id/profile" />
 
+        <action
+            android:id="@+id/action_profile_to_feedback"
+            app:destination="@id/feedback"
+            app:popUpTo="@id/profile" />
+
 
     </fragment>
 
@@ -58,9 +63,9 @@
     </activity>
     <activity
         android:id="@+id/feedback"
-        android:name="com.mycode.ticketbookingapp.profilefragment.settingsfragment.FeedbackFragment"
+        android:name="com.mycode.ticketbookingapp.profilefragment.settingsfragment.Feedback"
         android:label="SettingsFragment"
-        tools:layout="@layout/fragment_feedback">
+        tools:layout="@layout/activity_feedback">
     </activity>
 
 

@@ -20,8 +20,7 @@ import com.mycode.ticketbookingapp.signin.SignInFragmentDirections
 
 
 class SignUpFragment : Fragment() {
-    private var ticketBookingApp:TicketBookingApp = TicketBookingApp("","","","")
-    private var authenticated:Boolean = false
+    private var ticketBookingApp:TicketBookingApp = TicketBookingApp()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: FragmentSignUpBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_sign_up,container,false)

@@ -93,8 +93,6 @@ class AuthRepository(application: Application){
 
     }
 
-
-
     fun setUserData(ticketBookingApp: TicketBookingApp){
         reference.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {

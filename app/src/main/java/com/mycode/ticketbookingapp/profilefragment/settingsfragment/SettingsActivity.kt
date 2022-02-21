@@ -12,10 +12,7 @@ import com.mycode.ticketbookingapp.databinding.ActivitySettingsBinding
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
         val binding=DataBindingUtil.setContentView<ActivitySettingsBinding>(this,R.layout.activity_settings)
-
-        //setContentView(R.layout.settings_activity)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
         if (savedInstanceState == null) {
             supportFragmentManager
