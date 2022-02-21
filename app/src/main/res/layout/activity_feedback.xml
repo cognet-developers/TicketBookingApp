@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorOnPrimary"
-    tools:context=".profilefragment.feedback">
+    tools:context=".profilefragment.settingsfragment.Feedback">
 
+    <data>
+            <variable
+                name="ticketbookingapp"
+                type="com.mycode.ticketbookingapp.model.TicketBookingApp" />
+            <variable
+                name="FeedbackViewModel"
+                type="com.mycode.ticketbookingapp.profilefragment.settingsfragment.FeedbackViewModel" />
+
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,12 +19,12 @@
 
         <EditText
             android:id="@+id/etfeedback"
+            android:text="@={ticketbookingapp.feedback}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Feedback Here"
             android:textColor="#615D5D"
             android:textColorHint="#1E1E1E" />
 
@@ -28,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Send Feedback" />
+            android:text="Send Feedback"
+            android:onClick="@{()->FeedbackViewModel.sendfeedback(ticketbookingapp.feedback)}"/>
     </LinearLayout>
 
-
-</LinearLayout>
+</layout>

@@ -4,14 +4,17 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.preference.PreferenceFragmentCompat
 import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings_activity)
+        val binding=DataBindingUtil.setContentView<ActivitySettingsBinding>(this,R.layout.activity_settings)
+
+        //setContentView(R.layout.settings_activity)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -25,6 +28,7 @@ class SettingsActivity : AppCompatActivity() {
              intent.flags= Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
              startActivity(intent)
          })*/
+        binding.root
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

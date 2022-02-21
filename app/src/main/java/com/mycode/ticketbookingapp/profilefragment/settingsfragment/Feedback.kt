@@ -1,32 +1,20 @@
-package com.mycode.ticketbookingapp.profilefragment
+package com.mycode.ticketbookingapp.profilefragment.settingsfragment
 
-
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.mycode.ticketbookingapp.R
-import com.mycode.ticketbookingapp.profilefragment.settingsfragment.SettingsActivity
+import com.mycode.ticketbookingapp.databinding.ActivityFeedbackBinding
 
 
 class Feedback : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_feedback)
-        findViewById<Button>(R.id.btn_feedback).setOnClickListener{
-//            sendfeedback()
-            val intent= Intent(this, SettingsActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }
+        // Inflate the layout for this fragment
+        val binding=DataBindingUtil.setContentView<ActivityFeedbackBinding>(this,R.layout.activity_feedback)
+        binding.root
     }
-//    private fun sendfeedback(){
-//        val feedback=findViewById<EditText>(R.id.etfeedback).text.toString()
-//        val uid= FirebaseAuth.getInstance().uid?: ""
-//        val ref= FirebaseDatabase.getInstance().getReference("/User/$uid")
-//        ref.child("Feedback").setValue(feedback).addOnSuccessListener {
-//            Log.d("Feedback","Feedback sent successful")
-//        }
-//    }
 
 }

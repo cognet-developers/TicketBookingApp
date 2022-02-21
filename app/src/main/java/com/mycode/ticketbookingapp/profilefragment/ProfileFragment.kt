@@ -19,6 +19,7 @@ import com.mycode.ticketbookingapp.MainActivity
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentProfileBinding
 import com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfileFragment
+import com.mycode.ticketbookingapp.profilefragment.settingsfragment.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
@@ -129,9 +130,20 @@ class ProfileFragment: Fragment() {
                 startActivity(intent)
 
             }
+        })
 
+        profileViewModel.navigateTosettings.observe(viewLifecycleOwner, Observer{
+            if(it==true) {
+                val intent = Intent(application, SettingsActivity::class.java)
+//                intent.flags =
+//                    Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                profileViewModel.navigateTosettingsdone()
+            }
 
         })
+
+
         return binding.root
         }
 

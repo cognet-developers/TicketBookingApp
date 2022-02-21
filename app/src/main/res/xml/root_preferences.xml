@@ -24,7 +24,7 @@
             app:title="Send feedback">
             <intent
                 android:targetPackage="com.mycode.ticketbookingapp"
-                android:targetClass="com.mycode.ticketbookingapp.feedback"/>
+                android:targetClass="com.mycode.ticketbookingapp.profilefragment.settingsfragment.Feedback"/>
         </Preference>
 
     </PreferenceCategory>
