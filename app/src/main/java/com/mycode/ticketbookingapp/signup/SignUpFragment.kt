@@ -16,7 +16,6 @@ import com.mycode.ticketbookingapp.HomePage
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentSignUpBinding
 import com.mycode.ticketbookingapp.model.TicketBookingApp
-import com.mycode.ticketbookingapp.signin.SignInFragmentDirections
 
 
 class SignUpFragment : Fragment() {

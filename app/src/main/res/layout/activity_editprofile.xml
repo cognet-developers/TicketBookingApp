@@ -23,19 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/userdp"
-                android:layout_width="100dp"
-                android:textColor="?attr/colorOnSecondary"
-                android:layout_height="100dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/ic_account"
-                android:cursorVisible="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userdp1"
                 android:layout_width="100dp"
@@ -43,6 +30,9 @@
                 android:layout_marginTop="24dp"
                 app:civ_border_color="#918D8D"
                 app:civ_border_width="0.5dp"
+                android:background="@drawable/ic_account"
+                android:onClick="@{()-> editProfileViewModel.imageFormating()}"
+                app:imgUrl="@{editProfileViewModel.getData.profilePicture}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +51,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.027"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userdp" />
+                app:layout_constraintTop_toBottomOf="@+id/userdp1" />
 
             <EditText
                 android:id="@+id/name"
@@ -211,6 +201,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
+                android:onClick="@{()-> editProfileViewModel.Calender()}"
                 android:text="@={editProfileViewModel.getData.birthday}"
                 android:background="@drawable/signupbox"
                 android:cursorVisible="false"
