@@ -39,7 +39,6 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
     init {
         authRepository = AuthRepository(application)
         alert = AlertDialog.Builder(activity)
-        _navigateToSettings.value=false
         authRepository.getUserData()
         value.addSource(getData,value::setValue)
 

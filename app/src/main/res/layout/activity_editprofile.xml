@@ -201,7 +201,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:onClick="@{()-> editProfileViewModel.Calender()}"
+                android:onClick="@{()-> editProfileViewModel.Calendar()}"
                 android:text="@={editProfileViewModel.getData.birthday}"
                 android:background="@drawable/signupbox"
                 android:cursorVisible="false"
@@ -227,7 +227,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/birthday" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/gender"
                 android:layout_width="0dp"
                 android:layout_height="38dp"
@@ -235,9 +235,8 @@
                 android:layout_marginTop="48dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/signupbox"
-                android:inputType="text"
-                android:text="@={editProfileViewModel.getData.gender}"
+
+                android:popupTheme="@color/white"
                 android:paddingStart="5dp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -250,7 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
-                android:onClick="@{() -> editProfileViewModel.updateData(editProfileViewModel.getData.username,editProfileViewModel.getData.email,editProfileViewModel.getData.password,editProfileViewModel.getData.location,editProfileViewModel.getData.mobileNumber,editProfileViewModel.getData.birthday,editProfileViewModel.getData.gender)}"
+                android:onClick="@{() -> editProfileViewModel.updateData(editProfileViewModel.getData.username,editProfileViewModel.getData.email,editProfileViewModel.getData.password,editProfileViewModel.getData.location,editProfileViewModel.getData.mobileNumber)}"
                 android:text="@string/save_changes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

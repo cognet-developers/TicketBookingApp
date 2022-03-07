@@ -2,30 +2,24 @@ package com.mycode.ticketbookingapp.profilefragment.editprofile
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.app.Application
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Spinner
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.app.ActivityCompat.startIntentSenderForResult
-import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.mycode.ticketbookingapp.database.AuthRepository
 import com.mycode.ticketbookingapp.model.TicketBookingApp
-import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_editprofile.*
 import java.util.*
 
-class EditProfileViewModel(application: Application): ViewModel() {
-
+@RequiresApi(Build.VERSION_CODES.N)
+class EditProfileViewModel(application: Application, activity: Activity): ViewModel() {
     var _image= MutableLiveData<Boolean>()
     val image: LiveData<Boolean>
         get()=_image
@@ -33,6 +27,16 @@ class EditProfileViewModel(application: Application): ViewModel() {
     private var _spinner= MutableLiveData<Boolean>()
         val spinner: LiveData<Boolean>
             get()=_spinner
+
+    private var _gender= MutableLiveData<String>()
+    val gender: LiveData<String>
+        get()=_gender
+
+    private var _birthday= MutableLiveData<String>()
+    val birthday: LiveData<String>
+        get()=_birthday
+
+
 
         private var authRepository: AuthRepository
 
@@ -45,45 +49,68 @@ class EditProfileViewModel(application: Application): ViewModel() {
     val setImage:LiveData<String?>
      get()=authRepository.uploadedDataMutuableLiveData()
 
-
-    lateinit var datePickerDialog:DatePickerDialog
-
+@SuppressLint("StaticFieldLeak")
+       var act:Activity
 
         init {
             authRepository = AuthRepository(application)
             authRepository.getUserData()
+             act = activity
 
         }
- @RequiresApi(Build.VERSION_CODES.N)
- fun Calender(){
-            val today = Calendar.getInstance()
-            val year = today.get(Calendar.YEAR)
-            val month =today.get(Calendar.MONTH)
-            val day = today.get(Calendar.DAY_OF_MONTH)
 
 
-//            val datePickerDialog= DatePickerDialog(, { view, year, monthOfYear, dayOfMonth ->
+//    fun music(str:String) {
+//        _gender.value=str
+//    }
 //
-//            }, year, month, day)
-                datePickerDialog.datePicker.maxDate=Date().time
-                datePickerDialog.show()
-            }
+//
 
+    fun Calendar(){
+        val today = Calendar.getInstance()
+        val year = today.get(Calendar.YEAR)
+        val month =today.get(Calendar.MONTH)
+        val day = today.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog= DatePickerDialog(act, { view, y, monthOfYear, dayOfMonth ->
+
+            _birthday.value="$dayOfMonth/"+(monthOfYear+1)+"/$y"
+        }, year, month, day)
+        datePickerDialog.datePicker.maxDate= Date().time
+        datePickerDialog.show()
+    }
 
 
     fun imageFormating() {
         _image.value=true
     }
     var str:String?=null
+    var str1:String?=null
+//    var str2:String?=null
 
-    fun updateData(username:String,email:String,password:String,location:String,mobileNumber:String,birthday:String,gender:String){
+
+    fun updateData(username:String,email:String,password:String,location:String,mobileNumber:String){
            if(setImage.value!=null) {
              str=setImage.value.toString()
            }else{
                str= getData.value?.profilePicture
            }
 
-        val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,birthday,gender)
+        if(getData.value?.birthday!=null){
+            str1=getData.value?.birthday
+        }else{
+            str1=_birthday.value
+        }
+
+//        if(getData.value?.gender!=null) {
+//            str2 = getData.value?.gender
+//        }else{
+//              str2=_gender.value
+//        }
+
+
+
+        val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,str1!!,"")
             authRepository.setUserData(ticketBookingApp)
             _spinner.value=true
         }
@@ -94,7 +121,7 @@ class EditProfileViewModel(application: Application): ViewModel() {
     }
 
 
-    fun imageFormatingDone(dp:Uri){
+    fun imageFormatingDone(dp: Uri){
         authRepository.uploadImageToFirebaseStorage(dp)
         _image.value=false
     }

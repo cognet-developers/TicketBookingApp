@@ -1,5 +1,6 @@
 package com.mycode.ticketbookingapp.profilefragment.editprofile
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
@@ -11,18 +12,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.ActivityEditprofileBinding
 import com.mycode.ticketbookingapp.model.TicketBookingApp
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_editprofile.*
 
 
@@ -30,6 +31,8 @@ class EditProfile : AppCompatActivity() {
 
     private var ticketBookingApp: TicketBookingApp = TicketBookingApp()
     private lateinit var editProfileViewModel:EditProfileViewModel
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.N)
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
 
@@ -38,12 +41,17 @@ class EditProfile : AppCompatActivity() {
                 R.layout.activity_editprofile
             )
 
+            val items= arrayOf("Male","Female","Custom","Prefer no to say")
+
+            val adapter=ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items)
+            gender.adapter=adapter
             supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
             supportActionBar?.title = "EditProfile"
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             val application: Application = requireNotNull(this).application
-            val viewModelFactory = EditProfileViewFactory(application)
+            val activity:Activity=this
+            val viewModelFactory = EditProfileViewFactory(application,activity)
             editProfileViewModel =
                 ViewModelProvider(this, viewModelFactory).get(EditProfileViewModel::class.java)
             binding.ticketBookingApp=ticketBookingApp
@@ -59,11 +67,18 @@ class EditProfile : AppCompatActivity() {
             })
 
             editProfileViewModel.image.observe(this, Observer {
-                if(it==true) {
+                if(it!=null) {
                     val intent = Intent(Intent.ACTION_PICK)
                     intent.type = "image/*"
                     startActivityForResult(intent, 0)
                 }
+            })
+
+
+            editProfileViewModel.birthday.observe(this, Observer {
+                       if(it!=null) {
+                           birthday.text = it
+                       }
             })
 
             editProfileViewModel.setImage.observe(this, Observer {
@@ -75,11 +90,19 @@ class EditProfile : AppCompatActivity() {
             editProfileViewModel.spinner.observe(this, Observer {
                 if(it==true){
                     loading_spinner.visibility=View.VISIBLE
-               }
+                }
             })
 
 
-
+//            gender.onItemSelectedListener=object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                    editProfileViewModel.music(gender.selectedItem.toString())
+//                }
+//
+//                override fun onNothingSelected(p0: AdapterView<*>?) {
+//
+//                }
+           // }
         }
 
 
