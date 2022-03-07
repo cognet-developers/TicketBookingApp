@@ -3,12 +3,14 @@ package com.mycode.ticketbookingapp
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.mycode.ticketbookingapp.model.TicketBookingApp
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_editprofile.view.*
 
 
 @SuppressLint("SetTextI18n")
@@ -27,5 +29,14 @@ fun bindImage(circleImageView: CircleImageView, imgUrl:String?) {
         }
     }
 }
+
+//@BindingAdapter("gender")
+//fun Spinner.bind(option:String?) {
+//    option?.let{
+//          gender.setSelection(option.toInt())
+//    }
+//}
+
+
 
 
