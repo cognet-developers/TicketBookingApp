@@ -6,6 +6,7 @@ import android.app.Application
 import android.app.DatePickerDialog
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
@@ -59,12 +60,17 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
 
         }
 
+//
+//    fun music() {
+//
+//        _gender.value="something"
+//    }
 
-//    fun music(str:String) {
+//    fun music1(str:String){
 //        _gender.value=str
 //    }
 //
-//
+
 
     fun Calendar(){
         val today = Calendar.getInstance()
@@ -86,7 +92,7 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
     }
     var str:String?=null
     var str1:String?=null
-//    var str2:String?=null
+    var str2:String?=null
 
 
     fun updateData(username:String,email:String,password:String,location:String,mobileNumber:String){
@@ -102,15 +108,15 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
             str1=_birthday.value
         }
 
-//        if(getData.value?.gender!=null) {
-//            str2 = getData.value?.gender
-//        }else{
-//              str2=_gender.value
-//        }
+        if(getData.value?.gender!=null) {
+            str2 = getData.value?.gender
+        }else{
+              str2=_gender.value
+        }
 
 
 
-        val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,str1!!,"")
+        val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,str1!!,str2!!)
             authRepository.setUserData(ticketBookingApp)
             _spinner.value=true
         }

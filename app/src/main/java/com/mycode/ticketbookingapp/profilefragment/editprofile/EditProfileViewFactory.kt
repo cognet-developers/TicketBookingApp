@@ -2,11 +2,14 @@ package com.mycode.ticketbookingapp.profilefragment.editprofile
 
 import android.app.Activity
 import android.app.Application
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 
 class EditProfileViewFactory(private val application: Application,private val activity: Activity) : ViewModelProvider.Factory {
+    @RequiresApi(Build.VERSION_CODES.N)
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(EditProfileViewModel::class.java)) {

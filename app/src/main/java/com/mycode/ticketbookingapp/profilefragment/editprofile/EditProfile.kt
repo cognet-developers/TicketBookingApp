@@ -20,11 +20,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.amulyakhare.textdrawable.TextDrawable
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.ActivityEditprofileBinding
 import com.mycode.ticketbookingapp.model.TicketBookingApp
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_editprofile.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 class EditProfile : AppCompatActivity() {
@@ -41,6 +43,11 @@ class EditProfile : AppCompatActivity() {
                 R.layout.activity_editprofile
             )
 
+
+
+//           val drawable = TextDrawable.builder()
+//                .buildRect("A", Color.RED);
+//           Picasso.with(this).load(drawable).into(userdp1)
             val items= arrayOf("Male","Female","Custom","Prefer no to say")
 
             val adapter=ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items)
@@ -65,6 +72,8 @@ class EditProfile : AppCompatActivity() {
                     editProfileViewModel.function()
                 }
             })
+
+
 
             editProfileViewModel.image.observe(this, Observer {
                 if(it!=null) {
@@ -93,17 +102,17 @@ class EditProfile : AppCompatActivity() {
                 }
             })
 
-
+//           var ans:String?=null
 //            gender.onItemSelectedListener=object : AdapterView.OnItemSelectedListener {
 //                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-//                    editProfileViewModel.music(gender.selectedItem.toString())
+//                    ans=gender.selectedItem.toString()
 //                }
 //
 //                override fun onNothingSelected(p0: AdapterView<*>?) {
 //
 //                }
-           // }
-        }
+       }
+
 
 
     var selectedPhotoUri: Uri? = null
