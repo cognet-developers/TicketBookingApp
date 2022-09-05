@@ -41,25 +41,24 @@ class EditProfile : AppCompatActivity() {
                 R.layout.activity_editprofile
             )
 
-
-            val adapter=ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items)
             supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
             supportActionBar?.title = "EditProfile"
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             val application: Application = requireNotNull(this).application
-            val activity:Activity=this
-            val viewModelFactory = EditProfileViewModelFactory(application,activity)
+            val activity: Activity = this
+            val viewModelFactory = EditProfileViewModelFactory(application, activity)
             editProfileViewModel =
                 ViewModelProvider(this, viewModelFactory).get(EditProfileViewModel::class.java)
-            binding.ticketBookingApp=ticketBookingApp
+            binding.ticketBookingApp = ticketBookingApp
             binding.editProfileViewModel = editProfileViewModel
             binding.lifecycleOwner = this
 
             editProfileViewModel.setData.observe(this, Observer {
-                if(it!=null){
-                    loading_spinner.visibility=View.GONE
-                    Toast.makeText(this,"Your profile is updated successfully",Toast.LENGTH_LONG).show()
+                if (it != null) {
+                    loading_spinner.visibility = View.GONE
+                    Toast.makeText(this, "Your profile is updated successfully", Toast.LENGTH_LONG)
+                        .show()
                     editProfileViewModel.function()
                 }
             })
@@ -67,7 +66,7 @@ class EditProfile : AppCompatActivity() {
 
 
             editProfileViewModel.image.observe(this, Observer {
-                if(it!=null) {
+                if (it != null) {
                     val intent = Intent(Intent.ACTION_PICK)
                     intent.type = "image/*"
                     startActivityForResult(intent, 0)
@@ -76,23 +75,24 @@ class EditProfile : AppCompatActivity() {
 
 
             editProfileViewModel.birthday.observe(this, Observer {
-                       if(it!=null) {
-                           birthday.text = it
-                       }
+                if (it != null) {
+                    birthday.text = it
+                }
             })
 
             editProfileViewModel.setImage.observe(this, Observer {
-                if(it!=null){
-                    loading_spinner.visibility=View.GONE
+                if (it != null) {
+                    loading_spinner.visibility = View.GONE
                 }
             })
 
             editProfileViewModel.spinner.observe(this, Observer {
-                if(it==true){
-                    loading_spinner.visibility=View.VISIBLE
+                if (it == true) {
+                    loading_spinner.visibility = View.VISIBLE
                 }
             })
 
+        }
 
 
 

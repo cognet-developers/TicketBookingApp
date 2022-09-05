@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.mycode.ticketbookingapp.R
-import com.mycode.ticketbookingapp.databinding.FragmentTheatresBinding
-
+import com.mycode.ticketbookingapp.databinding.FragmentReviewsBinding
 
 class reviewsFragment : Fragment() {
     override fun onCreateView(
@@ -17,8 +16,8 @@ class reviewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding:FragmentTheatresBinding=
-            DataBindingUtil.inflate(inflater,R.layout.fragment_theatres,container,false)
+        val binding: FragmentReviewsBinding =
+            DataBindingUtil.inflate(inflater,R.layout.fragment_reviews,container,false)
         return binding.root
     }
 

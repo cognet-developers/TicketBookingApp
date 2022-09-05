@@ -73,6 +73,12 @@ class AuthRepository(application: Application){
                 .show()
             return
         }
+
+        if(password.length<9){
+            Toast.makeText(application, "Your password must atleast contain 8 letters", Toast.LENGTH_LONG)
+                .show()
+            return
+        }
         auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener{
                 if(!it.isSuccessful) return@addOnCompleteListener

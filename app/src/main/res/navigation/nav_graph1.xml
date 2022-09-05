@@ -20,7 +20,7 @@
         android:id="@+id/theatres"
         android:name="com.mycode.ticketbookingapp.reviewsFragment.reviewsFragment"
         android:label="Theatres"
-        tools:layout="@layout/fragment_theatres" >
+        tools:layout="@layout/fragment_reviews" >
         <action
             android:id="@+id/action_theatres_to_stream_movies"
             app:destination="@id/stream_movies" />

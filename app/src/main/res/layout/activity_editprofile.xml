@@ -236,6 +236,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:paddingStart="5dp"
+                android:onClick="@{()->editProfileViewModel.gender()}"
                 android:popupTheme="@color/white"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"

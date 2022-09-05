@@ -2,6 +2,7 @@ package com.mycode.ticketbookingapp.profilefragment.editprofile
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Application
 import android.app.DatePickerDialog
 import android.net.Uri
@@ -14,13 +15,20 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mycode.ticketbookingapp.database.AuthRepository
 import com.mycode.ticketbookingapp.model.TicketBookingApp
 import kotlinx.android.synthetic.main.activity_editprofile.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.N)
 class EditProfileViewModel(application: Application, activity: Activity): ViewModel() {
+    private var alert: AlertDialog.Builder
+    private var alert0: AlertDialog.Builder
+
     var _image= MutableLiveData<Boolean>()
     val image: LiveData<Boolean>
         get()=_image
@@ -54,6 +62,9 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
        var act:Activity
 
         init {
+            alert = AlertDialog.Builder(activity)
+            alert0 = AlertDialog.Builder(activity)
+
             authRepository = AuthRepository(application)
             authRepository.getUserData()
              act = activity
@@ -87,32 +98,25 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
 
 
     fun gender(){
-        alert0.setTitle("Choose a language")
-        val  options = arrayOf("தமிழ்","English","हिन्दी")
+        alert0.setTitle("Identity")
+        val  options = arrayOf("Male","Female","Custom","Prefer not to say")
         alert0.setItems(options) { dialog, which ->
             dialog.dismiss()
-
             when (which) {
-                /* execute here your actions */
                 0 -> {
-//                setLocale("ta")
-                    updateLanguage("ta_IN")
-//                _language.value="ta"
-                    languageInitial("ta_IN")
+                    _gender.value="Male"
 
                 }
                 1 -> {
-//                setLocale("en")
-                    updateLanguage("en_US")
-//                _language.value="en"
-                    languageInitial("en_US")
+                    _gender.value="Female"
                 }
                 2 -> {
-//                setLocale("hi")
-                    updateLanguage("hi_IN")
-//                _language.value="hi"
-                    languageInitial("hi_IN")
+                    _gender.value="Custom"
                 }
+                3->{
+                    _gender.value="Prefer not to say"
+                }
+
 
             }
 
@@ -121,38 +125,45 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
 
         alert0.show()
 
-    }else{
-        _snackbar.value=false
     }
-}
 
-}
+
+
 
     fun updateData(username:String,email:String,password:String,location:String,mobileNumber:String){
-           if(setImage.value!=null) {
-             str=setImage.value.toString()
-           }else{
-               str= getData.value?.profilePicture
-           }
+        viewModelScope.launch {
+            if(setImage.value!=null) {
+                str=setImage.value.toString()
+            }else{
+                str= getData.value?.profilePicture
+            }
 
-        if(getData.value?.birthday!=null){
-            str1=getData.value?.birthday
-        }else{
-            str1=_birthday.value
-        }
+            if(getData.value?.birthday!=null){
+                str1=getData.value?.birthday
+            }else{
+                str1=_birthday.value
+            }
 
-        if(getData.value?.gender!=null) {
-            str2 = getData.value?.gender
-        }else{
-              str2=_gender.value
-        }
+            if(getData.value?.gender!=null) {
+                str2 = getData.value?.gender
+            }else{
+                str2=_gender.value
+            }
 
 
 
-        val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,str1!!,str2!!)
-            authRepository.setUserData(ticketBookingApp)
+            val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,str1!!,str2!!)
+            update(ticketBookingApp)
             _spinner.value=true
+
         }
+         }
+
+   private suspend fun update(ticketBookingApp: TicketBookingApp){
+        withContext(Dispatchers.IO){
+            authRepository.setUserData(ticketBookingApp)
+        }
+    }
 
     fun function(){
         authRepository.getUserData()
@@ -160,9 +171,19 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
     }
 
 
-    fun imageFormatingDone(dp: Uri){
-        authRepository.uploadImageToFirebaseStorage(dp)
-        _image.value=false
+    fun imageFormatingDone(dp:Uri){
+        viewModelScope.launch {
+            imageSet(dp)
+            _image.value=false
+
+        }
+    }
+
+    private suspend fun imageSet(dp:Uri){
+        withContext(Dispatchers.IO) {
+            authRepository.uploadImageToFirebaseStorage(dp)
+
+        }
     }
 
 
