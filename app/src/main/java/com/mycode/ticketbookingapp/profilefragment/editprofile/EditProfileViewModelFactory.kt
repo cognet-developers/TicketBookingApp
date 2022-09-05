@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 
-class EditProfileViewFactory(private val application: Application,private val activity: Activity) : ViewModelProvider.Factory {
+class EditProfileViewModelFactory(private val application: Application, private val activity: Activity) : ViewModelProvider.Factory {
     @RequiresApi(Build.VERSION_CODES.N)
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

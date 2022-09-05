@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/theatres"
-        android:name="com.mycode.ticketbookingapp.theatresFragment.TheatresFragment"
+        android:name="com.mycode.ticketbookingapp.reviewsFragment.reviewsFragment"
         android:label="Theatres"
         tools:layout="@layout/fragment_theatres" >
         <action

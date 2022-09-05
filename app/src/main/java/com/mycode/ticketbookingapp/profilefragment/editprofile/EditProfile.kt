@@ -12,7 +12,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -20,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.amulyakhare.textdrawable.TextDrawable
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.ActivityEditprofileBinding
 import com.mycode.ticketbookingapp.model.TicketBookingApp
@@ -44,21 +42,14 @@ class EditProfile : AppCompatActivity() {
             )
 
 
-
-//           val drawable = TextDrawable.builder()
-//                .buildRect("A", Color.RED);
-//           Picasso.with(this).load(drawable).into(userdp1)
-            val items= arrayOf("Male","Female","Custom","Prefer no to say")
-
             val adapter=ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items)
-            gender.adapter=adapter
             supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
             supportActionBar?.title = "EditProfile"
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             val application: Application = requireNotNull(this).application
             val activity:Activity=this
-            val viewModelFactory = EditProfileViewFactory(application,activity)
+            val viewModelFactory = EditProfileViewModelFactory(application,activity)
             editProfileViewModel =
                 ViewModelProvider(this, viewModelFactory).get(EditProfileViewModel::class.java)
             binding.ticketBookingApp=ticketBookingApp
@@ -102,16 +93,6 @@ class EditProfile : AppCompatActivity() {
                 }
             })
 
-//           var ans:String?=null
-//            gender.onItemSelectedListener=object : AdapterView.OnItemSelectedListener {
-//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-//                    ans=gender.selectedItem.toString()
-//                }
-//
-//                override fun onNothingSelected(p0: AdapterView<*>?) {
-//
-//                }
-       }
 
 
 

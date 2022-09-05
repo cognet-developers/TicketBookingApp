@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp.theatresFragment
+package com.mycode.ticketbookingapp.reviewsFragment
 
 
 import android.os.Bundle
@@ -11,7 +11,7 @@ import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentTheatresBinding
 
 
-class TheatresFragment : Fragment() {
+class reviewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

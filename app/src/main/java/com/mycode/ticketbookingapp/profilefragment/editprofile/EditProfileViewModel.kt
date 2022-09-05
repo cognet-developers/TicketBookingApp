@@ -60,16 +60,7 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
 
         }
 
-//
-//    fun music() {
-//
-//        _gender.value="something"
-//    }
 
-//    fun music1(str:String){
-//        _gender.value=str
-//    }
-//
 
 
     fun Calendar(){
@@ -94,6 +85,48 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
     var str1:String?=null
     var str2:String?=null
 
+
+    fun gender(){
+        alert0.setTitle("Choose a language")
+        val  options = arrayOf("தமிழ்","English","हिन्दी")
+        alert0.setItems(options) { dialog, which ->
+            dialog.dismiss()
+
+            when (which) {
+                /* execute here your actions */
+                0 -> {
+//                setLocale("ta")
+                    updateLanguage("ta_IN")
+//                _language.value="ta"
+                    languageInitial("ta_IN")
+
+                }
+                1 -> {
+//                setLocale("en")
+                    updateLanguage("en_US")
+//                _language.value="en"
+                    languageInitial("en_US")
+                }
+                2 -> {
+//                setLocale("hi")
+                    updateLanguage("hi_IN")
+//                _language.value="hi"
+                    languageInitial("hi_IN")
+                }
+
+            }
+
+
+        }
+
+        alert0.show()
+
+    }else{
+        _snackbar.value=false
+    }
+}
+
+}
 
     fun updateData(username:String,email:String,password:String,location:String,mobileNumber:String){
            if(setImage.value!=null) {

@@ -6,12 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/colorOnPrimary"
-        tools:context=".theatresFragment.TheatresFragment">
+        tools:context=".reviewsFragment.reviewsFragment">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/theatres" />
+            android:text="@string/reviews" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
