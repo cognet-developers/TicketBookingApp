@@ -29,6 +29,7 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
     val navigateTosettings:LiveData<Boolean?>
         get()=_navigateToSettings
 
+
     val value=MediatorLiveData<TicketBookingApp>()
 
     val getData:LiveData<TicketBookingApp?>
@@ -56,7 +57,7 @@ class ProfileViewModel(application:Application,activity: Activity): ViewModel() 
             alert.setMessage("Are you sure you want to Signout?")
                 .setPositiveButton("YES", DialogInterface.OnClickListener { dialog, which ->
                     authRepository.signOut()
-                }).setNegativeButton("NO", null)
+                 }).setNegativeButton("NO", null)
 
             val alert1: AlertDialog= alert.create()
                 alert1.show()
