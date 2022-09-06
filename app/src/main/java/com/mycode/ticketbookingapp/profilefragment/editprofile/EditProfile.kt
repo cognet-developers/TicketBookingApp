@@ -25,6 +25,7 @@ import com.mycode.ticketbookingapp.model.TicketBookingApp
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_editprofile.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_welcome.view.*
 
 
 class EditProfile : AppCompatActivity() {
@@ -40,6 +41,9 @@ class EditProfile : AppCompatActivity() {
                 this,
                 R.layout.activity_editprofile
             )
+
+            birthdayText.showSoftInputOnFocus=false
+            genderText.showSoftInputOnFocus=false
 
             supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F3FFDE07")))
             supportActionBar?.title = "EditProfile"
@@ -74,11 +78,7 @@ class EditProfile : AppCompatActivity() {
             })
 
 
-            editProfileViewModel.birthday.observe(this, Observer {
-                if (it != null) {
-                    birthday.text = it
-                }
-            })
+
 
             editProfileViewModel.setImage.observe(this, Observer {
                 if (it != null) {

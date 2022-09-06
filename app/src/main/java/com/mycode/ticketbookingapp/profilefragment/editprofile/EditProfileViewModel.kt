@@ -37,14 +37,6 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
         val spinner: LiveData<Boolean>
             get()=_spinner
 
-    private var _gender= MutableLiveData<String>()
-    val gender: LiveData<String>
-        get()=_gender
-
-    private var _birthday= MutableLiveData<String>()
-    val birthday: LiveData<String>
-        get()=_birthday
-
 
 
         private var authRepository: AuthRepository
@@ -82,7 +74,8 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
 
         val datePickerDialog= DatePickerDialog(act, { view, y, monthOfYear, dayOfMonth ->
 
-            _birthday.value="$dayOfMonth/"+(monthOfYear+1)+"/$y"
+            str="$dayOfMonth/"+(monthOfYear+1)+"/$y"
+            updateBirthday(str.toString())
         }, year, month, day)
         datePickerDialog.datePicker.maxDate= Date().time
         datePickerDialog.show()
@@ -94,7 +87,34 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
     }
     var str:String?=null
     var str1:String?=null
-    var str2:String?=null
+
+
+    private suspend fun gender1(str: String){
+        withContext(Dispatchers.IO){
+            authRepository.singleRecord(str,"gender")
+        }
+
+    }
+
+    fun updateGender(str:String){
+        viewModelScope.launch {
+              gender1(str)
+        }
+    }
+
+    private suspend fun birthday(str: String){
+        withContext(Dispatchers.IO){
+            authRepository.singleRecord(str,"birthday")
+        }
+
+    }
+
+    fun updateBirthday(str:String){
+        viewModelScope.launch {
+            birthday(str)
+        }
+    }
+
 
 
     fun gender(){
@@ -104,17 +124,16 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
             dialog.dismiss()
             when (which) {
                 0 -> {
-                    _gender.value="Male"
-
+                    updateGender("Male")
                 }
                 1 -> {
-                    _gender.value="Female"
+                    updateGender("Female")
                 }
                 2 -> {
-                    _gender.value="Custom"
+                    updateGender("Custom")
                 }
                 3->{
-                    _gender.value="Prefer not to say"
+                    updateGender("Prefer not to say")
                 }
 
 
@@ -130,7 +149,7 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
 
 
 
-    fun updateData(username:String,email:String,password:String,location:String,mobileNumber:String){
+    fun updateData(username:String,email:String,password:String,location:String,mobileNumber:String,birthday:String,gender:String){
         viewModelScope.launch {
             if(setImage.value!=null) {
                 str=setImage.value.toString()
@@ -138,21 +157,9 @@ class EditProfileViewModel(application: Application, activity: Activity): ViewMo
                 str= getData.value?.profilePicture
             }
 
-            if(getData.value?.birthday!=null){
-                str1=getData.value?.birthday
-            }else{
-                str1=_birthday.value
-            }
-
-            if(getData.value?.gender!=null) {
-                str2 = getData.value?.gender
-            }else{
-                str2=_gender.value
-            }
 
 
-
-            val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,str1!!,str2!!)
+            val ticketBookingApp=TicketBookingApp(username,email,password,str!!,location,mobileNumber,birthday,gender)
             update(ticketBookingApp)
             _spinner.value=true
 
