@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -191,5 +192,24 @@ class AuthRepository(application: Application){
                     uploadedDataRepository.postValue(null)
                 }
         }
+
+    fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential).addOnCompleteListener {
+            if (it.isSuccessful) {
+                firebaseUserAuthRepository.postValue(auth.currentUser)
+                val user = auth.currentUser
+                val tba = TicketBookingApp(
+                    user!!.uid,
+                    user.displayName.toString(),
+                    user.email.toString(),
+                    "",
+                    "",
+                    user.photoUrl.toString()
+                )
+                setUserData(tba)
+            }
+        }
+    }
 
 }

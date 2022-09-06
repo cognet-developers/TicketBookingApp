@@ -36,4 +36,8 @@ class SignInViewModel(application: Application):ViewModel(){
 	fun login(email:String,password:String){
 		authRepository.login(email, password)
 	}
+
+	fun signInWithGoogle(idToken: String) {
+		authRepository.firebaseAuthWithGoogle(idToken)
+	}
 }

@@ -12,20 +12,34 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.mycode.ticketbookingapp.HomePage
+import com.mycode.ticketbookingapp.MainActivity
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentSignInBinding
 import com.mycode.ticketbookingapp.model.TicketBookingApp
+import kotlinx.android.synthetic.main.fragment_welcome.*
 
 class SignInFragment : Fragment() {
     private var ticketBookingApp:TicketBookingApp= TicketBookingApp()
+    companion object {
+        private const val TAG="signIn"
+        private const val RC_SIGN_IN = 78
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         val binding: FragmentSignInBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in,container,false)
         (activity as AppCompatActivity).supportActionBar?.hide()
         val application = requireNotNull(this.activity).application
         val viewModelFactory= SignInViewModelFactory(application)
         val signInViewModel = ViewModelProvider(this,viewModelFactory).get(SignInViewModel::class.java)
+
+
+
+
 
         binding.signInViewModel=signInViewModel
         binding.ticketbookingapp=ticketBookingApp
@@ -48,8 +62,10 @@ class SignInFragment : Fragment() {
             }
         })
 
+
         return binding.root
     }
+
 
 
 }
