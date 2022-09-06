@@ -50,6 +50,7 @@
             android:name=".profilefragment.settingsfragment.Feedback"
             android:exported="true">
         </activity>
+
     </application>
 
 </manifest>

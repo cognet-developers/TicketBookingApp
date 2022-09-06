@@ -41,7 +41,7 @@ class HomePage : AppCompatActivity() {
         bottomNavigationView = binding.bottomNavigation
 
         val navController=findNavController(R.id.fragmentContainerView)
-        val appBarConfiguration= AppBarConfiguration(setOf(R.id.home,R.id.theatres,R.id.stream_movies,R.id.profile))
+        val appBarConfiguration= AppBarConfiguration(setOf(R.id.home,R.id.reviews,R.id.profile))
 
         setupActionBarWithNavController(navController,appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)

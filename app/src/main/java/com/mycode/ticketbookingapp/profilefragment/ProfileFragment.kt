@@ -54,6 +54,8 @@ class ProfileFragment: Fragment() {
             }
         })
 
+
+
         profileViewModel.getData.observe(viewLifecycleOwner, Observer {
             if(it!=null){
                loading_spinner1.visibility=View.GONE

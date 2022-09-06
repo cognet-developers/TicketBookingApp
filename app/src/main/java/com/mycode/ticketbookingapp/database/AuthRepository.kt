@@ -73,6 +73,7 @@ class AuthRepository(application: Application){
                 .show()
             return
         }
+
         auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener{
                 if(!it.isSuccessful) return@addOnCompleteListener

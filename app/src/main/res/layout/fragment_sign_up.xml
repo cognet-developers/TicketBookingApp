@@ -22,7 +22,7 @@
             android:id="@+id/appname"
             android:layout_width="256dp"
             android:layout_height="48dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="152dp"
             android:fontFamily="sans-serif-thin"
             android:text="@string/app_name"
             android:textColor="?attr/colorOnSecondary"
@@ -32,74 +32,86 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:text="@={ticketbookingapp.username}"
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/username"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/signupbox"
-            android:fontFamily="sans-serif"
+            style="@style/Widget.Material3.AutoCompleteTextView.FilledBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/username"
-            android:textColorHint="#918E8E"
-            android:inputType="text"
-            android:layout_margin="16dp"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appname" />
-
-        <EditText
-            android:text="@={ticketbookingapp.email}"
-            android:id="@+id/EmailId"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/signupbox"
-            android:fontFamily="sans-serif"
-            android:hint="@string/email"
-            android:textColorHint="#918E8E"
-            android:textColor="@color/black"
-            android:layout_margin="16dp"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textSize="20sp"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:boxStrokeWidthFocused="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
-
-        <EditText
-            android:text="@={ticketbookingapp.password}"
-            android:id="@+id/password"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/signupbox"
+            app:layout_constraintTop_toBottomOf="@id/appname"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:startIconTint="?attr/colorAccent"
             android:fontFamily="sans-serif"
-            android:hint="@string/password"
-            android:textColorHint="#918E8E"
-            android:layout_margin="16dp"
             android:inputType="textPassword"
-            android:padding="10dp"
-            android:textSize="20sp"
+            android:textColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={ticketbookingapp.username}"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email"
+                style="@style/Widget.Material3.AutoCompleteTextView.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeColor="?attr/colorPrimary"
+                app:boxStrokeWidthFocused="2dp"
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:startIconTint="?attr/colorAccent"
+                android:fontFamily="sans-serif"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={ticketbookingapp.email}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            style="@style/Widget.Material3.AutoCompleteTextView.FilledBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:boxStrokeWidthFocused="2dp"
+            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
+            app:startIconTint="?attr/colorAccent"
+            android:fontFamily="sans-serif"
+            android:inputType="textEmailAddress"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EmailId" />
+            app:layout_constraintTop_toBottomOf="@+id/email">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={ticketbookingapp.password}"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+    <Button
             android:id="@+id/Signup"
             android:layout_width="115dp"
             android:layout_height="45dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/buttons"
             android:fontFamily="sans-serif-thin"
             android:text="@string/signup"
             android:onClick="@{()->signUpViewModel.register(ticketbookingapp.username,ticketbookingapp.email,ticketbookingapp.password)}"

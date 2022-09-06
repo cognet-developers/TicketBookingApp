@@ -7,13 +7,9 @@
         android:icon="@drawable/ic_home"
         android:title="@string/home"/>
     <item
-        android:id="@+id/theatres"
+        android:id="@+id/reviews"
         android:icon="@drawable/ic_baseline_local_movies_24"
-        android:title="@string/theatres"/>
-    <item
-        android:id="@+id/stream_movies"
-        android:icon="@drawable/ic_baseline_movie_24"
-        android:title="@string/stream_movies"/>
+        android:title="@string/reviews"/>
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_account"

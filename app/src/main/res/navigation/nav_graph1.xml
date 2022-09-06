@@ -12,26 +12,17 @@
         android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home_to_theatres"
-            app:destination="@id/theatres" />
+            android:id="@+id/action_home_to_reviews"
+            app:destination="@id/reviews"/>
 
     </fragment>
     <fragment
-        android:id="@+id/theatres"
-        android:name="com.mycode.ticketbookingapp.theatresFragment.TheatresFragment"
-        android:label="Theatres"
-        tools:layout="@layout/fragment_theatres" >
+        android:id="@+id/reviews"
+        android:name="com.mycode.ticketbookingapp.reviewsFragment.reviewsFragment"
+        android:label="Reviews"
+        tools:layout="@layout/fragment_reviews" >
         <action
-            android:id="@+id/action_theatres_to_stream_movies"
-            app:destination="@id/stream_movies" />
-    </fragment>
-    <fragment
-        android:id="@+id/stream_movies"
-        android:name="com.mycode.ticketbookingapp.streamfragment.StreamFragment"
-        android:label="Stream_Movies"
-        tools:layout="@layout/fragment_stream_movies" >
-        <action
-            android:id="@+id/action_stream_movies_to_profile"
+            android:id="@+id/action_reviews_to_profile"
             app:destination="@id/profile" />
     </fragment>
     <fragment

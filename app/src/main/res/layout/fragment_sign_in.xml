@@ -31,54 +31,61 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:text="@={ticketbookingapp.email}"
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EmailId1"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/signupbox"
-        android:fontFamily="sans-serif"
+        style="@style/Widget.Material3.AutoCompleteTextView.FilledBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/email"
-        android:textColorHint="#918E8E"
-        android:layout_margin="16dp"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="?attr/colorPrimary"
+        app:boxStrokeWidthFocused="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appname" />
-
-    <EditText
-        android:text="@={ticketbookingapp.password}"
-        android:id="@+id/password1"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/signupbox"
+        app:layout_constraintTop_toBottomOf="@+id/appname"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        app:startIconTint="?attr/colorAccent"
         android:fontFamily="sans-serif"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={ticketbookingapp.email}"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password1"
+        style="@style/Widget.Material3.AutoCompleteTextView.FilledBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/password"
-        android:textColorHint="#918E8E"
-        android:textColor="@color/black"
-        android:layout_margin="16dp"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textSize="20sp"
+        app:boxBackgroundMode="filled"
+        app:boxStrokeColor="?attr/colorPrimary"
+        app:boxStrokeWidthFocused="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailId1" />
+        app:layout_constraintTop_toBottomOf="@+id/EmailId1"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        app:startIconTint="?attr/colorAccent"
+        android:fontFamily="sans-serif"
+        android:inputType="textPassword"
+        android:textColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={ticketbookingapp.password}"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/Login"
         android:layout_width="115dp"
         android:layout_height="45dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/buttons"
         android:fontFamily="sans-serif-thin"
         android:text="@string/signin"
         android:onClick="@{()->signInViewModel.login(ticketbookingapp.email,ticketbookingapp.password)}"
