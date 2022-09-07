@@ -14,6 +14,12 @@
         <action
             android:id="@+id/action_home_to_reviews"
             app:destination="@id/reviews"/>
+        <action
+            android:id="@+id/action_home_to_gridMovieFragment"
+            app:destination="@id/gridMovieFragment" />
+        <action
+            android:id="@+id/action_home_to_moviediscFragment"
+            app:destination="@id/moviediscFragment" />
 
     </fragment>
     <fragment
@@ -58,9 +64,20 @@
         android:label="SettingsFragment"
         tools:layout="@layout/activity_feedback">
     </activity>
-
-
-
+    <fragment
+        android:id="@+id/gridMovieFragment"
+        android:name="com.mycode.ticketbookingapp.homefragment.gridmovie.GridMovieFragment"
+        android:label="fragment_grid_movie"
+        tools:layout="@layout/fragment_grid_movie" >
+        <action
+            android:id="@+id/action_gridMovieFragment_to_moviediscFragment"
+            app:destination="@id/moviediscFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviediscFragment"
+        android:name="com.mycode.ticketbookingapp.homefragment.moviedisc.MoviediscFragment"
+        android:label="fragment_moviedisc"
+        tools:layout="@layout/fragment_moviedisc" />
 
 
 </navigation>
