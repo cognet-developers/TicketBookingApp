@@ -1,6 +1,7 @@
 package com.mycode.ticketbookingapp.welcome
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import com.mycode.ticketbookingapp.database.AuthRepository
 
 class WelcomeViewModel(private var application: Application): ViewModel() {
     private var authRepository: AuthRepository
-private val _navigateTo= MutableLiveData<Boolean>()
+    private val _navigateTo= MutableLiveData<Boolean>()
     val navigateTo:LiveData<Boolean>
     get()=_navigateTo
 
@@ -29,6 +30,11 @@ private val _navigateTo= MutableLiveData<Boolean>()
 
     init{
         authRepository= AuthRepository(application)
+    }
+
+    fun signInWithGoogle(idToken: String) {
+        Log.i("MainActivity",idToken)
+        authRepository.firebaseAuthWithGoogle(idToken)
     }
 
 }
