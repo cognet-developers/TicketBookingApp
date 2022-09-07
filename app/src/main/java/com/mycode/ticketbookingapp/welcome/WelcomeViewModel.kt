@@ -10,7 +10,7 @@ import com.mycode.ticketbookingapp.database.AuthRepository
 
 class WelcomeViewModel(private var application: Application): ViewModel() {
     private var authRepository: AuthRepository
-private val _navigateTo= MutableLiveData<Boolean>()
+    private val _navigateTo= MutableLiveData<Boolean>()
     val navigateTo:LiveData<Boolean>
     get()=_navigateTo
 
