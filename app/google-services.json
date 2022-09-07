@@ -1,18 +1,35 @@
 {
   "project_info": {
     "project_number": "122689396536",
+    "firebase_url": "https://ticketbookingapp-c2b1c-default-rtdb.firebaseio.com",
     "project_id": "ticketbookingapp-c2b1c",
     "storage_bucket": "ticketbookingapp-c2b1c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:122689396536:android:5764e5a4f787fc504aabcd",
+        "mobilesdk_app_id": "1:122689396536:android:e8a44bbcb18e948b4aabcd",
         "android_client_info": {
-          "package_name": "com.mycode.ticketbookingapp"
+          "package_name": "com.example.ticketbookingapp_mvvm"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "122689396536-m1nc5m2s63eta77r2dc3agjrpej8b5ue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ticketbookingapp_mvvm",
+            "certificate_hash": "00711c1d9451189c3794afff365af5aa47672c67"
+          }
+        },
+        {
+          "client_id": "122689396536-v1280mqtpd4sj031ppgb3blm9ea40d1k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ticketbookingapp_mvvm",
+            "certificate_hash": "dd4104b3f3aa94391e0a2d96d960905a463fcb4f"
+          }
+        },
         {
           "client_id": "122689396536-q8i8uighf5fdno6rc47gnr2kltomb38u.apps.googleusercontent.com",
           "client_type": 3

@@ -194,6 +194,7 @@ class AuthRepository(application: Application){
         }
 
     fun firebaseAuthWithGoogle(idToken: String) {
+        Log.i("MainActivity","e.localizedMessage")
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
