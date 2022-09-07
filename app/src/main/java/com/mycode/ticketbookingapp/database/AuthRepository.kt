@@ -201,10 +201,10 @@ class AuthRepository(application: Application){
                 firebaseUserAuthRepository.postValue(auth.currentUser)
                 val user = auth.currentUser
                 val tba = TicketBookingApp(
-                    user.displayName.toString(),
-                    user.email.toString(),
+                    user!!.displayName.toString(),
+                    user!!.email.toString(),
                     "",
-                    user.photoUrl.toString(),
+                    user!!.photoUrl.toString(),
                     "",
                     "",
                     "",
