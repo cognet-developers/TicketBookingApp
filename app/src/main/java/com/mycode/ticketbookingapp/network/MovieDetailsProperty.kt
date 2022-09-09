@@ -1,4 +1,4 @@
 package com.mycode.ticketbookingapp.network
 
-class MovieDatabaseApiService {
+class MovieDetailsProperty {
 }
