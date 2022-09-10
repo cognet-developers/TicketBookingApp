@@ -4,12 +4,11 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
+data class GenresListProperty(val genre:List<list>)
 
-@Parcelize
-data class GenresListProperty(
-    val id:String,
-    @Json(name="img_src")val imgSrcUrl:String,
-    val type:String,
-    val price:Double
-): Parcelable
-
+data class list(
+    val id:Int,
+    val poster_path:String,
+    val original_title:String,
+    val vote_average:Float,
+)
