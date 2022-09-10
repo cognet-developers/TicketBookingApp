@@ -7,8 +7,8 @@ import kotlinx.android.parcel.Parcelize
 data class GenresListProperty(val items:List<list>)
 
 data class list(
-    val id:Int,
-    val poster_path:String,
-    val original_title:String,
-    val vote_average:Float,
+    val id:Int=0,
+    val poster_path:String="",
+    val original_title:String="",
+    val vote_average:Float=0F,
 )
