@@ -4,7 +4,7 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
-data class GenresListProperty(val genre:List<list>)
+data class GenresListProperty(val items:List<list>)
 
 data class list(
     val id:Int,

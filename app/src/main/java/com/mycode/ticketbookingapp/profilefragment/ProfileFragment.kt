@@ -6,7 +6,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,9 +19,10 @@ import androidx.navigation.fragment.findNavController
 import com.mycode.ticketbookingapp.MainActivity
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentProfileBinding
+import com.mycode.ticketbookingapp.network.GenresListProperty
 import com.mycode.ticketbookingapp.network.TMBDApi
 import com.mycode.ticketbookingapp.network.TMBDConstants
-import com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfile
+import com.mycode.ticketbookingapp.network.list
 import com.mycode.ticketbookingapp.profilefragment.settingsfragment.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.coroutines.*
@@ -59,23 +59,61 @@ class ProfileFragment: Fragment() {
                 profileViewModel.navigateToEditProfileDone()
 
 
-                //To try out the data output we get from the api
-                var viewModelJob = Job()
-                val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+                //To try out the data output we get from the api Movies Details
+//                var viewModelJob = Job()
+//                val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+//
+//                coroutineScope.launch {
+//                    var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.ACTION, TMBDConstants.API_KEY)
+//                    try {
+//
+//                        var listResult = getPropertiesDeferred.await()
+//                       Log.d("Api Data",listResult.toString())
+//
+//                    }catch(e:Exception){
+//                        Log.d("Exception","${e}")
+//                        }
+//                }
+//            }
 
-                coroutineScope.launch {
-                    var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.ACTION, TMBDConstants.API_KEY)
-                    try {
 
-                        var listResult = getPropertiesDeferred.await()
-                       Log.d("Api Data",listResult.genre.toString())
+                //To try out the data output we get from the api Genres List
 
-                    }catch(e:Exception){
-                        Log.d("Exception","${e}")
-                        }
-                }
-            }
-        })
+//                fun getGenresList(l: List<list>):List<list>{
+//                    val localMovies: MutableList<list> = mutableListOf()
+//                    l.forEach {
+//                        localMovies.add(
+//                            list(it.id,it.poster_path,it.original_title,it.vote_average))
+//                                    Log.d("Api Data",
+//                                        it.poster_path + " " +it.original_title+" " +it.vote_average
+//                                    )
+//
+//                    }
+//                    return localMovies
+//
+//                }
+//
+//                var viewModelJob = Job()
+//                val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+//
+//                coroutineScope.launch {
+//                    var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.ACTION, TMBDConstants.API_KEY)
+//                    try {
+//
+//                        var listResult = getPropertiesDeferred.await()
+//                        val genresList=getGenresList(listResult.items)
+//                       Log.d("Api Data",genresList.toString())
+//
+//                    }catch(e:Exception){
+//                        Log.d("Exception","${e}")
+//                        }
+//                }
+
+           }
+
+
+
+            })
 
 
 
