@@ -1,33 +1,26 @@
 package com.mycode.ticketbookingapp.homefragment.gridmovie
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.databinding.FragmentGridMovieBinding
+import com.mycode.ticketbookingapp.homefragment.Adapter
+import com.mycode.ticketbookingapp.network.List
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [GridMovieFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GridMovieFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+    private val viewModel: GridMovieViewModel by lazy {
+        ViewModelProvider(this).get(GridMovieViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -35,26 +28,30 @@ class GridMovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_grid_movie, container, false)
+        val binding: FragmentGridMovieBinding =
+            DataBindingUtil.inflate(inflater,R.layout.fragment_grid_movie,container,false)
+
+        val activity: Activity = requireNotNull(this.activity)
+
+        binding.lifecycleOwner = this
+
+        var layoutManager = GridLayoutManager(activity, 2)
+        binding.recyclverview.layoutManager=layoutManager
+
+
+        var movielists: kotlin.collections.List<List>
+        viewModel.feed.observe(viewLifecycleOwner, Observer {
+
+            movielists=it
+            // display(model)
+            val adapter = Adapter(movielists)
+
+            binding.recyclverview.adapter = adapter
+
+        })
+
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GridMovieFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GridMovieFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

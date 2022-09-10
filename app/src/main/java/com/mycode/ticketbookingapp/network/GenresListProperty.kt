@@ -1,14 +1,6 @@
 package com.mycode.ticketbookingapp.network
 
-import android.os.Parcelable
-import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parcelize
+//import com.squareup.moshi.Json
 
-data class GenresListProperty(val items:List<list>)
+data class GenresListProperty(val items: kotlin.collections.List<List>)
 
-data class list(
-    val id:Int,
-    val poster_path:String,
-    val original_title:String,
-    val vote_average:Float,
-)

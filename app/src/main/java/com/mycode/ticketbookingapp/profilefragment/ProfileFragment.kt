@@ -7,7 +7,6 @@ import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,14 +18,8 @@ import androidx.navigation.fragment.findNavController
 import com.mycode.ticketbookingapp.MainActivity
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentProfileBinding
-import com.mycode.ticketbookingapp.network.GenresListProperty
-import com.mycode.ticketbookingapp.network.TMBDApi
-import com.mycode.ticketbookingapp.network.TMBDConstants
-import com.mycode.ticketbookingapp.network.list
 import com.mycode.ticketbookingapp.profilefragment.settingsfragment.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.coroutines.*
-import retrofit2.await
 
 
 class ProfileFragment: Fragment() {
@@ -92,7 +85,7 @@ class ProfileFragment: Fragment() {
 //                    return localMovies
 //
 //                }
-//
+
 //                var viewModelJob = Job()
 //                val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 //
