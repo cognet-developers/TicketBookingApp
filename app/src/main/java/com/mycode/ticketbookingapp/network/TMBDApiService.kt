@@ -16,7 +16,6 @@ import retrofit2.http.Query
 
 //https://api.themoviedb.org/3/list/35?page=1&api_key=af7198a57a1e538eee1c1b0d13c352c4
 //https://api.themoviedb.org/3/movie/11385?api_key=af7198a57a1e538eee1c1b0d13c352c4
-//Api_Key="af7198a57a1e538eee1c1b0d13c352c4"
 
 private const val BASE_URL = "https://api.themoviedb.org"
 
