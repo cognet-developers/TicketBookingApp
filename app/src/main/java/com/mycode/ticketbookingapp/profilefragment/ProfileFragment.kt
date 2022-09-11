@@ -69,9 +69,9 @@ class ProfileFragment: Fragment() {
 //                }
 //            }
 
-
-                //To try out the data output we get from the api Genres List
-
+//
+//                To try out the data output we get from the api Genres List
+//
 //                fun getGenresList(l: List<list>):List<list>{
 //                    val localMovies: MutableList<list> = mutableListOf()
 //                    l.forEach {
@@ -95,13 +95,14 @@ class ProfileFragment: Fragment() {
 //
 //                        var listResult = getPropertiesDeferred.await()
 //                        val genresList=getGenresList(listResult.items)
+//
 //                       Log.d("Api Data",genresList.toString())
 //
 //                    }catch(e:Exception){
 //                        Log.d("Exception","${e}")
 //                        }
 //                }
-
+//
            }
 
 

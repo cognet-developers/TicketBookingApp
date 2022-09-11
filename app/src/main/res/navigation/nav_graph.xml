@@ -45,13 +45,4 @@
     </fragment>
 
 
-
-    <fragment
-        android:id="@+id/editProfile"
-        android:name="com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfileFragment"
-        android:label="EditProfile"
-        tools:layout="@layout/activity_editprofile">
-    </fragment>
-
-
 </navigation>

@@ -1,22 +1,25 @@
 package com.mycode.ticketbookingapp.homefragment
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel : ViewModel() {
 
-    private val _navigateTo= MutableLiveData<Boolean>()
-    val navigateTo: LiveData<Boolean>
-        get()=_navigateTo
 
-    fun alreadyHaveAccountNavigating(){
-        _navigateTo.value=true
+    private val _action= MutableLiveData<Boolean>()
+    val action: LiveData<Boolean>
+        get()=_action
 
+    fun Action(){
+        _action.value=true
     }
 
-    fun alreadyHaveAccountDone(){
-        _navigateTo.value=false
+    fun ActionDone(){
+        _action.value=false
     }
+
+
 
 }
