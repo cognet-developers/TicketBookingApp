@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentGridMovieBinding
@@ -49,6 +50,19 @@ class GridMovieFragment : Fragment() {
             binding.recyclverview.adapter = adapter
 
         })
+
+
+
+//        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer{
+//
+//
+//            if ( null != it ) {
+//                // Must find the NavController from the Fragment
+//                this.findNavController().navigate(GridMovieFragmentDirections.actionGridMovieFragmentToMoviediscFragment(it))
+//                // Tell the ViewModel we've made the navigate call to prevent multiple navigation
+//                viewModel.movieDetailscomplete()
+//            }
+//        })
 
 
         return binding.root

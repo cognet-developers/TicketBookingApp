@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.mycode.ticketbookingapp.network.TMBDApi
 import com.mycode.ticketbookingapp.network.TMBDConstants
 import com.mycode.ticketbookingapp.network.List
+import com.mycode.ticketbookingapp.network.MovieDetailsProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,6 +20,12 @@ class GridMovieViewModel: ViewModel() {
 
     val feed: LiveData<kotlin.collections.List<List>>
         get() = _feed
+
+    private val _navigateToSelectedProperty = MutableLiveData<Int>()
+
+    // The external immutable LiveData for the navigation property
+    val navigateToSelectedProperty: LiveData<Int>
+        get() = _navigateToSelectedProperty
 
 
     init {
@@ -54,6 +61,12 @@ class GridMovieViewModel: ViewModel() {
                 }
     }
 
+    fun movieDetails(id: Int) {
+        _navigateToSelectedProperty.value = id
+    }
+    fun movieDetailscomplete() {
+        _navigateToSelectedProperty.value = null
+    }
 
     fun getGenresList(l: kotlin.collections.List<List>): kotlin.collections.List<List> {
         val localMovies: MutableList<List> = mutableListOf()

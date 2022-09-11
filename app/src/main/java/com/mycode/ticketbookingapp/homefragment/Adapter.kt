@@ -8,6 +8,11 @@ import com.mycode.ticketbookingapp.network.List
 
 class Adapter(val movieLists: kotlin.collections.List<List>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+//        val movieProperty = movieLists.get(position)
+//        holder.itemView.setOnClickListener {
+//            onClickListener.onClick(movieProperty)
+//        }
+       // holder.bind(movieProperty)
         (holder as ViewHolder).bind(movieLists.get(position));
     }
 
@@ -28,6 +33,7 @@ class ViewHolder(val binding: MovienameBinding) : RecyclerView.ViewHolder(bindin
 
     fun bind(movielist: List): Unit {
         binding.viewModel= movielist
+       // binding.clicklistener=clickListener
     }
 
 }

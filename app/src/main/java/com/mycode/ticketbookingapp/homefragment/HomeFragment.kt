@@ -38,9 +38,9 @@ class HomeFragment : Fragment() {
 //                homeViewModel.alreadyHaveAccountDone()
 //            }
 //        })
-        binding.button.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment())
-        }
+//        binding.card.setOnClickListener{
+//            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment("action"))
+//        }
         return binding.root
     }
 
