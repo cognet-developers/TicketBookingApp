@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentGridMovieBinding
 import com.mycode.ticketbookingapp.homefragment.Adapter
-import com.mycode.ticketbookingapp.network.List
+import com.mycode.ticketbookingapp.network.Movie
 
 
 class GridMovieFragment : Fragment() {
@@ -40,7 +39,7 @@ class GridMovieFragment : Fragment() {
         binding.recyclverview.layoutManager=layoutManager
 
 
-        var movielists: kotlin.collections.List<List>
+        var movielists: List<Movie>
         viewModel.feed.observe(viewLifecycleOwner, Observer {
 
             movielists=it
