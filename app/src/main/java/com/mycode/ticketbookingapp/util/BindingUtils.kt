@@ -1,13 +1,12 @@
 package com.mycode.ticketbookingapp
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import com.mycode.ticketbookingapp.model.TicketBookingApp
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.mycode.ticketbookingapp.network.TMBDConstants
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_editprofile.view.*
@@ -30,12 +29,23 @@ fun bindImage(circleImageView: CircleImageView, imgUrl:String?) {
     }
 }
 
-//@BindingAdapter("gender")
-//fun Spinner.bind(option:String?) {
-//    option?.let{
-//          gender.setSelection(option.toInt())
-//    }
-//}
+@BindingAdapter("imageUrl")
+fun bindImage1(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imge=TMBDConstants.IMG_BASE_URL+imgUrl
+
+//        val imgUri = imge.toUri().buildUpon().scheme("https").build()
+        Glide.with(imgView.context)
+            .load(imge)
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image))
+            .into(imgView)
+    }
+}
+
+
 
 
 

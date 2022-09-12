@@ -14,11 +14,14 @@
         <action
             android:id="@+id/action_home_to_reviews"
             app:destination="@id/reviews"/>
+        <action
+            android:id="@+id/action_home_to_gridMovieFragment"
+            app:destination="@id/gridMovieFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/reviews"
-        android:name="com.mycode.ticketbookingapp.reviewsFragment.reviewsFragment"
+        android:name="com.mycode.ticketbookingapp.reviewsFragment.ReviewsFragment"
         android:label="Reviews"
         tools:layout="@layout/fragment_reviews" >
         <action
@@ -58,9 +61,27 @@
         android:label="SettingsFragment"
         tools:layout="@layout/activity_feedback">
     </activity>
+    <activity
+        android:id="@+id/gridMovieFragment"
+        android:name="com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity"
+        android:label="fragment_grid_movie"
+        tools:layout="@layout/activity_grid_view" >
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="true"/>
+    </activity>
+<!--    <activity-->
+<!--        android:id="@+id/moviediscFragment"-->
+<!--        android:name="com.mycode.ticketbookingapp.homefragment.moviedisc.MoviediscFragment"-->
+<!--        android:label="fragment_moviedisc"-->
+<!--        tools:layout="@layout/activity_movie_description" >-->
+<!--        <argument-->
+<!--            android:name="id"-->
+<!--            app:argType="string"-->
+<!--            app:nullable="true"/>-->
 
-
-
+<!--    </activity>-->
 
 
 </navigation>

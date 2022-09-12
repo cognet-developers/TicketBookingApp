@@ -1,6 +1,10 @@
 package com.mycode.ticketbookingapp.network
 
-data class MovieDetailsProperty(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class MovieDetails(
         val id:Int=0,
         val original_language:String="",
         val original_title:String="",
@@ -9,4 +13,4 @@ data class MovieDetailsProperty(
         val release_data:String="",
         val runtime:Int=0,
         val tagline:String="",
-)
+):Parcelable
