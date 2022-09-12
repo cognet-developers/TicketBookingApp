@@ -7,7 +7,10 @@
         <variable
            name="viewModel"
            type="com.mycode.ticketbookingapp.network.Movies"/>
-     </data>
+<!--        <variable-->
+<!--            name="gridviewmodel"-->
+<!--            type="com.mycode.ticketbookingapp.homefragment.gridmovie.GridMovieViewModel" />-->
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -17,41 +20,36 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="?attr/colorOnPrimary"
-            app:cardElevation="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            app:cardBackgroundColor="#EAE9E9"
+            app:cardElevation="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.poster_path}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars" />
+
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:gravity="center_horizontal"
-                    tools:text="Moviename"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="?attr/colorOnSecondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:text="@{ viewModel.original_title }" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
