@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mycode.ticketbookingapp.databinding.MovienameBinding
-import com.mycode.ticketbookingapp.network.GenresListProperty
+import com.mycode.ticketbookingapp.network.Movies
 
 
-class Adapter(): ListAdapter<GenresListProperty,Adapter.ViewHolder>(DiffCallback) {
-    companion object DiffCallback : DiffUtil.ItemCallback<GenresListProperty>() {
-        override fun areItemsTheSame(oldItem: GenresListProperty, newItem: GenresListProperty): Boolean {
+class Adapter(): ListAdapter<Movies,Adapter.ViewHolder>(DiffCallback) {
+    companion object DiffCallback : DiffUtil.ItemCallback<Movies>() {
+        override fun areItemsTheSame(oldItem: Movies, newItem: Movies): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: GenresListProperty, newItem: GenresListProperty): Boolean {
+        override fun areContentsTheSame(oldItem: Movies, newItem: Movies): Boolean {
             return oldItem.id == newItem.id
         }
 
@@ -29,7 +29,7 @@ class Adapter(): ListAdapter<GenresListProperty,Adapter.ViewHolder>(DiffCallback
     class ViewHolder private constructor(val binding: MovienameBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: GenresListProperty) {
+        fun bind(item: Movies) {
             binding.viewModel=item
             binding.executePendingBindings()
         }

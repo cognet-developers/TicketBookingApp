@@ -14,9 +14,9 @@ import retrofit2.await
 
 class GridViewViewModel(application: Application, type: String) : ViewModel() {
 
-    private val _feed = MutableLiveData<List<GenresListProperty>>()
+    private val _feed = MutableLiveData<List<Movies>>()
 
-    val feed: LiveData<List<GenresListProperty>>
+    val feed: LiveData<List<Movies>>
         get() = _feed
 
     private val _navigateToSelectedProperty = MutableLiveData<Int?>()
@@ -57,11 +57,11 @@ class GridViewViewModel(application: Application, type: String) : ViewModel() {
         _navigateToSelectedProperty.value = 0
     }
 
-    fun getGenreList(l: List<GenresListProperty>): List<GenresListProperty> {
-        val localMovies: MutableList<GenresListProperty> = mutableListOf()
+    fun getGenreList(l: List<Movies>): List<Movies> {
+        val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
             localMovies.add(
-                GenresListProperty(it.id,it.poster_path,it.original_title,it.vote_average)
+                Movies(it.id,it.poster_path,it.original_title,it.vote_average)
             )
             Log.d("Api Data",
                 it.poster_path + " " +it.original_title+" " +it.vote_average

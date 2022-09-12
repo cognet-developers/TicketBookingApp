@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mycode.ticketbookingapp.network.Movie
+import com.mycode.ticketbookingapp.network.Movies
 import com.mycode.ticketbookingapp.network.TMBDApi
 import com.mycode.ticketbookingapp.network.TMBDConstants
 import kotlinx.coroutines.CoroutineScope
@@ -13,7 +13,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.await
 
-class reviewsViewModel: ViewModel() {
+class ReviewsViewModel: ViewModel() {
     private val _feed = MutableLiveData<List<ReviewData>>()
 
     val feed: LiveData<List<ReviewData>>
@@ -115,11 +115,11 @@ class reviewsViewModel: ViewModel() {
 
         _feed.value=reviewdata
     }
-    fun getGenresList(l: List<Movie>): List<Movie> {
-        val localMovies: MutableList<Movie> = mutableListOf()
+    fun getGenresList(l: List<Movies>): List<Movies> {
+        val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
             localMovies.add(
-                Movie(it.id,it.poster_path,it.original_title,it.vote_average)
+                Movies(it.id,it.poster_path,it.original_title,it.vote_average)
             )
             Log.d("Api Data3",
                 it.poster_path + " " +it.original_title+" " +it.vote_average

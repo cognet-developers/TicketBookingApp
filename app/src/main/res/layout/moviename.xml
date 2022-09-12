@@ -6,7 +6,7 @@
     <data>
         <variable
            name="viewModel"
-           type="com.mycode.ticketbookingapp.network.GenresListProperty"/>
+           type="com.mycode.ticketbookingapp.network.Movies"/>
      </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

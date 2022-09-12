@@ -13,13 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentReviewsBinding
-import com.mycode.ticketbookingapp.homefragment.Adapter
-import com.mycode.ticketbookingapp.homefragment.gridmovie.GridMovieViewModel
-import com.mycode.ticketbookingapp.network.Movie
 
-class reviewsFragment : Fragment() {
-    private val viewModel: reviewsViewModel by lazy {
-        ViewModelProvider(this).get(reviewsViewModel::class.java)
+class ReviewsFragment : Fragment() {
+    private val viewModel: ReviewsViewModel by lazy {
+        ViewModelProvider(this).get(ReviewsViewModel::class.java)
     }
 
     override fun onCreateView(
