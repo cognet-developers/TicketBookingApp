@@ -58,6 +58,12 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".homefragment.moviedescription.MovieDescriptionActivity"
+            android:exported="true">
+        </activity>
+
+
 
 
     </application>

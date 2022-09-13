@@ -9,17 +9,7 @@ import com.mycode.ticketbookingapp.databinding.MovienameBinding
 import com.mycode.ticketbookingapp.network.Movies
 
 
-class Adapter(): ListAdapter<Movies,Adapter.ViewHolder>(DiffCallback) {
-    companion object DiffCallback : DiffUtil.ItemCallback<Movies>() {
-        override fun areItemsTheSame(oldItem: Movies, newItem: Movies): Boolean {
-            return oldItem === newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Movies, newItem: Movies): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-    }
+class Adapter(val movieListener: MovieListener): ListAdapter<Movies,Adapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -29,8 +19,9 @@ class Adapter(): ListAdapter<Movies,Adapter.ViewHolder>(DiffCallback) {
     class ViewHolder private constructor(val binding: MovienameBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Movies) {
+        fun bind(item: Movies,movieListener: MovieListener) {
             binding.viewModel=item
+            binding.clicklistener=movieListener
             binding.executePendingBindings()
         }
 
@@ -46,7 +37,22 @@ class Adapter(): ListAdapter<Movies,Adapter.ViewHolder>(DiffCallback) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val genresProperty = getItem(position)
-        holder.bind(genresProperty)
+        holder.bind(genresProperty,movieListener)
+    }
+
+}
+
+class MovieListener(val clickListener: (moviesId:Int) -> Unit){
+    fun onClick(model: Int)=clickListener(model)
+}
+
+class DiffCallback : DiffUtil.ItemCallback<Movies>() {
+    override fun areItemsTheSame(oldItem: Movies, newItem: Movies): Boolean {
+        return oldItem === newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Movies, newItem: Movies): Boolean {
+        return oldItem.id == newItem.id
     }
 
 }

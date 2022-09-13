@@ -2,6 +2,7 @@ package com.mycode.ticketbookingapp.reviewsFragment
 
 
 import android.app.Activity
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mycode.ticketbookingapp.R
 import com.mycode.ticketbookingapp.databinding.FragmentReviewsBinding
+import com.mycode.ticketbookingapp.homefragment.MovieListener
 
 class ReviewsFragment : Fragment() {
     private val viewModel: ReviewsViewModel by lazy {
@@ -29,17 +31,13 @@ class ReviewsFragment : Fragment() {
         //var topiclist: List<String>
 
         binding.lifecycleOwner = this
-        val activity: Activity = requireNotNull(this.activity)
 
-        var movielists: List<ReviewData>
         val layoutmanager =LinearLayoutManager(activity,LinearLayoutManager.VERTICAL ,false)
         binding.recv.layoutManager=layoutmanager
-
         viewModel.feed.observe(viewLifecycleOwner, Observer {
 
-            movielists=it
-            // display(model)
-            val adapter = ReviewAdapter(movielists)
+
+            val adapter = ReviewAdapter(it)
 
             binding.recv.adapter = adapter
 

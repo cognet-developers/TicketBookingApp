@@ -50,10 +50,10 @@ class GridViewViewModel(application: Application, type: String) : ViewModel() {
                 }
     }
 
-    fun movieDetails(id: Int) {
+    fun navigateToMovieDescription(id: Int) {
         _navigateToSelectedProperty.value = id
     }
-    fun movieDetailscomplete() {
+    fun navigateToMovieDescriptionDone() {
         _navigateToSelectedProperty.value = 0
     }
 

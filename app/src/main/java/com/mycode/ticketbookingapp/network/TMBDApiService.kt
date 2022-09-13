@@ -13,10 +13,9 @@ import retrofit2.http.Query
 //https://api.themoviedb.org/3/genre/movie/list?api_key=af7198a57a1e538eee1c1b0d13c352c4&language=en-US
 //https://api.themoviedb.org/3/list/35?page=1&api_key=af7198a57a1e538eee1c1b0d13c352c4
 //https://api.themoviedb.org/3/movie/11385?api_key=af7198a57a1e538eee1c1b0d13c352c4
-//https://api.themoviedb.org/3/tv/popular?api_key=af7198a57a1e538eee1c1b0d13c352c4&language=en-US&page=5
-//https://api.themoviedb.org/3/tv/1668?api_key=af7198a57a1e538eee1c1b0d13c352c4&language=en-US
-//https://api.themoviedb.org/3/movie/now_playing?api_key=af7198a57a1e538eee1c1b0d13c352c4&language=en-US&page=1
-//https://api.themoviedb.org/3/movie/297762?api_key=af7198a57a1e538eee1c1b0d13c352c4&append_to_response=videos
+// https://api.themoviedb.org/3/tv/1668?api_key=af7198a57a1e538eee1c1b0d13c352c4&language=en-US
+//https://www.youtube.com/watch?v=SUXWAEX2jlg
+//https://api.themoviedb.org/3/movie/11385/videos?api_key=af7198a57a1e538eee1c1b0d13c352c4
 
 private const val BASE_URL = "https://api.themoviedb.org"
 
@@ -40,6 +39,10 @@ interface TMBDApiService{
 
     @GET("/3/movie/{id}")
     fun getMovieDetails(@Path("id") id : String, @Query ("api_key") api_key: String) : Call<MovieDetails>
+
+    @GET("/3/movie/{id}/videos")
+    fun getMovieTrailer(@Path("id") id : String, @Query ("api_key") api_key: String) : Call<videos>
+
 
 }
 
