@@ -51,24 +51,6 @@ class ProfileFragment: Fragment() {
                     .navigate(ProfileFragmentDirections.actionProfileToEditProfile())
                 profileViewModel.navigateToEditProfileDone()
 
-
-                //To try out the data output we get from the api Movies Details
-//                var viewModelJob = Job()
-//                val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-//
-//                coroutineScope.launch {
-//                    var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.ACTION, TMBDConstants.API_KEY)
-//                    try {
-//
-//                        var listResult = getPropertiesDeferred.await()
-//                       Log.d("Api Data",listResult.toString())
-//
-//                    }catch(e:Exception){
-//                        Log.d("Exception","${e}")
-//                        }
-//                }
-//            }
-
 //
 //                To try out the data output we get from the api Genres List
 //

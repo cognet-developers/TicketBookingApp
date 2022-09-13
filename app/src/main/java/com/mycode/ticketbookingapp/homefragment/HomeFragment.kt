@@ -40,30 +40,30 @@ class HomeFragment : Fragment() {
 
         homeViewModel.action.observe(viewLifecycleOwner, Observer{
             if(it==true){
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment(TMBDConstants.ACTION))
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.ACTION,"Action"))
                 homeViewModel.ActionDone()
 
             }
         })
 
         binding.card1.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment(TMBDConstants.CRIME))
+            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.CRIME,"Crime"))
         }
 
         binding.card2.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment(TMBDConstants.COMEDY))
+            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.COMEDY,"Comedy"))
         }
 
         binding.card3.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment(TMBDConstants.MUSIC))
+            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.DOCUMENTARY,"Documentery"))
         }
 
         binding.card4.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment(TMBDConstants.FANTASY))
+            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.FANTASY,"Fantasy"))
         }
 
         binding.card5.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieFragment(TMBDConstants.HISTORY))
+            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.HISTORY,"History"))
         }
 
 

@@ -40,7 +40,7 @@ class ReviewsViewModel: ViewModel() {
             }
         }
         coroutineScope.launch {
-            var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.ANIMATION, TMBDConstants.API_KEY)
+            var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.DOCUMENTARY, TMBDConstants.API_KEY)
             try {
 
                 var listResult = getPropertiesDeferred.await()
@@ -54,7 +54,7 @@ class ReviewsViewModel: ViewModel() {
             }
         }
         coroutineScope.launch {
-            var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.FAMILY, TMBDConstants.API_KEY)
+            var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(TMBDConstants.MUSIC, TMBDConstants.API_KEY)
             try {
 
                 var listResult = getPropertiesDeferred.await()

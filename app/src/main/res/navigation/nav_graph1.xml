@@ -5,7 +5,6 @@
     android:id="@+id/nav_graph1"
     app:startDestination="@id/home">
 
-
     <fragment
         android:id="@+id/home"
         android:name="com.mycode.ticketbookingapp.homefragment.HomeFragment"
@@ -15,10 +14,10 @@
             android:id="@+id/action_home_to_reviews"
             app:destination="@id/reviews"/>
         <action
-            android:id="@+id/action_home_to_gridMovieFragment"
-            app:destination="@id/gridMovieFragment" />
-
+            android:id="@+id/action_home_to_gridMovieActivity"
+            app:destination="@id/gridMovieActivity" />
     </fragment>
+
     <fragment
         android:id="@+id/reviews"
         android:name="com.mycode.ticketbookingapp.reviewsFragment.ReviewsFragment"
@@ -28,23 +27,20 @@
             android:id="@+id/action_reviews_to_profile"
             app:destination="@id/profile" />
     </fragment>
+
     <fragment
         android:id="@+id/profile"
         android:name="com.mycode.ticketbookingapp.profilefragment.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
-
         <action
             android:id="@+id/action_profile_to_editProfile"
             app:destination="@id/editProfile"
             app:popUpTo="@id/profile" />
-
         <action
             android:id="@+id/action_profile_to_feedback"
             app:destination="@id/feedback"
             app:popUpTo="@id/profile" />
-
-
     </fragment>
 
     <activity
@@ -52,36 +48,34 @@
         android:name="com.mycode.ticketbookingapp.profilefragment.editprofile.EditProfile"
         android:label="EditProfile"
         tools:layout="@layout/activity_editprofile">
-
-
     </activity>
+
     <activity
         android:id="@+id/feedback"
         android:name="com.mycode.ticketbookingapp.profilefragment.settingsfragment.Feedback"
-        android:label="SettingsFragment"
+        android:label="Settings"
         tools:layout="@layout/activity_feedback">
     </activity>
+
     <activity
-        android:id="@+id/gridMovieFragment"
+        android:id="@+id/gridMovieActivity"
         android:name="com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity"
-        android:label="fragment_grid_movie"
+        android:label="Gridmovie"
         tools:layout="@layout/activity_grid_view" >
         <argument
             android:name="type"
             app:argType="string"
             app:nullable="true"/>
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true"/>
     </activity>
-<!--    <activity-->
-<!--        android:id="@+id/moviediscFragment"-->
-<!--        android:name="com.mycode.ticketbookingapp.homefragment.moviedisc.MoviediscFragment"-->
-<!--        android:label="fragment_moviedisc"-->
-<!--        tools:layout="@layout/activity_movie_description" >-->
-<!--        <argument-->
-<!--            android:name="id"-->
-<!--            app:argType="string"-->
-<!--            app:nullable="true"/>-->
 
-<!--    </activity>-->
-
-
+    <activity
+        android:id="@+id/moviediscActivity"
+        android:name="com.mycode.ticketbookingapp.homefragment.moviedescription.MovieDescriptionActivity"
+        android:label="MovieDescription"
+        tools:layout="@layout/activity_movie_description" >
+      </activity>
 </navigation>
