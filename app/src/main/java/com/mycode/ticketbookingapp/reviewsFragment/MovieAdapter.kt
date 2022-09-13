@@ -1,5 +1,6 @@
 package com.mycode.ticketbookingapp.reviewsFragment
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class MovieAdapter(val movieLists: List<Movies>): RecyclerView.Adapter<RecyclerV
     }
 
     override fun getItemCount(): Int {
+//        Log.i("Size",movieLists.size.toString())
         return movieLists.size;
     }
 
@@ -62,12 +64,10 @@ class ReviewAdapter(val topic: List<ReviewData>): RecyclerView.Adapter<RecyclerV
 
 }
 class ViewHolder(val binding: ListItemsBinding) : RecyclerView.ViewHolder(binding.root){
-
     fun bind(topic: ReviewData): Unit {
         binding.viewModel= topic
         binding.recylv.adapter=MovieAdapter(topic.movies)
         // binding.clicklistener=clickListener
     }
-
 }
 
