@@ -38,35 +38,35 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner=this
 
 
-        homeViewModel.action.observe(viewLifecycleOwner, Observer{
-            if(it==true){
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.ACTION,"Action"))
-                homeViewModel.ActionDone()
-
-            }
-        })
-
-        binding.card1.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.CRIME,"Crime"))
-        }
-
-        binding.card2.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.COMEDY,"Comedy"))
-        }
-
-        binding.card3.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.DOCUMENTARY,"Documentery"))
-        }
-
-        binding.card4.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.FANTASY,"Fantasy"))
-        }
-
-        binding.card5.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.HISTORY,"History"))
-        }
-
-
+//        homeViewModel.action.observe(viewLifecycleOwner, Observer{
+//            if(it==true){
+//                this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.ACTION,"Action"))
+//                homeViewModel.ActionDone()
+//
+//            }
+//        })
+//
+//        binding.card1.setOnClickListener{
+//            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.CRIME,"Crime"))
+//        }
+//
+//        binding.card2.setOnClickListener{
+//            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.COMEDY,"Comedy"))
+//        }
+//
+//        binding.card3.setOnClickListener{
+//            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.DOCUMENTARY,"Documentery"))
+//        }
+//
+//        binding.card4.setOnClickListener{
+//            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.FANTASY,"Fantasy"))
+//        }
+//
+//        binding.card5.setOnClickListener{
+//            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.HISTORY,"History"))
+//        }
+//
+//
         //Initialize the adapter onClick event happen on each object (lamba function)
         return binding.root
     }
