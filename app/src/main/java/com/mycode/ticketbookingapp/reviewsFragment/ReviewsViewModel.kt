@@ -19,17 +19,19 @@ class ReviewsViewModel: ViewModel() {
     val feed: LiveData<List<ReviewData>>
         get() = _feed
 
+    var viewModelJob = Job()
+    val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    val reviewdata:MutableList<ReviewData> = mutableListOf()
+    val genrename:List<String> = listOf(TMBDConstants.ACTION,TMBDConstants.COMEDY,TMBDConstants.FANTASY,TMBDConstants.HISTORY,TMBDConstants.CRIME,TMBDConstants.MUSIC,TMBDConstants.DOCUMENTARY)
+
+    val topic:List<String> = listOf("ACTION","COMEDY","FANTASY","HISTORY","CRIME","MUSIC","DOCUMENTARY")
+
+    var index:Int=0
+
     init {
-        var viewModelJob = Job()
-        val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-        val reviewdata:MutableList<ReviewData> = mutableListOf()
-        val genrename:List<String> = listOf(TMBDConstants.ACTION,TMBDConstants.COMEDY,TMBDConstants.FANTASY,TMBDConstants.HISTORY,TMBDConstants.CRIME,TMBDConstants.MUSIC,TMBDConstants.DOCUMENTARY)
-
-        val topic:List<String> = listOf("ACTION","COMEDY","FANTASY","HISTORY","CRIME","MUSIC","DOCUMENTARY")
-
-        var index:Int=0
-
-
+        listOfListMovies()
+    }
+        fun listOfListMovies(){
         coroutineScope.launch {
             genrename.forEach {
                 var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(
@@ -53,15 +55,16 @@ class ReviewsViewModel: ViewModel() {
 
         _feed.value=reviewdata
     }
+
     fun getGenresList(l: List<Movies>): List<Movies> {
         val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
             localMovies.add(
                 Movies(it.id,it.poster_path,it.original_title,it.vote_average)
             )
-//            Log.d("Api Data3",
-//                it.poster_path + " " +it.original_title+" " +it.vote_average
-//            )
+            Log.d("Api Data3",
+                it.poster_path + " " +it.original_title+" " +it.vote_average
+            )
 
         }
         return localMovies
