@@ -31,8 +31,6 @@ class ReviewsFragment : Fragment() {
         //var topiclist: List<String>
 
         binding.lifecycleOwner = this
-        val activity: Activity = requireNotNull(this.activity)
-        val application: Application = requireNotNull(this.activity).application
 
         val layoutmanager =LinearLayoutManager(activity,LinearLayoutManager.VERTICAL ,false)
         binding.recv.layoutManager=layoutmanager
