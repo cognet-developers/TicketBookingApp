@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="com.mycode.ticketbookingapp.homefragment.HomeRecyclerView.bottom" />
+            type="com.mycode.ticketbookingapp.homefragment.HomeRecyclerViewModel.Bottom" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +31,7 @@
                 android:id="@+id/poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:imageUrl="@{data.poster_path}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -40,6 +41,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Top Rated"
                 android:gravity="center"
+                app:userDetails="@{data.title}"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="16sp"

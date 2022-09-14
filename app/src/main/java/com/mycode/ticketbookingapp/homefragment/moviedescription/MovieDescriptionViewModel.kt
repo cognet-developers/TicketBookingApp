@@ -68,7 +68,7 @@ class MovieDescriptionViewModel(application: Application, id: String):ViewModel(
             }
         }
     }
-    fun getGenres(genres: List<genre>):List<String> {
+    fun getGenres(genres: List<genres>):List<String> {
         val local: MutableList<String> = mutableListOf()
         genres.forEach {
             val str:String= it.name

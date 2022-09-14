@@ -22,7 +22,6 @@
             android:id="@+id/banner_recycler_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spanCount="2"
             android:clipToPadding="false"
             tools:listitem="@layout/list_items_of_backdrop"
             android:orientation="horizontal"

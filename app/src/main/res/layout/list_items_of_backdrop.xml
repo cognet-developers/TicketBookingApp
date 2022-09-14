@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.mycode.ticketbookingapp.homefragment.HomeRecyclerView.top" />
+            type="com.mycode.ticketbookingapp.homefragment.Item" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
             android:id="@+id/backdrops"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:imageUrl="@{data.backdrop_path"
+            app:imageUrl="@{data.backdrop_path}"
             tools:src="@tools:sample/backgrounds/scenic"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

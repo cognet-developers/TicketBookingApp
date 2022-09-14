@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mycode.ticketbookingapp.databinding.MovienameBinding
+import com.mycode.ticketbookingapp.databinding.ListMovienameBinding
 import com.mycode.ticketbookingapp.network.Movies
 
 
@@ -16,10 +16,10 @@ class Adapter(val movieListener: MovieListener): ListAdapter<Movies,Adapter.View
     }
 
 
-    class ViewHolder private constructor(val binding: MovienameBinding)
+    class ViewHolder private constructor(val binding: ListMovienameBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Movies,movieListener: MovieListener) {
+        fun bind(item: Movies, movieListener: MovieListener) {
             binding.viewModel=item
             binding.clicklistener=movieListener
             binding.executePendingBindings()
@@ -28,7 +28,7 @@ class Adapter(val movieListener: MovieListener): ListAdapter<Movies,Adapter.View
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding=MovienameBinding.inflate(layoutInflater, parent, false)
+                val binding=ListMovienameBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
@@ -54,5 +54,4 @@ class DiffCallback : DiffUtil.ItemCallback<Movies>() {
     override fun areContentsTheSame(oldItem: Movies, newItem: Movies): Boolean {
         return oldItem.id == newItem.id
     }
-
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.await
 
-class GridViewViewModel(application: Application, type: String) : ViewModel() {
+class GridViewViewModel(application: Application, constant:String,type: String) : ViewModel() {
 
     private val _feed = MutableLiveData<List<Movies>>()
 
@@ -30,17 +30,17 @@ class GridViewViewModel(application: Application, type: String) : ViewModel() {
 
 
     init{
-        getGenres(type)
+        getGenres(constant,type)
     }
-   fun getGenres(genreType:String){
+   fun getGenres(constant: String,genreType:String){
 
                 coroutineScope.launch {
                     Log.d("Type",genreType)
-                    val getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(genreType, TMBDConstants.API_KEY)
+                    val getPropertiesDeferred = TMBDApi.retrofitService.getLatest(constant,genreType, TMBDConstants.API_KEY)
                     try {
 
                         val listResult = getPropertiesDeferred.await()
-                        val genresList=getGenreList(listResult.items)
+                        val genresList=getLatestList(listResult.results)
                         _feed.value=genresList
                        Log.d("Api Data",genresList.toString())
 
@@ -50,18 +50,11 @@ class GridViewViewModel(application: Application, type: String) : ViewModel() {
                 }
     }
 
-    fun navigateToMovieDescription(id: Int) {
-        _navigateToSelectedProperty.value = id
-    }
-    fun navigateToMovieDescriptionDone() {
-        _navigateToSelectedProperty.value = 0
-    }
-
-    fun getGenreList(l: List<Movies>): List<Movies> {
+    fun getLatestList(l: List<Movies>): List<Movies> {
         val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
             localMovies.add(
-                Movies(it.id,it.poster_path,it.original_title,it.vote_average)
+                Movies(it.id,it.poster_path,it.backdrop_path,it.original_title,it.vote_average)
             )
             Log.d("Api Data",
                 it.poster_path + " " +it.original_title+" " +it.vote_average

@@ -40,8 +40,8 @@ class GridViewActivity : AppCompatActivity() {
         supportActionBar?.setTitle(args1.name)
 
         val application: Application = requireNotNull(this).application
-        val viewModelFactory = GridViewViewModelFactory(application, args1.type.toString())
-        Log.d("Type",args1.type.toString())
+        val viewModelFactory = GridViewViewModelFactory(application, args1.constant.toString(),args1.type.toString())
+        Log.d("Type",args1.constant.toString() + " " + args1.type.toString() + " " + args1.name.toString())
         val gridViewViewModel = ViewModelProvider(this, viewModelFactory).get(GridViewViewModel::class.java)
         binding.gridViewViewModel = gridViewViewModel
         binding.lifecycleOwner = this
