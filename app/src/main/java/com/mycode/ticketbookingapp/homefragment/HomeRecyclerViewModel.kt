@@ -15,9 +15,9 @@ sealed class HomeRecyclerViewModel {
 
 @Parcelize
 class Item(
-    val id:Int,
-    val original_title:String,
-    val backdrop_path:String,
+    val id:Int=0,
+    val original_title:String="",
+    val backdrop_path:String="",
 ):Parcelable
 
 @Parcelize

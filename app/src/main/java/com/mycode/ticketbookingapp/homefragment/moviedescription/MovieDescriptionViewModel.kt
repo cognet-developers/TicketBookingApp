@@ -37,23 +37,21 @@ class MovieDescriptionViewModel(application: Application, id: String):ViewModel(
 
     fun getMovieDetails(id:String){
         coroutineScope.launch {
-            var getMovieDetails =
+            val getMovieDetails =
                 TMBDApi.retrofitService.getMovieDetails(id, TMBDConstants.API_KEY)
 
-            var getTrailerVideo =
+            val getTrailerVideo =
                 TMBDApi.retrofitService.getMovieTrailer(id,TMBDConstants.API_KEY)
             try {
 
-                var listResult = getMovieDetails.await()
+                val listResult = getMovieDetails.await()
                 _selectedProperty.value=listResult
                 Log.d("ApiData", listResult.toString())
 
                 val genre=getGenres(listResult.genres)
                 _selectedPropertyGenres.value=genre.toString()
 
-
-
-                var videoResult = getTrailerVideo.await()
+                val videoResult = getTrailerVideo.await()
                 val local:MutableList<String> = mutableListOf()
                 videoResult.results.forEach {
                      local.add(it.key)
@@ -61,8 +59,6 @@ class MovieDescriptionViewModel(application: Application, id: String):ViewModel(
 
                 val key=local[0]
                 Log.d("Videokey",key)
-
-
 
             } catch (e: Exception) {
                 Log.d("Exception", "${e}")

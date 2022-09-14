@@ -86,7 +86,7 @@ class HomeViewModel : ViewModel() {
    fun getTrend(l:List<Movies>):List<Item>{
        val localMovies:MutableList<Item> = mutableListOf()
        l.forEach {
-               localMovies.add(Item(it.id,it.original_title, it.backdrop_path))
+               localMovies.add(Item(it.id,it.original_title, it.backdrop_path!!))
        }
 
        return localMovies

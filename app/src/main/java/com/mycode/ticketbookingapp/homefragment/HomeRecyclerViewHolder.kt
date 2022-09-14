@@ -36,7 +36,6 @@ sealed class HomeRecyclerViewHolder(binding: ViewBinding):RecyclerView.ViewHolde
                 val intent = Intent(itemView.context, GridViewActivity::class.java)
                 intent.putExtra("1",it.constant)
                 intent.putExtra("2",it.title)
-                intent.putExtra("3",it.category)
                 Log.d("id",it.toString())
                 itemView.context.startActivity(intent)
             })
@@ -58,6 +57,7 @@ class TopAdapter(val movieListener: MovieListener): ListAdapter<Item, TopAdapter
 
         fun bind(item: Item,movieListener: MovieListener) {
             binding.data=item
+            binding.clicklistener=movieListener
             binding.executePendingBindings()
         }
 

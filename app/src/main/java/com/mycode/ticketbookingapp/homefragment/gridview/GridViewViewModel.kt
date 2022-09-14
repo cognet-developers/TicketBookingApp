@@ -1,7 +1,10 @@
 package com.mycode.ticketbookingapp.homefragment.gridview
 
 import android.app.Application
+import android.os.Build
+import android.text.format.Time
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,8 +15,10 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.await
+import java.time.Year
 
-class GridViewViewModel(application: Application, constant:String,category: String) : ViewModel() {
+@RequiresApi(Build.VERSION_CODES.O)
+class GridViewViewModel(application: Application, constant:String) : ViewModel() {
 
     private val _feed = MutableLiveData<List<Movies>>()
 
@@ -24,18 +29,38 @@ class GridViewViewModel(application: Application, constant:String,category: Stri
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init{
-        getGenres(constant,category)
+        getGenres(constant)
     }
-   fun getGenres(constant: String,category:String){
+   @RequiresApi(Build.VERSION_CODES.O)
+   fun getGenres(constant: String){
 
                 coroutineScope.launch {
-                    Log.d("Type",category+constant)
+                    Log.d("Type",constant)
                     val getPropertiesDeferred: Call<GenresListProperty1>
-                    if(category=="latest") {
-                         getPropertiesDeferred = TMBDApi.retrofitService.getLatestMovies(constant, TMBDConstants.API_KEY)
+                    if(constant=="ta") {
+                        getPropertiesDeferred = TMBDApi.retrofitService.getLatestMoviesByLanguage(
+                            TMBDConstants.API_KEY,
+                            constant,
+                            Year.now().toString()
+                        )
+                    }else if(constant=="en"){
+                        getPropertiesDeferred = TMBDApi.retrofitService.getLatestMoviesByLanguage(
+                            TMBDConstants.API_KEY,
+                            constant,
+                            Year.now().toString()
+                        )
+
+                    }else if(constant=="hi"){
+                        getPropertiesDeferred = TMBDApi.retrofitService.getLatestMoviesByLanguage(
+                            TMBDConstants.API_KEY,
+                            constant,
+                            Year.now().toString()
+                        )
+
                     }else{
-                        getPropertiesDeferred=TMBDApi.retrofitService.getLatestMoviesByLanguage(TMBDConstants.API_KEY,constant)
+                         getPropertiesDeferred = TMBDApi.retrofitService.getLatestMovies(constant, TMBDConstants.API_KEY)
                     }
+                    Log.d("Year",Year.now().toString())
                     try {
 
                         val listResult = getPropertiesDeferred.await()
@@ -44,7 +69,7 @@ class GridViewViewModel(application: Application, constant:String,category: Stri
                        Log.d("Api Data",genresList.toString())
 
                     }catch(e:Exception){
-                        Log.d("Exception","${e}")
+                        Log.d("Exception Grid","${e}")
                         }
                 }
     }
@@ -52,14 +77,22 @@ class GridViewViewModel(application: Application, constant:String,category: Stri
     fun getLatestList(l: List<Movies>): List<Movies> {
         val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
-            localMovies.add(
-                Movies(it.id,it.poster_path,it.backdrop_path,it.original_title,it.vote_average)
-            )
-            Log.d("Api Data",
-                it.poster_path + " " +it.original_title+" " +it.vote_average
-            )
-
-        }
+            if(it.backdrop_path!=null && it.poster_path!=null){
+                localMovies.add(
+                    Movies(
+                        it.id,
+                        it.poster_path,
+                        it.backdrop_path,
+                        it.original_title,
+                        it.vote_average
+                    )
+                )
+                Log.d(
+                    "Api Data",
+                    it.poster_path + " " + it.original_title + " " + it.vote_average
+                )
+            }
+            }
         return localMovies
 
     }

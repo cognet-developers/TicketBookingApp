@@ -12,8 +12,8 @@ data class GenresListProperty1(val results: List<Movies>)
 data class Movies(
     val id:Int,
     @Json(name = "poster_path")
-    val poster_path:String,
-    val backdrop_path:String,
+    val poster_path:String?,
+    val backdrop_path:String?,
     val original_title:String,
     val vote_average:Float,
 ):Parcelable

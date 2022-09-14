@@ -47,7 +47,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 app:userDetails="@{data.title}"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
