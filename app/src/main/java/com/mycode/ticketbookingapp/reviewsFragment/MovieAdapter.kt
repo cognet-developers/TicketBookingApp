@@ -10,38 +10,39 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getAttributionTag
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.mycode.ticketbookingapp.databinding.ListItemsBinding
-import com.mycode.ticketbookingapp.databinding.MovienameBinding
+import com.mycode.ticketbookingapp.databinding.ActivityRecyclerViewBinding
+import com.mycode.ticketbookingapp.databinding.ListMovienameBinding
+import com.mycode.ticketbookingapp.homefragment.Adapter
 import com.mycode.ticketbookingapp.homefragment.MovieListener
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity.Companion.USER_KEY
 import com.mycode.ticketbookingapp.homefragment.moviedescription.MovieDescriptionActivity
 import com.mycode.ticketbookingapp.network.Movies
 
 
-class MovieAdapter(val movieLists: List<Movies>,val clickListener: MovieListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MovieViewHolder).bind(movieLists.get(position),clickListener);
-    }
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        return MovieViewHolder(MovienameBinding.inflate(layoutInflater, parent, false))
-    }
-
-    override fun getItemCount(): Int {
-        return movieLists.size;
-    }
-
-}
-class MovieViewHolder(val binding: MovienameBinding) : RecyclerView.ViewHolder(binding.root){
-
-    fun bind(movielist: Movies, clickListener: MovieListener): Unit {
-        binding.viewModel= movielist
-        binding.clicklistener=clickListener
-    }
-
-}
+//class MovieAdapter(val movieLists: List<Movies>,val clickListener: MovieListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+//    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+//        (holder as MovieViewHolder).bind(movieLists.get(position),clickListener);
+//    }
+//
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+//        val layoutInflater = LayoutInflater.from(parent.context)
+//        return MovieViewHolder(ListMovienameBinding.inflate(layoutInflater, parent, false))
+//    }
+//
+//    override fun getItemCount(): Int {
+//        return movieLists.size
+//    }
+//
+//}
+//class MovieViewHolder(val binding: ListMovienameBinding) : RecyclerView.ViewHolder(binding.root){
+//
+//    fun bind(movielist: Movies, clickListener: MovieListener): Unit {
+//        binding.viewModel= movielist
+//        binding.clicklistener=clickListener
+//    }
+//
+//}
 
 class ReviewAdapter(val topic: List<ReviewData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -55,22 +56,26 @@ class ReviewAdapter(val topic: List<ReviewData>): RecyclerView.Adapter<RecyclerV
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return ViewHolder(ListItemsBinding.inflate(layoutInflater, parent, false))
+        return ViewHolder(ActivityRecyclerViewBinding.inflate(layoutInflater, parent, false))
     }
 
     override fun getItemCount(): Int {
         return topic.size
     }
 
-    class ViewHolder(val binding: ListItemsBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(val binding: ActivityRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(topic: ReviewData): Unit {
+
             binding.viewModel= topic
-            binding.recylv.adapter=MovieAdapter(topic.movies,MovieListener {
+            val adapter=Adapter(MovieListener {
                 val intent = Intent(itemView.context, MovieDescriptionActivity::class.java)
                 intent.putExtra(USER_KEY, it.toString())
                 Log.d("id",it.toString())
                 itemView.context.startActivity(intent)
             })
+            binding.recylv.adapter=adapter
+            adapter.submitList(topic.movies)
+
         }
     }
 }

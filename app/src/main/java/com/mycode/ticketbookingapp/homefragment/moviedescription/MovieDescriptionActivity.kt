@@ -13,7 +13,6 @@ import com.mycode.ticketbookingapp.databinding.ActivityMovieDescriptionBinding
 import com.mycode.ticketbookingapp.homefragment.Adapter
 import com.mycode.ticketbookingapp.homefragment.MovieListener
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity
-import com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivityArgs
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewViewModel
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewViewModelFactory
 

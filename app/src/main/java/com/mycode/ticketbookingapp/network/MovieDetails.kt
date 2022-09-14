@@ -17,7 +17,7 @@ data class MovieDetails(
         val tagline:String="",
         val vote_average:String="",
         val vote_count:String="",
-        val genres:List<genre> = listOf(),
+        val genres:List<genres> = listOf(),
 ):Parcelable{
         val voteAverage :String
                 get() = vote_average+"k ratings"
@@ -35,8 +35,4 @@ data class video(
         val site:String
 ):Parcelable
 
-@Parcelize
-data class genre(
-        val name:String
-):Parcelable
 

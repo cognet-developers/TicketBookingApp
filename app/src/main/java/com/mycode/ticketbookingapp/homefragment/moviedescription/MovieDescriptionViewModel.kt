@@ -12,6 +12,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.await
 import java.util.stream.Collectors
+import kotlin.system.exitProcess
 
 class MovieDescriptionViewModel(application: Application, id: String):ViewModel() {
     private val _selectedProperty = MutableLiveData<MovieDetails>()
@@ -68,14 +69,19 @@ class MovieDescriptionViewModel(application: Application, id: String):ViewModel(
             }
         }
     }
-    fun getGenres(genres: List<genre>):List<String> {
+    fun getGenres(genres: List<genres>):List<String> {
         val local: MutableList<String> = mutableListOf()
+        var index = 0
         genres.forEach {
-            val str:String= it.name
-            local.add(str)
-            Log.d("Api Data",
-                it.name
-            )
+            if(index<3) {
+                val str: String = it.name
+                local.add(str)
+                Log.d(
+                    "Api Data",
+                    it.name
+                )
+            }
+            index=index+1
 
         }
      return local

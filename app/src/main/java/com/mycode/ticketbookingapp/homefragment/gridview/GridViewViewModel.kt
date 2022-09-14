@@ -10,37 +10,36 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.Call
 import retrofit2.await
 
-class GridViewViewModel(application: Application, type: String) : ViewModel() {
+class GridViewViewModel(application: Application, constant:String,category: String) : ViewModel() {
 
     private val _feed = MutableLiveData<List<Movies>>()
 
     val feed: LiveData<List<Movies>>
         get() = _feed
 
-    private val _navigateToSelectedProperty = MutableLiveData<Int?>()
-
-    // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<Int?>
-        get() = _navigateToSelectedProperty
-
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-
     init{
-        getGenres(type)
+        getGenres(constant,category)
     }
-   fun getGenres(genreType:String){
+   fun getGenres(constant: String,category:String){
 
                 coroutineScope.launch {
-                    Log.d("Type",genreType)
-                    val getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(genreType, TMBDConstants.API_KEY)
+                    Log.d("Type",category+constant)
+                    val getPropertiesDeferred: Call<GenresListProperty1>
+                    if(category=="latest") {
+                         getPropertiesDeferred = TMBDApi.retrofitService.getLatestMovies(constant, TMBDConstants.API_KEY)
+                    }else{
+                        getPropertiesDeferred=TMBDApi.retrofitService.getLatestMoviesByLanguage(TMBDConstants.API_KEY,constant)
+                    }
                     try {
 
                         val listResult = getPropertiesDeferred.await()
-                        val genresList=getGenreList(listResult.items)
+                        val genresList=getLatestList(listResult.results)
                         _feed.value=genresList
                        Log.d("Api Data",genresList.toString())
 
@@ -50,18 +49,11 @@ class GridViewViewModel(application: Application, type: String) : ViewModel() {
                 }
     }
 
-    fun navigateToMovieDescription(id: Int) {
-        _navigateToSelectedProperty.value = id
-    }
-    fun navigateToMovieDescriptionDone() {
-        _navigateToSelectedProperty.value = 0
-    }
-
-    fun getGenreList(l: List<Movies>): List<Movies> {
+    fun getLatestList(l: List<Movies>): List<Movies> {
         val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
             localMovies.add(
-                Movies(it.id,it.poster_path,it.original_title,it.vote_average)
+                Movies(it.id,it.poster_path,it.backdrop_path,it.original_title,it.vote_average)
             )
             Log.d("Api Data",
                 it.poster_path + " " +it.original_title+" " +it.vote_average

@@ -33,8 +33,6 @@ fun bindImage(circleImageView: CircleImageView, imgUrl:String?) {
 fun bindImage1(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imge=TMBDConstants.IMG_BASE_URL+imgUrl
-
-//        val imgUri = imge.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
             .load(imge)
             .apply(

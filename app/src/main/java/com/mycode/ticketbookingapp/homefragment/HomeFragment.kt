@@ -2,6 +2,7 @@ package com.mycode.ticketbookingapp.homefragment
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,37 +38,15 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner=this
 
+        val homeRecyclerViewAdapter=HomeRecyclerViewAdapter()
 
-        homeViewModel.action.observe(viewLifecycleOwner, Observer{
-            if(it==true){
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.ACTION,"Action"))
-                homeViewModel.ActionDone()
+   binding.homeRecyclerView.adapter=homeRecyclerViewAdapter
 
+        homeViewModel.homeFeed.observe(viewLifecycleOwner, Observer{
+            it?.let{
+               homeRecyclerViewAdapter.items=it
             }
         })
-
-        binding.card1.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.CRIME,"Crime"))
-        }
-
-        binding.card2.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.COMEDY,"Comedy"))
-        }
-
-        binding.card3.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.DOCUMENTARY,"Documentery"))
-        }
-
-        binding.card4.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.FANTASY,"Fantasy"))
-        }
-
-        binding.card5.setOnClickListener{
-            this.findNavController().navigate(HomeFragmentDirections.actionHomeToGridMovieActivity(TMBDConstants.HISTORY,"History"))
-        }
-
-
-        //Initialize the adapter onClick event happen on each object (lamba function)
         return binding.root
     }
 

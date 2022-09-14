@@ -15,15 +15,20 @@
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.2395" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/drawable/launch.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_banner.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_cardview.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_editprofile.xml" value="0.264" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_feedback.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_grid_view.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_grid_view_2.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_homepage.xml" value="0.16" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_login.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_main.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_movie_description.xml" value="0.2" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_recycler_view.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_settings.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_signup.xml" value="0.2421875" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/activity_top.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/content_main.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/fragment_editprofile.xml" value="0.228125" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/fragment_feedback.xml" value="0.2421875" />
@@ -40,7 +45,11 @@
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/fragment_theatres.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/fragment_welcome.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/genre.xml" value="0.2421875" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/list_card_view.xml" value="0.2" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/list_items.xml" value="0.2421875" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/list_items_of_backdrop.xml" value="0.2" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/list_moviename.xml" value="0.2421875" />
+        <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/list_of_cardview.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/moviename.xml" value="0.1" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/recyclerview.xml" value="0.2421875" />
         <entry key="..\:/Users/dell/AndroidStudioProjects/TicketBookingApp/app/src/main/res/layout/settings_activity.xml" value="0.2421875" />

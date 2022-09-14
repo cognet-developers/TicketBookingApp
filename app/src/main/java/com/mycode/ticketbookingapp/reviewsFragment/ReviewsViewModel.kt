@@ -4,13 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mycode.ticketbookingapp.network.Movies
-import com.mycode.ticketbookingapp.network.TMBDApi
-import com.mycode.ticketbookingapp.network.TMBDConstants
+import com.mycode.ticketbookingapp.network.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.Call
 import retrofit2.await
 
 class ReviewsViewModel: ViewModel() {
@@ -22,29 +21,30 @@ class ReviewsViewModel: ViewModel() {
     var viewModelJob = Job()
     val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
     val reviewdata:MutableList<ReviewData> = mutableListOf()
-    val genrename:List<String> = listOf(TMBDConstants.ACTION,TMBDConstants.COMEDY,TMBDConstants.FANTASY,TMBDConstants.HISTORY,TMBDConstants.CRIME,TMBDConstants.MUSIC,TMBDConstants.DOCUMENTARY)
 
-    val topic:List<String> = listOf("ACTION","COMEDY","FANTASY","HISTORY","CRIME","MUSIC","DOCUMENTARY")
 
-    var index:Int=0
 
     init {
         listOfListMovies()
     }
         fun listOfListMovies(){
         coroutineScope.launch {
-            genrename.forEach {
+
+            val genrename=TMBDApi.retrofitService.getGenres(TMBDConstants.API_KEY)
+            val listResult1=genrename.await()
+            listResult1.genres.forEach {
                 var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(
-                    it,
+                    it.id.toString(),
                     TMBDConstants.API_KEY
                 )
                 try {
 
-                    var listResult = getPropertiesDeferred.await()
+                    val listResult = getPropertiesDeferred.await()
                     val genresList = getGenresList(listResult.items)
-                    reviewdata.add(ReviewData(topic[index], genresList))
+                    if(genresList.isNotEmpty()) {
+                        reviewdata.add(ReviewData(it.name, genresList))
+                    }
                     Log.d("Api Data", listResult.toString())
-                    index=index+1
 
                 } catch (e: Exception) {
                     Log.d("Exception", "${e}")
@@ -60,7 +60,7 @@ class ReviewsViewModel: ViewModel() {
         val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
             localMovies.add(
-                Movies(it.id,it.poster_path,it.original_title,it.vote_average)
+                Movies(it.id,it.poster_path,it.backdrop_path,it.original_title,it.vote_average)
             )
             Log.d("Api Data3",
                 it.poster_path + " " +it.original_title+" " +it.vote_average
@@ -70,4 +70,6 @@ class ReviewsViewModel: ViewModel() {
         return localMovies
 
     }
+
+
 }

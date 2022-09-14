@@ -24,6 +24,9 @@ import com.mycode.ticketbookingapp.network.TMBDConstants
 
 class GridViewActivity : AppCompatActivity() {
 
+    private lateinit var constant:String
+    private lateinit var name:String
+    private lateinit var category: String
 
     companion object{
         val USER_KEY="key"
@@ -35,13 +38,16 @@ class GridViewActivity : AppCompatActivity() {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.setContentView<ActivityGridViewBinding>(this, R.layout.activity_grid_view)
 
+        constant=intent.getStringExtra("1").toString()
+        name=intent.getStringExtra("2").toString()
+        category=intent.getStringExtra("3").toString()
 
-        val args1: GridViewActivityArgs by navArgs()
-        supportActionBar?.setTitle(args1.name)
+        supportActionBar?.setTitle(name)
 
         val application: Application = requireNotNull(this).application
-        val viewModelFactory = GridViewViewModelFactory(application, args1.type.toString())
-        Log.d("Type",args1.type.toString())
+
+        val viewModelFactory = GridViewViewModelFactory(application, constant,category)
+        Log.d("Type",constant+" "+category)
         val gridViewViewModel = ViewModelProvider(this, viewModelFactory).get(GridViewViewModel::class.java)
         binding.gridViewViewModel = gridViewViewModel
         binding.lifecycleOwner = this
