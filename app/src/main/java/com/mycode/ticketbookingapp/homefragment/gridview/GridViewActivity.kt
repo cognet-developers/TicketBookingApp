@@ -26,7 +26,6 @@ class GridViewActivity : AppCompatActivity() {
 
     private lateinit var constant:String
     private lateinit var name:String
-    private lateinit var category: String
 
     companion object{
         val USER_KEY="key"
@@ -35,19 +34,17 @@ class GridViewActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Inflate the layout for this fragment
         val binding = DataBindingUtil.setContentView<ActivityGridViewBinding>(this, R.layout.activity_grid_view)
 
         constant=intent.getStringExtra("1").toString()
         name=intent.getStringExtra("2").toString()
-        category=intent.getStringExtra("3").toString()
 
         supportActionBar?.setTitle(name)
 
         val application: Application = requireNotNull(this).application
 
-        val viewModelFactory = GridViewViewModelFactory(application, constant,category)
-        Log.d("Type",constant+" "+category)
+        val viewModelFactory = GridViewViewModelFactory(application, constant)
+        Log.d("Type",constant)
         val gridViewViewModel = ViewModelProvider(this, viewModelFactory).get(GridViewViewModel::class.java)
         binding.gridViewViewModel = gridViewViewModel
         binding.lifecycleOwner = this
@@ -61,7 +58,6 @@ class GridViewActivity : AppCompatActivity() {
        })
 
         binding.recyclerView.adapter=adapter
-
 
         gridViewViewModel.feed.observe(this, Observer {
             it?.let {

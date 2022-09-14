@@ -60,7 +60,7 @@ class ReviewsViewModel: ViewModel() {
         val localMovies: MutableList<Movies> = mutableListOf()
         l.forEach {
             localMovies.add(
-                Movies(it.id,it.poster_path,it.backdrop_path,it.original_title,it.vote_average)
+                Movies(it.id,it.poster_path!!,it.backdrop_path!!,it.original_title,it.vote_average)
             )
             Log.d("Api Data3",
                 it.poster_path + " " +it.original_title+" " +it.vote_average
