@@ -39,16 +39,16 @@ class HomeViewModel : ViewModel() {
             try {
 
                 val listResult = getPropertiesDeferred.await()
-                val genresList=getTrend(listResult.results)
-                homeFeedList.add(HomeRecyclerViewModel.Top(genresList))
-                homeFeedList.add(HomeRecyclerViewModel.Bottom(TMBDConstants.latestMovies,"Latest Movies",TMBDConstants.IMG_BASE_URL+"","movie"))
-                homeFeedList.add(HomeRecyclerViewModel.Bottom(TMBDConstants.topRated,"Top Rated Movies",TMBDConstants.IMG_BASE_URL+"","movie"))
-                homeFeedList.add(HomeRecyclerViewModel.Bottom(TMBDConstants.popular,"Popular Movies",TMBDConstants.IMG_BASE_URL+"","movie"))
-                homeFeedList.add(HomeRecyclerViewModel.Bottom(TMBDConstants.latestTvShows,"Latest Tv Shows",TMBDConstants.IMG_BASE_URL+"","tv"))
-                homeFeedList.add(HomeRecyclerViewModel.Bottom(TMBDConstants.topRated,"Top Rated Tv Shows",TMBDConstants.IMG_BASE_URL+"","tv"))
-                homeFeedList.add(HomeRecyclerViewModel.Bottom(TMBDConstants.popular,"Popular Tv Shows",TMBDConstants.IMG_BASE_URL+"","tv"))
+                val trendList=getTrend(listResult.results)
+                homeFeedList.add(HomeRecyclerViewModel.Top(trendList))
+                val latestList1=getLatest1()
+                val latestList2=getLatest2()
+                val latestList3=getLatest3()
+                homeFeedList.add(HomeRecyclerViewModel.Bottom(latestList1))
+                homeFeedList.add(HomeRecyclerViewModel.Bottom(latestList2))
+                homeFeedList.add(HomeRecyclerViewModel.Bottom(latestList3))
                 _homeFeed.postValue(homeFeedList)
-                Log.d("Api Data",genresList.toString())
+                Log.d("Api Data",trendList.toString())
 
             }catch(e:Exception){
                 Log.d("Exception","${e}")
@@ -56,10 +56,37 @@ class HomeViewModel : ViewModel() {
         }
     }
 
+    fun getLatest1():List<Item1>{
+        val localMovies:MutableList<Item1> = mutableListOf()
+
+        localMovies.add(Item1(TMBDConstants.latestMovies,"Latest Movies",TMBDConstants.IMG_BASE_URL+"/b9ykj4v8ykjRoGB7SpI1OuxblNU.jpg","latest"))
+        localMovies.add(Item1(TMBDConstants.topRated,"Top Rated Movies",TMBDConstants.IMG_BASE_URL+"/ixgnqO8xhFMb1zr8RRFsyeZ9CdD.jpg","latest"))
+
+        return localMovies
+    }
+
+
+    fun getLatest2():List<Item1>{
+        val localMovies:MutableList<Item1> = mutableListOf()
+        localMovies.add(Item1(TMBDConstants.popular,"Popular Movies",TMBDConstants.IMG_BASE_URL+"/MbP1pIUKQcZaC1XCwSomuiLrva.jpg","latest"))
+        localMovies.add(Item1(TMBDConstants.tamil,"Latest Tamil",TMBDConstants.IMG_BASE_URL+"/pBRkO5GHJqDB9D0fbumL5235JfJ.jpg","language"))
+
+        return localMovies
+    }
+
+    fun getLatest3():List<Item1>{
+        val localMovies:MutableList<Item1> = mutableListOf()
+        localMovies.add(Item1(TMBDConstants.english,"Latest English",TMBDConstants.IMG_BASE_URL+"/9f5sIJEgvUpFv0ozfA6TurG4j22.jpg","language"))
+        localMovies.add(Item1(TMBDConstants.hindi,"Latest Hindi",TMBDConstants.IMG_BASE_URL+"/3O3oTeFERsfNHjwkMHQV26uMf7x.jpg","language"))
+
+
+        return localMovies
+    }
+
    fun getTrend(l:List<Movies>):List<Item>{
        val localMovies:MutableList<Item> = mutableListOf()
        l.forEach {
-               localMovies.add(Item(it.id, it.original_title, it.backdrop_path))
+               localMovies.add(Item(it.id,it.original_title, it.backdrop_path))
        }
 
        return localMovies

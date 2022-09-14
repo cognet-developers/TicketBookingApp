@@ -15,7 +15,6 @@ class Adapter(val movieListener: MovieListener): ListAdapter<Movies,Adapter.View
         return ViewHolder.from(parent)
     }
 
-
     class ViewHolder private constructor(val binding: ListMovienameBinding)
         : RecyclerView.ViewHolder(binding.root) {
 

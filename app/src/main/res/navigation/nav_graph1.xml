@@ -62,23 +62,7 @@
         android:name="com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity"
         android:label="Gridmovie"
         tools:layout="@layout/activity_grid_view" >
-
-        <argument
-            android:name="constant"
-            app:argType="string"
-            app:nullable="true"/>
-
-        <argument
-            android:name="type"
-            app:argType="string"
-            app:nullable="true"/>
-
-        <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true"/>
-
-    </activity>
+   </activity>
 
     <activity
         android:id="@+id/moviediscActivity"

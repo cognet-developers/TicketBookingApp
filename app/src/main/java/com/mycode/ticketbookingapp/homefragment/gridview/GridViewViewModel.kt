@@ -10,33 +10,32 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.Call
 import retrofit2.await
 
-class GridViewViewModel(application: Application, constant:String,type: String) : ViewModel() {
+class GridViewViewModel(application: Application, constant:String,category: String) : ViewModel() {
 
     private val _feed = MutableLiveData<List<Movies>>()
 
     val feed: LiveData<List<Movies>>
         get() = _feed
 
-    private val _navigateToSelectedProperty = MutableLiveData<Int?>()
-
-    // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<Int?>
-        get() = _navigateToSelectedProperty
-
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-
     init{
-        getGenres(constant,type)
+        getGenres(constant,category)
     }
-   fun getGenres(constant: String,genreType:String){
+   fun getGenres(constant: String,category:String){
 
                 coroutineScope.launch {
-                    Log.d("Type",genreType)
-                    val getPropertiesDeferred = TMBDApi.retrofitService.getLatest(constant,genreType, TMBDConstants.API_KEY)
+                    Log.d("Type",category+constant)
+                    val getPropertiesDeferred: Call<GenresListProperty1>
+                    if(category=="latest") {
+                         getPropertiesDeferred = TMBDApi.retrofitService.getLatestMovies(constant, TMBDConstants.API_KEY)
+                    }else{
+                        getPropertiesDeferred=TMBDApi.retrofitService.getLatestMoviesByLanguage(TMBDConstants.API_KEY,constant)
+                    }
                     try {
 
                         val listResult = getPropertiesDeferred.await()

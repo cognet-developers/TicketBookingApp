@@ -6,7 +6,10 @@
     <data>
         <variable
             name="data"
-            type="com.mycode.ticketbookingapp.homefragment.HomeRecyclerViewModel.Bottom" />
+            type="com.mycode.ticketbookingapp.homefragment.Item1" />
+        <variable
+            name="gridClickListener"
+            type="com.mycode.ticketbookingapp.homefragment.GridClickListener" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,10 +18,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="176dp"
+        android:layout_height="176dp"
         android:layout_marginTop="8dp"
         app:cardElevation="25dp"
+        android:onClick="@{()->gridClickListener.onClick(data)}"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +45,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Top Rated"
                 android:gravity="center"
+                android:padding="8dp"
                 app:userDetails="@{data.title}"
                 android:textColor="@color/white"
                 android:textStyle="bold"

@@ -6,6 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 data class GenresListProperty(val items: List<Movies>)
 
+data class GenresListProperty1(val results: List<Movies>)
+
 @Parcelize
 data class Movies(
     val id:Int,
@@ -15,9 +17,6 @@ data class Movies(
     val original_title:String,
     val vote_average:Float,
 ):Parcelable
-
-
-data class GenresListProperty1(val results: List<Movies>)
 
 data class GenresList(val genres:List<genres>)
 

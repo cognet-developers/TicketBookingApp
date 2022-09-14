@@ -6,10 +6,15 @@
         <variable
             name="data"
             type="com.mycode.ticketbookingapp.homefragment.Item" />
+
+        <variable
+            name="clicklistener"
+            type="com.mycode.ticketbookingapp.homefragment.MovieListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:onClick="@{()-> clicklistener.onClick(data.id)}">
         <ImageView
             android:id="@+id/backdrops"
             android:layout_width="match_parent"
@@ -24,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:userDetails="@{data.original_title}"
             tools:text="Movie Name"
