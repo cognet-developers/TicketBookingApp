@@ -1,5 +1,7 @@
 package com.mycode.ticketbookingapp.reviewsFragment
 
+import android.app.Activity
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +14,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.await
 
-class ReviewsViewModel: ViewModel() {
+class ReviewsViewModel(application: Application, activity: Activity): ViewModel() {
     private val _feed = MutableLiveData<List<ReviewData>>()
 
     val feed: LiveData<List<ReviewData>>

@@ -12,7 +12,7 @@ data class MovieDetails(
         val original_title:String="",
         val overview:String="",
         val backdrop_path:String="",
-        val release_date:String="",
+        var release_date:String="",
         val runtime:Int=0,
         val tagline:String="",
         val vote_average:String="",
