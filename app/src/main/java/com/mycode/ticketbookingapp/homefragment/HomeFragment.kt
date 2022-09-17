@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
         val homeRecyclerViewAdapter=HomeRecyclerViewAdapter()
 
-   binding.homeRecyclerView.adapter=homeRecyclerViewAdapter
+    binding.homeRecyclerView.adapter=homeRecyclerViewAdapter
 
         homeViewModel.homeFeed.observe(viewLifecycleOwner, Observer{
             it?.let{

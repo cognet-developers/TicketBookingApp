@@ -2,10 +2,13 @@ package com.mycode.ticketbookingapp.homefragment.moviedescription
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.navArgs
 import com.mycode.ticketbookingapp.R
@@ -15,6 +18,7 @@ import com.mycode.ticketbookingapp.homefragment.MovieListener
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewViewModel
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewViewModelFactory
+import java.net.URI
 
 
 class MovieDescriptionActivity:AppCompatActivity() {
@@ -42,6 +46,15 @@ class MovieDescriptionActivity:AppCompatActivity() {
             ViewModelProvider(this, viewModelFactory).get(MovieDescriptionViewModel::class.java)
         binding.movieDescriptionViewModel=movieDescriptionViewModel
         binding.lifecycleOwner = this
+
+            binding.movieimg.setOnClickListener{
+
+                Log.d("Videokey", "https://www.youtube.com/watch?v="+movieDescriptionViewModel.selectedvid.value)
+                val utubeintent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v="+movieDescriptionViewModel.selectedvid.value))
+                startActivity(utubeintent)
+            }
+
+
 
     }
 
