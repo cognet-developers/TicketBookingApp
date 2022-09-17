@@ -44,8 +44,9 @@ import com.mycode.ticketbookingapp.network.Movies
 //
 //}
 
-class ReviewAdapter(val topic: List<ReviewData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ReviewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    var topic =  listOf<ReviewData>()
     companion object{
         val USER_KEY="key"
     }
