@@ -24,15 +24,12 @@ class MovieDescriptionViewModel(application: Application, id: String):ViewModel(
 
     val selectedPropertyGenres: LiveData<String>
         get() = _selectedPropertyGenres
-    private val _selectedvid = MutableLiveData<String>()
 
-    val selectedvid: LiveData<String>
-        get() = _selectedvid
+
 
 
     var viewModelJob = Job()
     val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    var months:List<String> = listOf("January", "February", "May",	"June", "July",	"August", "September", "October", "November", "December")
 
     init {
         getMovieDetails(id)
@@ -48,29 +45,8 @@ class MovieDescriptionViewModel(application: Application, id: String):ViewModel(
             try {
 
                 var listResult = getMovieDetails.await()
-                var month = listResult.release_date.substring(5,7)
-                var date:String
-
-                when (month) {
-                    "01" -> date=months[0]
-                    "02" -> date=months[1]
-                    "03" -> date=months[2]
-                    "04" -> date=months[3]
-                    "05" -> date=months[4]
-                    "06" -> date=months[5]
-                    "07" -> date=months[6]
-                    "08" -> date=months[7]
-                    "09" -> date=months[8]
-                    "10" -> date=months[9]
-                    "11" -> date=months[10]
-                    "12" -> date=months[11]
-                    else -> date=""
-                }
-                Log.d("ApiData", listResult.toString())
-                date = listResult.release_date.substring(8,10) + " " + date + ", " + listResult.release_date.substring(0,4)
-                listResult.release_date = date
                 _selectedProperty.value=listResult
-
+                Log.d("ApiData", listResult.toString())
 
                 val genre=getGenres(listResult.genres)
                 _selectedPropertyGenres.value=genre.toString()
@@ -84,7 +60,6 @@ class MovieDescriptionViewModel(application: Application, id: String):ViewModel(
                 }
 
                 val key=local[0]
-                _selectedvid.value=key
                 Log.d("Videokey",key)
 
 
