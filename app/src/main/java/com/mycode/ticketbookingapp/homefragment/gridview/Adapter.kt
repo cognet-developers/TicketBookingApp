@@ -1,4 +1,4 @@
-package com.mycode.ticketbookingapp.homefragment
+package com.mycode.ticketbookingapp.homefragment.gridview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import com.mycode.ticketbookingapp.databinding.ListMovienameBinding
 import com.mycode.ticketbookingapp.network.Movies
 
 
-class Adapter(val movieListener: MovieListener): ListAdapter<Movies,Adapter.ViewHolder>(DiffCallback()) {
+class Adapter(val movieListener: MovieListener): ListAdapter<Movies, Adapter.ViewHolder>(
+    DiffCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)

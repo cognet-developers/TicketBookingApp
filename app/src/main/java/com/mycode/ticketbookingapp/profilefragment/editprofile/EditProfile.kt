@@ -58,8 +58,14 @@ class EditProfile : AppCompatActivity() {
             binding.editProfileViewModel = editProfileViewModel
             binding.lifecycleOwner = this
 
+
+            editProfileViewModel.getData.observe(this,Observer{
+                if(it!=null){
+                    loading_spinner.visibility=View.GONE
+                }
+            })
             editProfileViewModel.setData.observe(this, Observer {
-                if (it != null) {
+                if (it ==true) {
                     loading_spinner.visibility = View.GONE
                     Toast.makeText(this, "Your profile is updated successfully", Toast.LENGTH_LONG)
                         .show()
@@ -70,7 +76,7 @@ class EditProfile : AppCompatActivity() {
 
 
             editProfileViewModel.image.observe(this, Observer {
-                if (it != null) {
+                if (it == true) {
                     val intent = Intent(Intent.ACTION_PICK)
                     intent.type = "image/*"
                     startActivityForResult(intent, 0)

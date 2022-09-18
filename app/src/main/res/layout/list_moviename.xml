@@ -10,7 +10,7 @@
 
         <variable
             name="clicklistener"
-            type="com.mycode.ticketbookingapp.homefragment.MovieListener" />
+            type="com.mycode.ticketbookingapp.homefragment.gridview.MovieListener" />
 
     </data>
 

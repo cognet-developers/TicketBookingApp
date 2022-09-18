@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.mycode.ticketbookingapp.databinding.*
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity
-import com.mycode.ticketbookingapp.homefragment.gridview.GridViewActivity.Companion.USER_KEY
+import com.mycode.ticketbookingapp.homefragment.gridview.MovieListener
 import com.mycode.ticketbookingapp.homefragment.moviedescription.MovieDescriptionActivity
-import com.mycode.ticketbookingapp.network.Movies
 import com.mycode.ticketbookingapp.reviewsFragment.ReviewAdapter
 
 sealed class HomeRecyclerViewHolder(binding: ViewBinding):RecyclerView.ViewHolder(binding.root) {

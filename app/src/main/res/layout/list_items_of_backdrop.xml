@@ -9,7 +9,7 @@
 
         <variable
             name="clicklistener"
-            type="com.mycode.ticketbookingapp.homefragment.MovieListener" />
+            type="com.mycode.ticketbookingapp.homefragment.gridview.MovieListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

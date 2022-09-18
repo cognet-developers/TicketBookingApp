@@ -18,7 +18,7 @@ import retrofit2.await
 import java.time.Year
 
 @RequiresApi(Build.VERSION_CODES.O)
-class GridViewViewModel(application: Application, constant:String) : ViewModel() {
+class GridViewViewModel(constant:String) : ViewModel() {
 
     private val _feed = MutableLiveData<List<Movies>>()
 
