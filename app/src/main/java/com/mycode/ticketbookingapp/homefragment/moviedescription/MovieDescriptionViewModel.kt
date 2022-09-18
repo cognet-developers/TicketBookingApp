@@ -14,7 +14,7 @@ import retrofit2.await
 import java.util.stream.Collectors
 import kotlin.system.exitProcess
 
-class MovieDescriptionViewModel(application: Application, id: String):ViewModel() {
+class MovieDescriptionViewModel(id: String):ViewModel() {
     private val _selectedProperty = MutableLiveData<MovieDetails>()
 
     val selectedProperty: LiveData<MovieDetails>

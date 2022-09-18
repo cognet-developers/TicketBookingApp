@@ -1,10 +1,10 @@
 package com.mycode.ticketbookingapp.reviewsFragment
 
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,41 +14,46 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mycode.ticketbookingapp.R
+import com.mycode.ticketbookingapp.databinding.FragmentHomeBinding
 import com.mycode.ticketbookingapp.databinding.FragmentReviewsBinding
-import com.mycode.ticketbookingapp.homefragment.MovieListener
-import com.mycode.ticketbookingapp.homefragment.gridview.GridViewViewModel
-import com.mycode.ticketbookingapp.homefragment.gridview.GridViewViewModelFactory
+import com.mycode.ticketbookingapp.profilefragment.ProfileViewModel
+import kotlinx.android.synthetic.main.fragment_reviews.*
 
 class ReviewsFragment : Fragment() {
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
 
-        val application:Application = requireNotNull(this.activity).application
+  //       val viewModel: ReviewsViewModel by lazy {
+//            ViewModelProvider(this,viewModelFactory).get(ReviewsViewModel::class.java)
+//        }
+        val binding: FragmentReviewsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_reviews,container,false)
 
-        val activity:Activity= this.requireActivity()
-        val viewModelFactory = ReviewViewModelFactory(application, activity)
-        val viewModel: ReviewsViewModel by lazy {
-            ViewModelProvider(this,viewModelFactory).get(ReviewsViewModel::class.java)
-        }
-        val binding = FragmentReviewsBinding.inflate(inflater)
+        val viewModelFactory = ReviewViewModelFactory()
+        val viewModel = ViewModelProvider(this,viewModelFactory).get(ReviewsViewModel::class.java)
+
+
+        binding.reviewViewModel=viewModel
+
         //var topiclist: List<String>
 
         binding.lifecycleOwner = this
 
-        val layoutmanager =LinearLayoutManager(activity,LinearLayoutManager.VERTICAL ,false)
-        binding.recv.layoutManager=layoutmanager
-        //viewModel.listOfListMovies()
+//        val layoutmanager =LinearLayoutManager(activity,LinearLayoutManager.VERTICAL ,false)
+//        binding.recv.layoutManager=layoutmanager
+//        //viewModel.listOfListMovies()
 
         val adapter = ReviewAdapter()
 
         binding.recv.adapter = adapter
         viewModel.feed.observe(viewLifecycleOwner, Observer {
-
+            binding.loadingSpinnerR.visibility=View.GONE
             adapter.topic = it
             adapter.notifyDataSetChanged()
 

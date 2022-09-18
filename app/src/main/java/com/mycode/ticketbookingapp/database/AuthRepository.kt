@@ -170,7 +170,6 @@ class AuthRepository(application: Application){
                 .getReference("/images/" + UUID.randomUUID().toString())
 
             val uploadTask = ref.putFile(image)
-            val urlTasK =
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let {
@@ -202,9 +201,9 @@ class AuthRepository(application: Application){
                 val user = auth.currentUser
                 val tba = TicketBookingApp(
                     user!!.displayName.toString(),
-                    user!!.email.toString(),
+                    user.email.toString(),
                     "",
-                    user!!.photoUrl.toString(),
+                    user.photoUrl.toString(),
                     "",
                     "",
                     "",

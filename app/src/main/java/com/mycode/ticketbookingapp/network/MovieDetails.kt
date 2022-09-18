@@ -24,6 +24,16 @@ data class MovieDetails(
 
         val runTime:String
                 get() =runtime.toString()+" minutes"
+
+        val language:String
+              get() = when(original_language){
+                      "ta" -> "Tamil"
+                      "te" -> "Telugu"
+                      "hi" -> "Hindi"
+                      "en" -> "English"
+                      "ja" -> "Japanese"
+                      else -> original_language
+              }
 }
 
 

@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.mycode.ticketbookingapp.homefragment.gridview.GridViewViewModel
 import com.mycode.ticketbookingapp.profilefragment.ProfileViewModel
 
-class ReviewViewModelFactory(private val application: Application,private val activity: Activity) : ViewModelProvider.Factory {
+class ReviewViewModelFactory() : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ReviewsViewModel::class.java)) {
-            return ReviewsViewModel(application,activity) as T
+            return ReviewsViewModel() as T
             //Returns the values from the fragment
         }
         throw IllegalArgumentException("Unknown ViewModel class")

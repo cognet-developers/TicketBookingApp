@@ -8,12 +8,12 @@ import androidx.lifecycle.ViewModelProvider
 
 
 
-class MovieDescriptionViewModelFactory(private val application: Application, private val id:String) : ViewModelProvider.Factory {
+class MovieDescriptionViewModelFactory(private val id:String) : ViewModelProvider.Factory {
     @RequiresApi(Build.VERSION_CODES.N)
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MovieDescriptionViewModel::class.java)) {
-            return MovieDescriptionViewModel(application,id) as T
+            return MovieDescriptionViewModel(id) as T
             //Returns the values from the fragment
         }
         throw IllegalArgumentException("Unknown ViewModel class")

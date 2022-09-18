@@ -6,22 +6,22 @@
     app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/home"
+        android:id="@id/home"
         android:name="com.mycode.ticketbookingapp.homefragment.HomeFragment"
-        android:label="Home"
+        android:label="@string/home"
         tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_reviews"
+            app:destination="@id/reviews" />
         <action
             android:id="@+id/action_home_to_gridMovieActivity"
             app:destination="@id/gridMovieActivity" />
-        <action
-            android:id="@+id/action_home_to_reviews3"
-            app:destination="@id/reviews" />
     </fragment>
 
     <fragment
-        android:id="@+id/reviews"
+        android:id="@id/reviews"
         android:name="com.mycode.ticketbookingapp.reviewsFragment.ReviewsFragment"
-        android:label="Reviews"
+        android:label="@string/reviews"
         tools:layout="@layout/fragment_reviews" >
         <action
             android:id="@+id/action_reviews_to_profile"
@@ -29,7 +29,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/profile"
+        android:id="@id/profile"
         android:name="com.mycode.ticketbookingapp.profilefragment.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.await
 
-class ReviewsViewModel(application: Application, activity: Activity): ViewModel() {
+class ReviewsViewModel(): ViewModel() {
     private val _feed = MutableLiveData<List<ReviewData>>()
 
     val feed: LiveData<List<ReviewData>>
@@ -28,12 +28,14 @@ class ReviewsViewModel(application: Application, activity: Activity): ViewModel(
 
     init {
         listOfListMovies()
+        Log.d("Review","Yes,It is initialized")
     }
         fun listOfListMovies(){
         coroutineScope.launch {
 
             val genrename=TMBDApi.retrofitService.getGenres(TMBDConstants.API_KEY)
             val listResult1=genrename.await()
+
             listResult1.genres.forEach {
                 var getPropertiesDeferred = TMBDApi.retrofitService.getGenresList(
                     it.id.toString(),
@@ -46,17 +48,19 @@ class ReviewsViewModel(application: Application, activity: Activity): ViewModel(
                     if(genresList.isNotEmpty()) {
                         reviewdata.add(ReviewData(it.name, genresList))
                     }
+                    _feed.value=reviewdata
+                    Log.i("Review",reviewdata.toString())
+
                     Log.d("Api Data", listResult.toString())
 
                 } catch (e: Exception) {
-                    Log.d("Exception", "${e}")
+                    Log.d("ExceptionR", "${e}")
                 }
             }
         }
-        Log.i("Review",reviewdata.toString())
 
-        _feed.value=reviewdata
-    }
+
+        }
 
     fun getGenresList(l: List<Movies>): List<Movies> {
         val localMovies: MutableList<Movies> = mutableListOf()
