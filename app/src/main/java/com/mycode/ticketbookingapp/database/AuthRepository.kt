@@ -16,7 +16,6 @@ import com.google.firebase.storage.UploadTask
 import com.mycode.ticketbookingapp.model.TicketBookingApp
 import java.util.*
 
-
 class AuthRepository(application: Application){
     private var auth: FirebaseAuth
     private var firebaseDatabase:FirebaseDatabase
@@ -29,7 +28,6 @@ class AuthRepository(application: Application){
     private var singleRecordDataRepository=MutableLiveData<Boolean?>()
     private var uploadedDataRepository=MutableLiveData<String?>()
     private var storage:FirebaseStorage
-
 
     init{
         this.application=application

@@ -9,12 +9,14 @@ import com.mycode.ticketbookingapp.databinding.ActivityRecyclerViewBinding
 import com.mycode.ticketbookingapp.homefragment.gridview.Adapter
 import com.mycode.ticketbookingapp.homefragment.gridview.MovieListener
 import com.mycode.ticketbookingapp.homefragment.moviedescription.MovieDescriptionActivity
+import com.mycode.ticketbookingapp.localDatabase.Review
 
-class ReviewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ReviewAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var topic =  listOf<ReviewData>()
-    companion object{
-        val USER_KEY="key"
+    var topic = listOf<Review>()
+
+    companion object {
+        val USER_KEY = "key"
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -31,17 +33,17 @@ class ReviewAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class ViewHolder(val binding: ActivityRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(topic: ReviewData): Unit {
+        fun bind(topic: Review): Unit {
 
-            binding.viewModel= topic
-            val adapter= Adapter(MovieListener {
+            binding.viewModel = topic
+            val adapter = Adapter(MovieListener {
                 val intent = Intent(itemView.context, MovieDescriptionActivity::class.java)
                 intent.putExtra(USER_KEY, it.toString())
-                Log.d("id",it.toString())
+                Log.d("id", it.toString())
                 itemView.context.startActivity(intent)
             })
-            binding.recylv.adapter=adapter
-            adapter.submitList(topic.movies)
+            binding.recylv.adapter = adapter
+            adapter.submitList(topic.movie)
 
         }
     }
