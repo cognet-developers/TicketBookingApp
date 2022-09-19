@@ -1,11 +1,12 @@
 package com.mycode.ticketbookingapp.homefragment.gridview
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -24,6 +25,7 @@ class GridViewActivity : AppCompatActivity() {
         val USER_KEY="key"
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +42,13 @@ class GridViewActivity : AppCompatActivity() {
         binding.gridViewViewModel = gridViewViewModel
         binding.lifecycleOwner = this
 
-       val adapter= Adapter(MovieListener { it ->
-           val intent = Intent(this, MovieDescriptionActivity::class.java)
-           intent.putExtra(USER_KEY, it.toString())
-           Log.d("id",it.toString())
-           startActivity(intent)
+        val adapter= Adapter(MovieListener { it ->
+            val intent = Intent(this, MovieDescriptionActivity::class.java)
+            intent.putExtra(USER_KEY, it.toString())
+            Log.d("id",it.toString())
+            startActivity(intent)
 
-       })
+        })
 
         binding.recyclerView.adapter=adapter
 
@@ -58,7 +60,6 @@ class GridViewActivity : AppCompatActivity() {
 
             }
         })
-
 
 
     }

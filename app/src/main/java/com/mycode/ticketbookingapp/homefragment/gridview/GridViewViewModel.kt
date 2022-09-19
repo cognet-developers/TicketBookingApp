@@ -1,14 +1,15 @@
 package com.mycode.ticketbookingapp.homefragment.gridview
 
-import android.app.Application
 import android.os.Build
-import android.text.format.Time
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mycode.ticketbookingapp.network.*
+import com.mycode.ticketbookingapp.network.GenresListProperty1
+import com.mycode.ticketbookingapp.network.Movies
+import com.mycode.ticketbookingapp.network.TMBDApi
+import com.mycode.ticketbookingapp.network.TMBDConstants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -84,12 +85,11 @@ class GridViewViewModel(constant:String) : ViewModel() {
                         it.poster_path,
                         it.backdrop_path,
                         it.original_title,
-                        it.vote_average
                     )
                 )
                 Log.d(
                     "Api Data",
-                    it.poster_path + " " + it.original_title + " " + it.vote_average
+                    it.poster_path + " " + it.original_title + " "
                 )
             }
             }

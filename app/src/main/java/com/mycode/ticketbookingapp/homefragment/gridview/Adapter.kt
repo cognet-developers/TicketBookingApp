@@ -9,19 +9,18 @@ import com.mycode.ticketbookingapp.databinding.ListMovienameBinding
 import com.mycode.ticketbookingapp.network.Movies
 
 
-class Adapter(val movieListener: MovieListener): ListAdapter<Movies, Adapter.ViewHolder>(
-    DiffCallback()
-) {
+class Adapter(val movieListener: MovieListener) :
+    ListAdapter<Movies, Adapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: ListMovienameBinding)
-        : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(val binding: ListMovienameBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Movies, movieListener: MovieListener) {
-            binding.viewModel=item
+            binding.viewModel = item
             binding.clicklistener=movieListener
             binding.executePendingBindings()
         }
@@ -56,3 +55,4 @@ class DiffCallback : DiffUtil.ItemCallback<Movies>() {
         return oldItem.id == newItem.id
     }
 }
+
