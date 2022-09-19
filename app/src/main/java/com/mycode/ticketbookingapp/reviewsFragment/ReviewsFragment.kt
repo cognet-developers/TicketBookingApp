@@ -22,11 +22,7 @@ class ReviewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
-        //       val viewModel: ReviewsViewModel by lazy {
-//            ViewModelProvider(this,viewModelFactory).get(ReviewsViewModel::class.java)
-//        }
         val binding: FragmentReviewsBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_reviews, container, false)
 
@@ -38,13 +34,7 @@ class ReviewsFragment : Fragment() {
 
         binding.reviewViewModel = viewModel
 
-        //var topiclist: List<String>
-
         binding.lifecycleOwner = this
-
-//        val layoutmanager =LinearLayoutManager(activity,LinearLayoutManager.VERTICAL ,false)
-//        binding.recv.layoutManager=layoutmanager
-//        //viewModel.listOfListMovies()
 
         val adapter = ReviewAdapter()
 
